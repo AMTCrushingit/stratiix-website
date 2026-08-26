@@ -11,15 +11,19 @@
   --charcoal-mid:    #2C2D31;
 
   /* Teal */
-  --teal:            #0D9488;
+  --teal:            #0D9488; /* legacy - use --emerald */
+  --emerald:         #046C5C;
   --teal-dark:       #0F766E;
+  --emerald-dark:    #035549;
   --teal-light:      #CCFBF1;
+  --emerald-light:   #E6F4F1;
   --teal-xlight:     #F0FDFA;
+  --emerald-mid:     #B2DDD7;
 
   /* Mint */
-  --mint:            #E9F7F3;
-  --mint-mid:        #C8EDE4;
-  --mint-deep:       #5BB8A8;
+  --mint:            #E6F4F1;
+  --mint-mid:        #B2DDD7;
+  --mint-deep:       #B2DDD7;
 
   /* Gold */
   --gold:            #C9A86A;
@@ -107,7 +111,7 @@ a:hover { color: var(--teal-dark); }
   font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--teal);
+  color: var(--emerald);
   margin-bottom: 16px;
 }
 
@@ -133,11 +137,11 @@ a:hover { color: var(--teal-dark); }
 }
 
 .btn-primary {
-  background: var(--teal);
+  background: var(--emerald);
   color: var(--white);
 }
 .btn-primary:hover {
-  background: var(--teal-dark);
+  background: var(--emerald-dark);
   color: var(--white);
   transform: translateY(-1px);
   box-shadow: 0 8px 24px rgba(13,148,136,0.3);
@@ -202,6 +206,7 @@ a:hover { color: var(--teal-dark); }
 
 /* ── Section Backgrounds ── */
 .bg-dark    { background: var(--charcoal); }
+.bg-hero    { background: linear-gradient(135deg, #111214 0%, #1E1F22 100%); }
 .bg-mint    { background: var(--mint); }
 .bg-slate   { background: var(--slate); }
 .bg-white   { background: var(--white); }
@@ -221,7 +226,7 @@ a:hover { color: var(--teal-dark); }
 .divider {
   width: 48px;
   height: 3px;
-  background: var(--teal);
+  background: var(--emerald);
   border-radius: 2px;
   margin: 20px 0 32px;
 }
@@ -292,10 +297,10 @@ a:hover { color: var(--teal-dark); }
 }
 /* ── Hover utility classes ── */
 .hover-teal-border { transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s; }
-.hover-teal-border:hover { border-color: var(--teal) !important; box-shadow: 0 8px 32px rgba(13,148,136,0.08); }
+.hover-teal-border:hover { border-color: var(--emerald) !important; box-shadow: 0 8px 32px rgba(13,148,136,0.08); }
 
 .hover-card { transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s; }
-.hover-card:hover { border-color: var(--teal) !important; transform: translateY(-4px); box-shadow: 0 12px 40px rgba(13,148,136,0.1); }
+.hover-card:hover { border-color: var(--emerald) !important; transform: translateY(-4px); box-shadow: 0 12px 40px rgba(13,148,136,0.1); }
 
 .hover-lift { transition: transform 0.2s, box-shadow 0.2s; }
 .hover-lift:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(13,148,136,0.08); }

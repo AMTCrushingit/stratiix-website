@@ -3,55 +3,136 @@ import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: 'Stratiix — Transform Complexity. Build Capability. Accelerate Outcomes.',
-  description: 'Stratiix diagnoses what is limiting performance, architects the future state, installs the required capabilities, and measures what changes.',
+  description: 'Stratiix helps founder-led organizations identify what is limiting performance and build the capability required to scale beyond the founder.',
 }
 
 function ArchitectureVisual() {
   const layers = [
-    { label: 'Diagnostic', color: '#1D4ED8', w: '100%' },
-    { label: 'TOS', color: '#7C3AED', w: '88%' },
-    { label: 'Capability Engines', color: '#0D9488', w: '76%' },
-    { label: 'Transformation Intelligence', color: '#C9A86A', w: '64%' },
-    { label: 'Outcomes', color: '#5BB8A8', w: '52%' },
+    { label: 'Diagnostic', color: '#2563EB', w: '100%', desc: 'Reveal what is limiting performance' },
+    { label: 'TOS', color: '#7C3AED', w: '88%', desc: 'Architect the transformation system' },
+    { label: 'Capability Engines', color: '#046C5C', w: '76%', desc: 'Install the required capabilities' },
+    { label: 'Transformation Intelligence', color: '#10B981', w: '64%', desc: 'Measure, learn, and adapt' },
+    { label: 'Outcomes', color: '#C9A86A', w: '52%', desc: 'Deliver measurable results' },
   ]
   return (
-    <div style={{ position: 'relative', width: '100%', maxWidth: 480 }}>
-      {layers.map((l, i) => (
-        <div key={l.label} style={{
-          width: l.w, margin: '0 auto', marginBottom: i < layers.length - 1 ? 10 : 0,
-          height: 52, borderRadius: 10,
-          background: `${l.color}22`, border: `1px solid ${l.color}55`,
-          backdropFilter: 'blur(8px)',
-        }} />
-      ))}
-      <div style={{ marginTop: 28, display: 'flex', flexDirection: 'column', gap: 6 }}>
+    <>
+      <style>{`
+        @keyframes buildUp {
+          from { opacity: 0; transform: translateY(16px); }
+          to   { opacity: 1; transform: translateY(0); }
+        }
+        .tos-layer {
+          transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+          cursor: default;
+        }
+        .tos-layer:hover {
+          transform: translateY(-3px) !important;
+        }
+        .tos-layer-tooltip {
+          opacity: 0;
+          transition: opacity 0.2s ease;
+          pointer-events: none;
+        }
+        .tos-layer:hover .tos-layer-tooltip {
+          opacity: 1;
+        }
+      `}</style>
+      <div style={{ position: 'relative', width: '100%', maxWidth: 480 }}>
         {layers.map((l, i) => (
-          <div key={l.label} style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-            <div style={{ width: 8, height: 8, borderRadius: '50%', background: l.color, flexShrink: 0 }} />
-            <span style={{ fontSize: '0.8rem', color: 'rgba(255,255,255,0.65)', fontFamily: 'var(--font-body)' }}>
-              {String(i + 1).padStart(2, '0')} — {l.label}
-            </span>
+          <div key={l.label}
+            className="tos-layer"
+            style={{
+              width: l.w, margin: '0 auto', marginBottom: i < layers.length - 1 ? 10 : 0,
+              height: 52, borderRadius: 10, position: 'relative',
+              background: `${l.color}22`, border: `1px solid ${l.color}55`,
+              backdropFilter: 'blur(8px)',
+              animation: `buildUp 0.5s ease forwards`,
+              animationDelay: `${i * 0.12}s`,
+              opacity: 0,
+            }}
+          >
+            <div className="tos-layer-tooltip" style={{
+              position: 'absolute', top: '50%', left: '50%',
+              transform: 'translate(-50%, -50%)',
+              fontSize: '0.72rem', fontWeight: 600, color: l.color,
+              whiteSpace: 'nowrap', letterSpacing: '0.04em',
+            }}>
+              {l.desc}
+            </div>
           </div>
         ))}
+        <div style={{ marginTop: 28, display: 'flex', flexDirection: 'column', gap: 6 }}>
+          {layers.map((l, i) => (
+            <div key={l.label} style={{ display: 'flex', alignItems: 'center', gap: 10,
+              animation: `buildUp 0.5s ease forwards`, animationDelay: `${0.6 + i * 0.08}s`, opacity: 0 }}>
+              <div style={{ width: 8, height: 8, borderRadius: '50%', background: l.color, flexShrink: 0 }} />
+              <span style={{ fontSize: '0.8rem', color: 'rgba(255,255,255,0.65)', fontFamily: 'var(--font-body)' }}>
+                {String(i + 1).padStart(2, '0')} — {l.label}
+              </span>
+            </div>
+          ))}
+        </div>
       </div>
-    </div>
+    </>
+  )
+}
+
+function FounderSection() {
+  return (
+    <section style={{
+      padding: '96px 0',
+      background: 'linear-gradient(135deg, #111214 0%, #1E1F22 100%)',
+      position: 'relative', overflow: 'hidden',
+    }}>
+      <div style={{ position: 'absolute', top: '20%', right: '5%', width: 300, height: 300, borderRadius: '50%', background: '#046C5C', opacity: 0.06, filter: 'blur(60px)' }} />
+      <div className="container" style={{ maxWidth: 760 }}>
+        <span style={{ display: 'inline-block', fontFamily: 'var(--font-body)', fontSize: '0.75rem', fontWeight: 600, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#046C5C', marginBottom: 32 }}>
+          The Founder Problem
+        </span>
+        <h2 style={{ color: 'white', fontSize: 'clamp(1.75rem, 3.5vw, 2.5rem)', lineHeight: 1.2, marginBottom: 40, maxWidth: 640 }}>
+          Your Business Shouldn’t Run Because You’re Holding It Together
+        </h2>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
+          {[
+            'Most founders don’t have a growth problem.',
+            'They have a capability problem.',
+            'Growth creates complexity.',
+            'Complexity exposes gaps in systems, leadership, governance, and execution.',
+            'Over time, the founder becomes the operating system.',
+          ].map((line, i) => (
+            <p key={i} style={{
+              color: i < 2 ? 'rgba(255,255,255,0.85)' : 'rgba(255,255,255,0.55)',
+              fontSize: i < 2 ? '1.15rem' : '1rem',
+              fontWeight: i < 2 ? 600 : 400,
+              lineHeight: 1.6, margin: 0,
+              fontFamily: i < 2 ? 'var(--font-display)' : 'var(--font-body)',
+            }}>{line}</p>
+          ))}
+        </div>
+        <div style={{ marginTop: 40, paddingTop: 40, borderTop: '1px solid rgba(255,255,255,0.08)' }}>
+          <p style={{ color: 'white', fontSize: '1.15rem', fontWeight: 600, fontFamily: 'var(--font-display)', lineHeight: 1.6, margin: 0 }}>
+            Stratiix helps organizations build the capability required to scale beyond the founder.
+          </p>
+        </div>
+      </div>
+    </section>
   )
 }
 
 function WhyFails() {
   const reasons = [
-    { n: '01', title: 'Strategy without execution architecture', body: 'Most organizations can articulate a strategy. Few have the systems to execute it. The gap between intent and outcome is not a strategy problem — it is a capability problem.' },
-    { n: '02', title: 'Capability gaps that go undiagnosed', body: 'Leaders invest in initiatives without first understanding what is actually limiting performance. Without a diagnostic baseline, resources are deployed against symptoms, not causes.' },
-    { n: '03', title: 'Change without adoption infrastructure', body: 'New systems, processes, and structures fail when the workforce is not equipped, aligned, or motivated to operate them. Transformation requires an adoption engine, not just a change plan.' },
-    { n: '04', title: 'No system to sustain what is built', body: 'Even successful transformations erode without rhythms, governance, and accountability structures that hold performance without constant intervention from leadership.' },
+    { n: '01', title: 'Founder Dependency', body: 'Growth increasingly depends on founder involvement, creating bottlenecks in decision-making and execution.' },
+    { n: '02', title: 'Capability Gaps Go Undiagnosed', body: 'Leaders invest in solutions before understanding what is actually limiting performance.' },
+    { n: '03', title: 'Growth Outpaces Infrastructure', body: 'Organizations scale faster than the systems supporting them.' },
+    { n: '04', title: 'Performance Doesn\'t Hold', body: 'Without governance, accountability, and operating discipline, progress becomes difficult to sustain.' },
   ]
   return (
     <section className="section bg-dark">
       <div className="container">
         <span className="eyebrow">The Problem</span>
-        <h2 style={{ color: 'white', maxWidth: 560, marginBottom: 16 }}>Why Transformation Fails</h2>
+        <h2 style={{ color: 'white', maxWidth: 560, marginBottom: 16 }}>When Growth Outpaces Systems</h2>
         <p style={{ color: 'rgba(255,255,255,0.6)', maxWidth: 560, marginBottom: 64 }}>
-          Strategy alone does not create results. The organizations that struggle to transform share four common failure patterns.
+          Most founder-led organizations don\'t have a growth problem. They have a capability problem. Growth creates complexity that exposes gaps in systems, leadership, governance, and execution.
         </p>
         <div className="grid-2">
           {reasons.map(r => (
@@ -80,7 +161,7 @@ function ArchitectureSection() {
       <div className="container">
         <div style={{ textAlign: 'center', marginBottom: 64 }}>
           <span className="eyebrow">The System</span>
-          <h2>Transformation Architecture™</h2>
+          <h2>The Transformation Operating System™</h2>
           <div className="divider" style={{ margin: '20px auto 0' }} />
         </div>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', flexWrap: 'wrap', gap: 0 }}>
@@ -126,7 +207,7 @@ function TOSSection() {
           <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
             {phases.map(p => (
               <div key={p.n} className="hover-lift" style={{ display: 'flex', gap: 20, padding: '20px 24px', background: 'white', borderRadius: 10, border: '1px solid var(--slate-mid)' }}>
-                <div style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: '0.75rem', color: 'var(--teal)', letterSpacing: '0.1em', flexShrink: 0, paddingTop: 2 }}>{p.n}</div>
+                <div style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: '0.75rem', color: 'var(--emerald)', letterSpacing: '0.1em', flexShrink: 0, paddingTop: 2 }}>{p.n}</div>
                 <div>
                   <div style={{ fontFamily: 'var(--font-display)', fontWeight: 600, color: 'var(--charcoal)', marginBottom: 6 }}>{p.label}</div>
                   <p style={{ fontSize: '0.85rem', color: 'var(--muted)', lineHeight: 1.65, margin: 0 }}>{p.desc}</p>
@@ -163,7 +244,7 @@ function EnginesSection() {
         <div className="grid-3">
           {engines.map(e => (
             <div key={e.name} className="card hover-lift" style={{ padding: '28px 28px 32px' }}>
-              <div style={{ fontSize: '1.5rem', color: 'var(--teal)', marginBottom: 16 }}>{e.icon}</div>
+              <div style={{ fontSize: '1.5rem', color: 'var(--emerald)', marginBottom: 16 }}>{e.icon}</div>
               <h4 style={{ marginBottom: 10, fontSize: '1rem', lineHeight: 1.4 }}>{e.name}</h4>
               <p style={{ fontSize: '0.875rem', color: 'var(--muted)', lineHeight: 1.7, margin: 0 }}>{e.desc}</p>
             </div>
@@ -197,7 +278,7 @@ function SolutionsSection() {
           <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
             {sectors.map(s => (
               <div key={s.name} className="hover-lift" style={{ padding: '20px 24px', background: 'white', borderRadius: 10, border: '1px solid var(--mint-mid)', display: 'flex', gap: 16, alignItems: 'flex-start' }}>
-                <div style={{ width: 8, height: 8, borderRadius: '50%', background: 'var(--teal)', flexShrink: 0, marginTop: 6 }} />
+                <div style={{ width: 8, height: 8, borderRadius: '50%', background: 'var(--emerald)', flexShrink: 0, marginTop: 6 }} />
                 <div>
                   <div style={{ fontFamily: 'var(--font-display)', fontWeight: 600, color: 'var(--charcoal)', marginBottom: 4 }}>{s.name}</div>
                   <p style={{ fontSize: '0.85rem', color: 'var(--muted)', margin: 0, lineHeight: 1.65 }}>{s.desc}</p>
@@ -222,9 +303,9 @@ function ResultsSection() {
     <section className="section bg-dark">
       <div className="container">
         <div style={{ textAlign: 'center', marginBottom: 64 }}>
-          <span className="eyebrow" style={{ color: '#5BB8A8' }}>What We Deliver</span>
+          <span className="eyebrow" style={{ color: '#B2DDD7' }}>What We Deliver</span>
           <h2 style={{ color: 'white' }}>Results That Are Measurable</h2>
-          <div className="divider" style={{ margin: '20px auto 0', background: 'var(--teal)' }} />
+          <div className="divider" style={{ margin: '20px auto 0', background: 'var(--emerald)' }} />
           <p style={{ color: 'rgba(255,255,255,0.55)', maxWidth: 520, margin: '24px auto 0' }}>
             Stratiix does not measure success by deliverables produced. We measure it by what changes inside the organization.
           </p>
@@ -274,7 +355,7 @@ export default function Home() {
           { color: '#1D4ED8', top: '15%', left: '5%' },
           { color: '#7C3AED', top: '10%', right: '8%' },
           { color: '#C9A86A', bottom: '20%', left: '8%' },
-          { color: '#0D9488', bottom: '15%', right: '5%' },
+          { color: '#046C5C', bottom: '15%', right: '5%' },
         ].map((orb, i) => (
           <div key={i} style={{ position: 'absolute', width: 320, height: 320, borderRadius: '50%', background: orb.color, opacity: 0.12, filter: 'blur(80px)', top: (orb as any).top, left: (orb as any).left, right: (orb as any).right, bottom: (orb as any).bottom }} />
         ))}
@@ -282,9 +363,9 @@ export default function Home() {
         <div className="container" style={{ position: 'relative', zIndex: 1 }}>
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 80, alignItems: 'center' }}>
             <div>
-              <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '6px 14px', borderRadius: 100, background: 'rgba(13,148,136,0.15)', border: '1px solid rgba(13,148,136,0.3)', marginBottom: 32 }}>
-                <div style={{ width: 6, height: 6, borderRadius: '50%', background: '#0D9488' }} />
-                <span style={{ fontSize: '0.75rem', fontWeight: 600, color: '#0D9488', letterSpacing: '0.08em', textTransform: 'uppercase' }}>Transformation Platform</span>
+              <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '6px 14px', borderRadius: 100, background: 'rgba(4,108,92,0.15)', border: '1px solid rgba(4,108,92,0.3)', marginBottom: 32 }}>
+                <div style={{ width: 6, height: 6, borderRadius: '50%', background: '#046C5C' }} />
+                <span style={{ fontSize: '0.75rem', fontWeight: 600, color: '#046C5C', letterSpacing: '0.08em', textTransform: 'uppercase' }}>Built for Founder-Led Organizations</span>
               </div>
               <h1 style={{ color: 'white', marginBottom: 28, lineHeight: 1.1 }}>
                 Transform Complexity.<br />
@@ -292,7 +373,7 @@ export default function Home() {
                 Accelerate Outcomes.
               </h1>
               <p style={{ color: 'rgba(255,255,255,0.65)', fontSize: '1.1rem', lineHeight: 1.8, maxWidth: 480, marginBottom: 40 }}>
-                Stratiix diagnoses what is limiting performance, architects the future state, installs the required capabilities, and measures what changes.
+                Stratiix helps founder-led organizations identify what is limiting performance and build the capability required to scale beyond the founder.
               </p>
               <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap' }}>
                 <Link href="/diagnostic" className="btn btn-primary" style={{ fontSize: '0.95rem', padding: '14px 28px' }}>Begin with the Diagnostic →</Link>
@@ -301,7 +382,7 @@ export default function Home() {
               <div style={{ marginTop: 48, display: 'flex', gap: 32 }}>
                 {['Diagnose', 'Activate', 'Accelerate'].map((t, i) => (
                   <div key={t}>
-                    <div style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: '0.75rem', color: '#0D9488', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: 4 }}>{String(i + 1).padStart(2, '0')}</div>
+                    <div style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: '0.75rem', color: '#046C5C', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: 4 }}>{String(i + 1).padStart(2, '0')}</div>
                     <div style={{ fontSize: '0.875rem', color: 'rgba(255,255,255,0.5)' }}>{t}</div>
                   </div>
                 ))}
@@ -314,6 +395,7 @@ export default function Home() {
         </div>
         <style>{`@media(max-width:768px){section>div>div{grid-template-columns:1fr!important;gap:48px!important;}section>div>div>div:last-child{display:none;}}`}</style>
       </section>
+      <FounderSection />
       <WhyFails />
       <ArchitectureSection />
       <TOSSection />
