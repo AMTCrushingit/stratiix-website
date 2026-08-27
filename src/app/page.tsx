@@ -463,44 +463,83 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── PROBLEM SECTION — full-width dark, no container cap ──────────── */}
-      <section style={{ background: '#1E1F22', padding: '120px 0', position: 'relative', overflow: 'hidden' }}>
-        <div style={{ position: 'absolute', top: '30%', right: '-5%', width: 600, height: 600, borderRadius: '50%', background: '#2563EB', opacity: 0.04, filter: 'blur(120px)' }} />
-        <div style={{ maxWidth: '100%', padding: '0 6vw' }}>
+      {/* ── PROBLEM SECTION — editorial typographic layout ──────────────────── */}
+      <section style={{ background: '#111214', padding: '120px 0', position: 'relative', overflow: 'hidden' }}>
+        {/* Ambient glow */}
+        <div style={{ position: 'absolute', top: '20%', right: '10%', width: 500, height: 500, borderRadius: '50%', background: '#2563EB', opacity: 0.04, filter: 'blur(120px)' }} />
+        <div style={{ position: 'absolute', bottom: '10%', left: '5%', width: 400, height: 400, borderRadius: '50%', background: '#7C3AED', opacity: 0.04, filter: 'blur(100px)' }} />
+
+        <div style={{ padding: '0 6vw' }}>
+
+          {/* Eyebrow + heading */}
           <FadeIn>
-            <div style={{ marginBottom: 72, position: 'relative' }}>
-              <div style={{
-                position: 'absolute', top: -40, left: -20,
-                fontSize: 'clamp(8rem, 15vw, 14rem)', fontWeight: 800,
-                color: 'rgba(255,255,255,0.03)', lineHeight: 1,
-                fontFamily: 'var(--font-display)', userSelect: 'none', pointerEvents: 'none',
-                letterSpacing: '-0.05em',
-              }}>04</div>
-              <div style={{ fontSize: '0.72rem', fontWeight: 700, color: '#046C5C', letterSpacing: '0.15em', textTransform: 'uppercase', marginBottom: 16, position: 'relative' }}>
+            <div style={{ marginBottom: 96 }}>
+              <div style={{ fontSize: '0.72rem', fontWeight: 700, color: '#046C5C', letterSpacing: '0.18em', textTransform: 'uppercase', marginBottom: 20 }}>
                 When Growth Outpaces Systems
               </div>
-              <h2 style={{ color: 'white', maxWidth: 640, fontSize: 'clamp(1.8rem, 3vw, 2.5rem)', position: 'relative', fontWeight: 800 }}>
+              <h2 style={{ color: 'white', fontSize: 'clamp(2rem, 3.5vw, 3rem)', fontWeight: 800, lineHeight: 1.1, maxWidth: 640 }}>
                 Founder-Led Organizations Often Get Stuck<br/>
                 <span style={{ color: '#046C5C' }}>for the Same Four Reasons</span>
               </h2>
             </div>
           </FadeIn>
-          <div className="four-col" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 20 }}>
+
+          {/* Four reasons — horizontal rule layout, no boxes */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 0 }}>
             {[
               { n: '01', title: 'Founder Dependency', body: 'Growth increasingly depends on founder involvement, creating bottlenecks in decision-making and execution.', color: '#2563EB' },
               { n: '02', title: 'Capability Gaps Go Undiagnosed', body: 'Leaders invest in solutions before understanding what is actually limiting performance.', color: '#7C3AED' },
               { n: '03', title: 'Growth Outpaces Systems', body: 'Organizations scale faster than the systems supporting them.', color: '#046C5C' },
-              { n: '04', title: 'Performance Doesn\'t Hold', body: 'Without governance, accountability, and operating discipline, progress becomes difficult to sustain.', color: '#C9A86A' },
+              { n: '04', title: "Performance Doesn't Hold", body: 'Without governance, accountability, and operating discipline, progress becomes difficult to sustain.', color: '#C9A86A' },
             ].map((r, i) => (
               <FadeIn key={r.n} delay={i * 0.1}>
-                <div className="problem-card" style={{ '--card-accent': r.color } as React.CSSProperties}>
-                  <div style={{ fontSize: '0.68rem', fontWeight: 800, color: r.color, letterSpacing: '0.15em', marginBottom: 20 }}>{r.n}</div>
-                  <h4 style={{ color: 'white', marginBottom: 14, fontSize: '1rem', lineHeight: 1.4, fontFamily: 'var(--font-display)' }}>{r.title}</h4>
-                  <p style={{ color: 'rgba(255,255,255,0.45)', fontSize: '0.875rem', lineHeight: 1.75, margin: 0 }}>{r.body}</p>
+                <div style={{
+                  display: 'grid',
+                  gridTemplateColumns: '80px 1fr 1fr',
+                  gap: '40px',
+                  alignItems: 'start',
+                  padding: '40px 0',
+                  borderTop: '1px solid rgba(255,255,255,0.07)',
+                  borderBottom: i === 3 ? '1px solid rgba(255,255,255,0.07)' : 'none',
+                  transition: 'all 0.3s ease',
+                }} className="reason-row">
+                  {/* Number */}
+                  <div style={{
+                    fontSize: 'clamp(2.5rem, 4vw, 3.5rem)',
+                    fontWeight: 900,
+                    color: r.color,
+                    lineHeight: 1,
+                    opacity: 0.7,
+                    fontFamily: 'var(--font-display)',
+                    letterSpacing: '-0.04em',
+                  }}>
+                    {r.n}
+                  </div>
+                  {/* Title */}
+                  <div style={{
+                    fontFamily: 'var(--font-display)',
+                    fontWeight: 700,
+                    fontSize: 'clamp(1.1rem, 2vw, 1.4rem)',
+                    color: 'white',
+                    lineHeight: 1.3,
+                    paddingTop: 6,
+                  }}>
+                    {r.title}
+                  </div>
+                  {/* Body */}
+                  <div style={{
+                    fontSize: 'clamp(0.875rem, 1.3vw, 1rem)',
+                    color: 'rgba(255,255,255,0.45)',
+                    lineHeight: 1.8,
+                    paddingTop: 6,
+                  }}>
+                    {r.body}
+                  </div>
                 </div>
               </FadeIn>
             ))}
           </div>
+
         </div>
       </section>
 
