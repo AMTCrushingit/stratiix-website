@@ -114,107 +114,143 @@ function FadeIn({ children, delay = 0 }: { children: React.ReactNode; delay?: nu
 }
 
 
-// ── Animated Vertical TOS Diagram ────────────────────────────────────────────
+// ── TOS Diagram — faithful recreation of the PowerPoint original ─────────────
+// 5 numbered circles in a horizontal flow with dashed connectors
+// Animated: circles build in on load, hover glows + raises + shows description
 function TOSDiagram() {
   const [hovered, setHovered] = useState<number | null>(null)
   const phases = [
-    { n: '01', label: 'Diagnose', sub: 'Establish the baseline', color: '#2563EB', desc: 'Identify what is limiting performance, where capability gaps exist, and what the organization is actually ready to change.' },
-    { n: '02', label: 'Architect', sub: 'Design the future state', color: '#7C3AED', desc: 'Define the transformation roadmap, sequence the interventions, and align leadership around the path forward.' },
-    { n: '03', label: 'Activate', sub: 'Install the capabilities', color: '#046C5C', desc: 'Deploy the Capability Engines, build the systems, and begin the structured change process with full adoption support.' },
-    { n: '04', label: 'Accelerate', sub: 'Drive performance', color: '#10B981', desc: 'Measure outcomes, remove friction, optimize the installed systems, and build momentum toward the defined results.' },
-    { n: '05', label: 'Sustain', sub: 'Lock in the gains', color: '#C9A86A', desc: 'Establish the governance rhythms, accountability structures, and leadership practices that hold performance without constant intervention.' },
+    { n: '01', label: 'Diagnose',  sub: 'Establish the baseline',   color: '#2563EB', desc: 'Identify what is limiting performance, where capability gaps exist, and what the organization is actually ready to change.' },
+    { n: '02', label: 'Architect', sub: 'Design the future state',   color: '#7C3AED', desc: 'Define the transformation roadmap, sequence the interventions, and align leadership around the path forward.' },
+    { n: '03', label: 'Activate',  sub: 'Install the capabilities',  color: '#046C5C', desc: 'Deploy the Capability Engines, build the systems, and begin the structured change process with full adoption support.' },
+    { n: '04', label: 'Accelerate',sub: 'Drive performance',         color: '#10B981', desc: 'Measure outcomes, remove friction, optimize the installed systems, and build momentum toward the defined results.' },
+    { n: '05', label: 'Sustain',   sub: 'Lock in the gains',         color: '#C9A86A', desc: 'Establish the governance rhythms, accountability structures, and leadership practices that hold performance without constant intervention.' },
   ]
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 0, position: 'relative' }}>
+    <div style={{ width: '100%' }}>
       <style>{`
-        @keyframes phaseIn {
-          from { opacity: 0; transform: translateX(20px); }
-          to   { opacity: 1; transform: translateX(0); }
+        @keyframes circleIn {
+          from { opacity: 0; transform: translateY(16px) scale(0.9); }
+          to   { opacity: 1; transform: translateY(0) scale(1); }
         }
-        .tos-phase-item {
-          display: flex;
-          align-items: stretch;
-          gap: 0;
+        @keyframes connectorIn {
+          from { opacity: 0; width: 0; }
+          to   { opacity: 1; width: 100%; }
+        }
+        .tos-circle {
+          transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
           cursor: default;
-          animation: phaseIn 0.5s ease forwards;
+        }
+        .tos-circle:hover {
+          transform: translateY(-6px) !important;
+        }
+        .tos-label {
+          transition: color 0.25s ease;
+        }
+        .tos-desc-box {
+          position: absolute;
+          bottom: calc(100% + 12px);
+          left: 50%;
+          transform: translateX(-50%);
+          width: 180px;
+          background: #1E1F22;
+          border-radius: 10px;
+          padding: 12px 14px;
+          pointer-events: none;
           opacity: 0;
+          transition: opacity 0.2s ease, transform 0.2s ease;
+          transform: translateX(-50%) translateY(4px);
+          z-index: 10;
         }
-        .tos-phase-inner {
-          flex: 1;
-          padding: 24px 28px;
-          border-radius: 12px;
-          border: 1px solid #E5E7EB;
-          background: white;
-          transition: all 0.25s ease;
-          margin-left: 20px;
-        }
-        .tos-phase-item:hover .tos-phase-inner {
-          border-color: var(--phase-color);
-          box-shadow: 0 4px 24px rgba(0,0,0,0.06);
-          transform: translateX(4px);
-        }
-        .tos-phase-desc {
-          max-height: 0;
-          overflow: hidden;
-          transition: max-height 0.3s ease, opacity 0.3s ease, margin-top 0.3s ease;
-          opacity: 0;
-          margin-top: 0;
-        }
-        .tos-phase-item:hover .tos-phase-desc {
-          max-height: 80px;
+        .tos-circle-wrap:hover .tos-desc-box {
           opacity: 1;
-          margin-top: 8px;
+          transform: translateX(-50%) translateY(0);
+        }
+        .tos-desc-box::after {
+          content: '';
+          position: absolute;
+          top: 100%;
+          left: 50%;
+          transform: translateX(-50%);
+          border: 6px solid transparent;
+          border-top-color: #1E1F22;
         }
       `}</style>
-      {phases.map((ph, i) => (
-        <div key={ph.n} style={{ display: 'flex', alignItems: 'stretch', position: 'relative' }}>
-          {/* Left: number + connector line */}
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: 48, flexShrink: 0 }}>
-            <div style={{
-              width: 44, height: 44, borderRadius: '50%', flexShrink: 0,
-              background: hovered === i ? ph.color : `${ph.color}15`,
-              border: `2px solid ${ph.color}`,
-              display: 'flex', alignItems: 'center', justifyContent: 'center',
-              fontSize: '0.68rem', fontWeight: 800,
-              color: hovered === i ? 'white' : ph.color,
-              letterSpacing: '0.08em',
-              transition: 'all 0.25s ease',
-              boxShadow: hovered === i ? `0 0 20px ${ph.color}50` : 'none',
-              zIndex: 1,
-            }}>
-              {ph.n}
+
+      {/* Horizontal flow */}
+      <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 0 }}>
+        {phases.map((ph, i) => (
+          <div key={ph.n} style={{ display: 'flex', alignItems: 'center', flex: 1 }}>
+            {/* Circle + label */}
+            <div
+              className="tos-circle-wrap"
+              style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', flex: 1, position: 'relative' }}
+            >
+              {/* Tooltip */}
+              <div className="tos-desc-box">
+                <p style={{ margin: 0, fontSize: '0.75rem', color: 'rgba(255,255,255,0.8)', lineHeight: 1.6 }}>{ph.desc}</p>
+              </div>
+
+              {/* Circle */}
+              <div
+                className="tos-circle"
+                style={{
+                  width: 80, height: 80, borderRadius: '50%',
+                  background: hovered === i ? ph.color : `${ph.color}15`,
+                  border: `2px solid ${ph.color}`,
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  marginBottom: 14,
+                  fontSize: '0.72rem', fontWeight: 800,
+                  color: hovered === i ? 'white' : ph.color,
+                  letterSpacing: '0.08em',
+                  boxShadow: hovered === i ? `0 8px 28px ${ph.color}50` : 'none',
+                  animation: `circleIn 0.5s ease forwards`,
+                  animationDelay: `${i * 0.12}s`,
+                  opacity: 0,
+                }}
+                onMouseEnter={() => setHovered(i)}
+                onMouseLeave={() => setHovered(null)}
+              >
+                {ph.n}
+              </div>
+
+              {/* Label */}
+              <div className="tos-label" style={{
+                fontFamily: 'var(--font-display)', fontWeight: 700,
+                fontSize: '0.88rem', color: hovered === i ? ph.color : '#1E1F22',
+                marginBottom: 4, textAlign: 'center',
+                animation: `circleIn 0.5s ease forwards`,
+                animationDelay: `${0.6 + i * 0.08}s`,
+                opacity: 0,
+              }}>
+                {ph.label}
+              </div>
+
+              {/* Subtitle */}
+              <div style={{
+                fontSize: '0.72rem', color: '#9CA3AF',
+                textAlign: 'center', lineHeight: 1.4, maxWidth: 90,
+                animation: `circleIn 0.5s ease forwards`,
+                animationDelay: `${0.65 + i * 0.08}s`,
+                opacity: 0,
+              }}>
+                {ph.sub}
+              </div>
             </div>
+
+            {/* Dashed connector */}
             {i < phases.length - 1 && (
               <div style={{
-                width: 2, flex: 1, minHeight: 20,
-                background: `linear-gradient(to bottom, ${ph.color}60, ${phases[i+1].color}40)`,
-                margin: '4px 0',
+                width: 32, flexShrink: 0, marginBottom: 52,
+                borderTop: `2px dashed ${ph.color}60`,
+                animation: `circleIn 0.4s ease forwards`,
+                animationDelay: `${0.15 + i * 0.12}s`,
+                opacity: 0,
               }} />
             )}
           </div>
-          {/* Right: content */}
-          <div
-            className="tos-phase-item"
-            onMouseEnter={() => setHovered(i)}
-            onMouseLeave={() => setHovered(null)}
-            style={{
-              flex: 1, marginBottom: i < phases.length - 1 ? 8 : 0,
-              animationDelay: `${i * 0.1}s`,
-              '--phase-color': ph.color,
-            } as React.CSSProperties}
-          >
-            <div className="tos-phase-inner">
-              <div style={{ display: 'flex', alignItems: 'baseline', gap: 10, marginBottom: 4 }}>
-                <span style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: '1rem', color: '#1E1F22' }}>{ph.label}</span>
-                <span style={{ fontSize: '0.78rem', color: '#6B7280', fontStyle: 'italic' }}>{ph.sub}</span>
-              </div>
-              <div className="tos-phase-desc">
-                <p style={{ fontSize: '0.82rem', color: '#6B7280', lineHeight: 1.65, margin: 0 }}>{ph.desc}</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   )
 }
@@ -522,20 +558,23 @@ export default function Home() {
       </section>
 
 
-      {/* ── TOS PHASES — slate bg, two-col ───────────────────────────────── */}
+      {/* ── TOS SECTION — full-width, diagram below intro ────────────────── */}
       <section style={{ background: '#F3F4F6', padding: '120px 0' }}>
         <div style={{ maxWidth: 1280, margin: '0 auto', padding: '0 32px' }}>
-          <div className="two-col" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 80, alignItems: 'start' }}>
-            <FadeIn>
-              <div style={{ position: 'sticky', top: 100 }}>
+          {/* Top: intro text + CTA */}
+          <FadeIn>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 80, alignItems: 'end', marginBottom: 80 }} className="two-col">
+              <div>
                 <div style={{ fontSize: '0.72rem', fontWeight: 700, color: '#046C5C', letterSpacing: '0.15em', textTransform: 'uppercase', marginBottom: 20 }}>The Operating System</div>
                 <h2 style={{ fontSize: 'clamp(1.8rem, 3vw, 2.5rem)', color: '#1E1F22', marginBottom: 24 }}>
                   Transformation Operating System™
                 </h2>
                 <div style={{ width: 48, height: 3, background: '#046C5C', borderRadius: 2, marginBottom: 28 }} />
-                <p style={{ color: '#4B4C51', fontSize: '1.05rem', lineHeight: 1.85, marginBottom: 36 }}>
+                <p style={{ color: '#4B4C51', fontSize: '1.05rem', lineHeight: 1.85, margin: 0 }}>
                   Five phases. One integrated system. Designed to move founder-led organizations from diagnosis to sustained performance.
                 </p>
+              </div>
+              <div style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'flex-end' }}>
                 <Link href="/the-tos" style={{
                   display: 'inline-flex', alignItems: 'center', gap: 8,
                   padding: '13px 26px', borderRadius: 10,
@@ -545,9 +584,10 @@ export default function Home() {
                   Explore the TOS →
                 </Link>
               </div>
-            </FadeIn>
-            <TOSDiagram />
-          </div>
+            </div>
+          </FadeIn>
+          {/* Full-width TOS diagram */}
+          <TOSDiagram />
         </div>
       </section>
 
