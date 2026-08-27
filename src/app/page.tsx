@@ -598,56 +598,115 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── SOLUTIONS — full-width emerald-light ─────────────────────────── */}
+      {/* ── SOLUTIONS — full-width, icons, new copy ──────────────────────────── */}
       <section style={{ background: '#E6F4F1', padding: '120px 0', position: 'relative', overflow: 'hidden' }}>
         <div style={{ position: 'absolute', bottom: '-10%', right: '-5%', width: 500, height: 500, borderRadius: '50%', background: '#046C5C', opacity: 0.06, filter: 'blur(80px)' }} />
-        <div style={{ maxWidth: '100%', padding: '0 6vw' }}>
-          <div className="two-col" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 100, alignItems: 'center' }}>
-            <FadeIn>
-              <div style={{ fontSize: '0.72rem', fontWeight: 700, color: '#046C5C', letterSpacing: '0.15em', textTransform: 'uppercase', marginBottom: 20 }}>Who We Serve</div>
-              <h2 style={{ fontSize: 'clamp(1.8rem, 3vw, 2.5rem)', color: '#1E1F22', marginBottom: 24, fontWeight: 800, lineHeight: 1.1 }}>
-                Built for<br/>
-                <span style={{ color: '#046C5C' }}>Founder-Led</span><br/>
-                Organizations Ready to Scale
-              </h2>
-              <div style={{ width: 48, height: 3, background: '#046C5C', borderRadius: 2, marginBottom: 28 }} />
-              <p style={{ color: '#4B4C51', fontSize: '1.05rem', lineHeight: 1.85, marginBottom: 36 }}>
-                The TOS is sector-agnostic. Implementation is not. Stratiix brings deep operational knowledge to each engagement.
-              </p>
-              <Link href="/solutions" style={{
-                display: 'inline-flex', alignItems: 'center', gap: 8,
-                padding: '13px 26px', borderRadius: 10,
-                background: '#046C5C', color: 'white',
-                fontWeight: 700, fontSize: '0.875rem', textDecoration: 'none',
-              }}>
-                View All Solutions →
-              </Link>
-            </FadeIn>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-              {[
-                { name: 'HVAC', desc: 'Operational systems, workforce capability, and growth architecture for HVAC businesses scaling beyond the founder.' },
-                { name: 'Trucking & Logistics', desc: 'Fleet operations, compliance systems, and performance infrastructure for logistics companies building for scale.' },
-                { name: 'Professional Services', desc: 'Delivery systems, client management, and practice development for professional service firms.' },
-                { name: 'Nonprofits & Institutions', desc: 'Governance, program effectiveness, and organizational capacity for mission-driven organizations.' },
-              ].map((s, i) => (
-                <FadeIn key={s.name} delay={i * 0.08}>
-                  <div style={{
-                    padding: '22px 28px', background: 'white', borderRadius: 12,
-                    border: '1px solid #B2DDD7', display: 'flex', gap: 18, alignItems: 'flex-start',
-                    transition: 'all 0.25s ease',
-                  }}>
-                    <div style={{ width: 8, height: 8, borderRadius: '50%', background: '#046C5C', flexShrink: 0, marginTop: 7 }} />
-                    <div>
-                      <div style={{ fontFamily: 'var(--font-display)', fontWeight: 700, color: '#1E1F22', marginBottom: 5, fontSize: '0.95rem' }}>{s.name}</div>
-                      <p style={{ fontSize: '0.875rem', color: '#6B7280', margin: 0, lineHeight: 1.65 }}>{s.desc}</p>
-                    </div>
-                  </div>
-                </FadeIn>
-              ))}
+        <div style={{ padding: '0 6vw', position: 'relative', zIndex: 1 }}>
+
+          {/* Top: heading + intro */}
+          <FadeIn>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 80, alignItems: 'end', marginBottom: 72 }} className="two-col">
+              <div>
+                <div style={{ fontSize: '0.72rem', fontWeight: 700, color: '#046C5C', letterSpacing: '0.18em', textTransform: 'uppercase', marginBottom: 20 }}>Who We Serve</div>
+                <h2 style={{ fontSize: 'clamp(1.8rem, 3vw, 2.75rem)', color: '#1E1F22', fontWeight: 800, lineHeight: 1.1, marginBottom: 20 }}>
+                  Built for<br/>
+                  <span style={{ color: '#046C5C' }}>Founder-Led</span><br/>
+                  Organizations
+                </h2>
+                <div style={{ width: 48, height: 3, background: '#046C5C', borderRadius: 2, marginBottom: 24 }} />
+                <p style={{ color: '#4B4C51', fontSize: '1.05rem', lineHeight: 1.85, marginBottom: 8 }}>
+                  Growth may look different across industries, but the challenge is often the same:
+                </p>
+                <p style={{ color: '#1E1F22', fontSize: '1.05rem', fontWeight: 700, lineHeight: 1.75, marginBottom: 20, fontFamily: 'var(--font-display)' }}>
+                  Growth has outpaced the systems supporting the business.
+                </p>
+                <p style={{ color: '#4B4C51', fontSize: '1rem', lineHeight: 1.8, marginBottom: 32 }}>
+                  Stratiix helps founder-led organizations build the capability required to scale beyond the founder.
+                </p>
+                <Link href="/solutions" style={{
+                  display: 'inline-flex', alignItems: 'center', gap: 8,
+                  padding: '13px 26px', borderRadius: 10,
+                  background: '#046C5C', color: 'white',
+                  fontWeight: 700, fontSize: '0.875rem', textDecoration: 'none',
+                  fontFamily: 'var(--font-display)',
+                }}>
+                  Explore Solutions →
+                </Link>
+              </div>
+              <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'flex-end' }}>
+                <p style={{ color: '#6B7280', fontSize: '0.875rem', lineHeight: 1.75, maxWidth: 320, textAlign: 'right', fontStyle: 'italic' }}>
+                  The TOS is sector-agnostic. Implementation is not. Stratiix brings deep operational knowledge to each engagement.
+                </p>
+              </div>
             </div>
+          </FadeIn>
+
+          {/* Industry cards — 4 col with icons */}
+          <div className="four-col" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 20 }}>
+            {[
+              {
+                icon: '🏠',
+                name: 'Home Services',
+                desc: 'Operational systems, workforce capability, leadership infrastructure, and growth readiness for home service businesses scaling beyond the founder.',
+                color: '#2563EB',
+              },
+              {
+                icon: '🚛',
+                name: 'Transportation & Logistics',
+                desc: 'Operations, compliance, workforce development, and performance systems for transportation and logistics organizations.',
+                color: '#7C3AED',
+              },
+              {
+                icon: '💼',
+                name: 'Professional Services',
+                desc: 'Delivery systems, client management, leadership development, and organizational capability for growing professional practices.',
+                color: '#046C5C',
+              },
+              {
+                icon: '🏛️',
+                name: 'Nonprofits & Institutions',
+                desc: 'Governance, program effectiveness, organizational performance, and capacity building for mission-driven organizations.',
+                color: '#C9A86A',
+              },
+            ].map((s, i) => (
+              <FadeIn key={s.name} delay={i * 0.1}>
+                <div style={{
+                  padding: '32px 28px',
+                  background: 'white',
+                  borderRadius: 16,
+                  border: '1px solid #B2DDD7',
+                  height: '100%',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: 16,
+                  transition: 'all 0.25s ease',
+                  position: 'relative',
+                  overflow: 'hidden',
+                }}>
+                  {/* Colour accent top bar */}
+                  <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 3, background: s.color, borderRadius: '16px 16px 0 0' }} />
+                  {/* Icon */}
+                  <div style={{
+                    width: 52, height: 52, borderRadius: 12,
+                    background: `${s.color}12`,
+                    border: `1px solid ${s.color}30`,
+                    display: 'flex', alignItems: 'center', justifyContent: 'center',
+                    fontSize: '1.5rem',
+                  }}>
+                    {s.icon}
+                  </div>
+                  <div>
+                    <div style={{ fontFamily: 'var(--font-display)', fontWeight: 700, color: '#1E1F22', marginBottom: 8, fontSize: '1rem' }}>{s.name}</div>
+                    <p style={{ fontSize: '0.875rem', color: '#6B7280', margin: 0, lineHeight: 1.7 }}>{s.desc}</p>
+                  </div>
+                </div>
+              </FadeIn>
+            ))}
           </div>
+
         </div>
       </section>
+
 
       {/* ── RESULTS — full-width dark, dramatic ──────────────────────────── */}
       <section style={{ background: '#111214', padding: '120px 0', position: 'relative', overflow: 'hidden' }}>
