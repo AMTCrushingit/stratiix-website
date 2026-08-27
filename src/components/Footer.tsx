@@ -21,7 +21,7 @@ const cols = [
   {
     title: 'Solutions',
     links: [
-      { href: '/solutions#hvac', label: 'HVAC' },
+      { href: '/solutions#home-services', label: 'Home Services' },
       { href: '/solutions#trucking', label: 'Trucking & Logistics' },
       { href: '/solutions#professional', label: 'Professional Services' },
       { href: '/solutions#nonprofits', label: 'Nonprofits & Institutions' },

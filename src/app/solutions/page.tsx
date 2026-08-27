@@ -3,15 +3,15 @@ import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: 'Solutions: Sector-Specific Transformation',
-  description: 'Stratiix delivers transformation across HVAC, Trucking & Logistics, Professional Services, and Nonprofits & Institutions.',
+  description: 'Stratiix delivers transformation across Home Services, Transportation & Logistics, Professional Services, and Nonprofits & Institutions.',
 }
 
 const sectors = [
   {
-    id: 'hvac',
-    name: 'HVAC',
-    headline: 'Built for HVAC businesses scaling beyond the founder.',
-    body: 'HVAC businesses face a specific set of transformation challenges: founder dependency, inconsistent service delivery, technician performance variance, and the operational complexity that comes with growth. The TOS addresses each of these systematically.',
+    id: 'home-services',
+    name: 'Home Services',
+    headline: 'Built for home service businesses scaling beyond the founder.',
+    body: 'Home service businesses face a specific set of transformation challenges: founder dependency, inconsistent service delivery, technician performance variance, and the operational complexity that comes with growth. The TOS addresses each of these systematically.',
     challenges: [
       'Founder-dependent operations that cannot scale',
       'Inconsistent service quality across technicians',
