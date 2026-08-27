@@ -1,408 +1,692 @@
+'use client'
 import Link from 'next/link'
-import type { Metadata } from 'next'
+import { useEffect, useRef, useState } from 'react'
 
-export const metadata: Metadata = {
-  title: 'Stratiix — Transform Complexity. Build Capability. Accelerate Outcomes.',
-  description: 'Stratiix helps founder-led organizations identify what is limiting performance and build the capability required to scale beyond the founder.',
-}
-
-function ArchitectureVisual() {
+// ── Animated TOS Visual ───────────────────────────────────────────────────────
+function TOSVisual() {
   const layers = [
-    { label: 'Diagnostic', color: '#2563EB', w: '100%', desc: 'Reveal what is limiting performance' },
-    { label: 'TOS', color: '#7C3AED', w: '88%', desc: 'Architect the transformation system' },
-    { label: 'Capability Engines', color: '#046C5C', w: '76%', desc: 'Install the required capabilities' },
-    { label: 'Transformation Intelligence', color: '#10B981', w: '64%', desc: 'Measure, learn, and adapt' },
-    { label: 'Outcomes', color: '#C9A86A', w: '52%', desc: 'Deliver measurable results' },
+    { label: 'Diagnostic', color: '#2563EB', desc: 'Reveal what is limiting performance', w: '100%' },
+    { label: 'TOS', color: '#7C3AED', desc: 'Architect the transformation system', w: '88%' },
+    { label: 'Capability Engines', color: '#046C5C', desc: 'Install the required capabilities', w: '76%' },
+    { label: 'Transformation Intelligence', color: '#10B981', desc: 'Measure, learn, and adapt', w: '64%' },
+    { label: 'Outcomes', color: '#C9A86A', desc: 'Deliver measurable results', w: '52%' },
   ]
+  const [hovered, setHovered] = useState<number | null>(null)
   return (
-    <>
+    <div style={{ width: '100%', maxWidth: 440 }}>
       <style>{`
-        @keyframes buildUp {
-          from { opacity: 0; transform: translateY(16px); }
+        @keyframes layerIn {
+          from { opacity: 0; transform: translateY(20px); }
           to   { opacity: 1; transform: translateY(0); }
         }
-        .tos-layer {
-          transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
-          cursor: default;
-        }
-        .tos-layer:hover {
-          transform: translateY(-3px) !important;
-        }
-        .tos-layer-tooltip {
-          opacity: 0;
-          transition: opacity 0.2s ease;
-          pointer-events: none;
-        }
-        .tos-layer:hover .tos-layer-tooltip {
-          opacity: 1;
+        @keyframes labelIn {
+          from { opacity: 0; transform: translateX(-8px); }
+          to   { opacity: 1; transform: translateX(0); }
         }
       `}</style>
-      <div style={{ position: 'relative', width: '100%', maxWidth: 480 }}>
-        {layers.map((l, i) => (
-          <div key={l.label}
-            className="tos-layer"
-            style={{
-              width: l.w, margin: '0 auto', marginBottom: i < layers.length - 1 ? 10 : 0,
-              height: 52, borderRadius: 10, position: 'relative',
-              background: `${l.color}22`, border: `1px solid ${l.color}55`,
-              backdropFilter: 'blur(8px)',
-              animation: `buildUp 0.5s ease forwards`,
-              animationDelay: `${i * 0.12}s`,
-              opacity: 0,
-            }}
-          >
-            <div className="tos-layer-tooltip" style={{
-              position: 'absolute', top: '50%', left: '50%',
-              transform: 'translate(-50%, -50%)',
-              fontSize: '0.72rem', fontWeight: 600, color: l.color,
-              whiteSpace: 'nowrap', letterSpacing: '0.04em',
-            }}>
+      {layers.map((l, i) => (
+        <div key={l.label}
+          onMouseEnter={() => setHovered(i)}
+          onMouseLeave={() => setHovered(null)}
+          style={{
+            width: l.w, margin: '0 auto', marginBottom: i < layers.length - 1 ? 8 : 0,
+            height: 56, borderRadius: 12, position: 'relative', cursor: 'default',
+            background: hovered === i ? `${l.color}35` : `${l.color}18`,
+            border: `1px solid ${hovered === i ? l.color + 'aa' : l.color + '44'}`,
+            boxShadow: hovered === i ? `0 0 24px ${l.color}30` : 'none',
+            transform: hovered === i ? 'translateY(-2px)' : 'translateY(0)',
+            transition: 'all 0.25s ease',
+            animation: `layerIn 0.5s ease forwards`,
+            animationDelay: `${i * 0.1}s`,
+            opacity: 0,
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+          }}
+        >
+          {hovered === i && (
+            <span style={{ fontSize: '0.72rem', fontWeight: 600, color: l.color, letterSpacing: '0.06em', whiteSpace: 'nowrap' }}>
               {l.desc}
-            </div>
+            </span>
+          )}
+        </div>
+      ))}
+      <div style={{ marginTop: 24, display: 'flex', flexDirection: 'column', gap: 8 }}>
+        {layers.map((l, i) => (
+          <div key={l.label} style={{
+            display: 'flex', alignItems: 'center', gap: 10,
+            animation: `labelIn 0.4s ease forwards`,
+            animationDelay: `${0.55 + i * 0.07}s`,
+            opacity: 0,
+          }}>
+            <div style={{ width: 6, height: 6, borderRadius: '50%', background: l.color, flexShrink: 0 }} />
+            <span style={{ fontSize: '0.78rem', color: 'rgba(255,255,255,0.6)', fontFamily: 'var(--font-body)', letterSpacing: '0.02em' }}>
+              {String(i + 1).padStart(2, '0')} — {l.label}
+            </span>
           </div>
         ))}
-        <div style={{ marginTop: 28, display: 'flex', flexDirection: 'column', gap: 6 }}>
-          {layers.map((l, i) => (
-            <div key={l.label} style={{ display: 'flex', alignItems: 'center', gap: 10,
-              animation: `buildUp 0.5s ease forwards`, animationDelay: `${0.6 + i * 0.08}s`, opacity: 0 }}>
-              <div style={{ width: 8, height: 8, borderRadius: '50%', background: l.color, flexShrink: 0 }} />
-              <span style={{ fontSize: '0.8rem', color: 'rgba(255,255,255,0.65)', fontFamily: 'var(--font-body)' }}>
-                {String(i + 1).padStart(2, '0')} — {l.label}
-              </span>
-            </div>
-          ))}
-        </div>
       </div>
-    </>
+    </div>
   )
 }
 
-function FounderSection() {
+// ── Scroll-triggered counter ──────────────────────────────────────────────────
+function StatNumber({ value, suffix = '' }: { value: number; suffix?: string }) {
+  const [count, setCount] = useState(0)
+  const ref = useRef<HTMLDivElement>(null)
+  useEffect(() => {
+    const obs = new IntersectionObserver(([e]) => {
+      if (e.isIntersecting) {
+        let start = 0
+        const step = value / 40
+        const timer = setInterval(() => {
+          start += step
+          if (start >= value) { setCount(value); clearInterval(timer) }
+          else setCount(Math.floor(start))
+        }, 30)
+        obs.disconnect()
+      }
+    }, { threshold: 0.5 })
+    if (ref.current) obs.observe(ref.current)
+    return () => obs.disconnect()
+  }, [value])
+  return <div ref={ref}>{count}{suffix}</div>
+}
+
+// ── Fade-in on scroll ─────────────────────────────────────────────────────────
+function FadeIn({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) {
+  const ref = useRef<HTMLDivElement>(null)
+  const [visible, setVisible] = useState(false)
+  useEffect(() => {
+    const obs = new IntersectionObserver(([e]) => {
+      if (e.isIntersecting) { setVisible(true); obs.disconnect() }
+    }, { threshold: 0.15 })
+    if (ref.current) obs.observe(ref.current)
+    return () => obs.disconnect()
+  }, [])
   return (
-    <section style={{
-      padding: '96px 0',
-      background: 'linear-gradient(135deg, #111214 0%, #1E1F22 100%)',
-      position: 'relative', overflow: 'hidden',
+    <div ref={ref} style={{
+      opacity: visible ? 1 : 0,
+      transform: visible ? 'translateY(0)' : 'translateY(24px)',
+      transition: `opacity 0.7s ease ${delay}s, transform 0.7s ease ${delay}s`,
     }}>
-      <div style={{ position: 'absolute', top: '20%', right: '5%', width: 300, height: 300, borderRadius: '50%', background: '#046C5C', opacity: 0.06, filter: 'blur(60px)' }} />
-      <div className="container" style={{ maxWidth: 760 }}>
-        <span style={{ display: 'inline-block', fontFamily: 'var(--font-body)', fontSize: '0.75rem', fontWeight: 600, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#046C5C', marginBottom: 32 }}>
-          The Founder Problem
-        </span>
-        <h2 style={{ color: 'white', fontSize: 'clamp(1.75rem, 3.5vw, 2.5rem)', lineHeight: 1.2, marginBottom: 40, maxWidth: 640 }}>
-          Your Business Shouldn’t Run Because You’re Holding It Together
-        </h2>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
-          {[
-            'Most founders don’t have a growth problem.',
-            'They have a capability problem.',
-            'Growth creates complexity.',
-            'Complexity exposes gaps in systems, leadership, governance, and execution.',
-            'Over time, the founder becomes the operating system.',
-          ].map((line, i) => (
-            <p key={i} style={{
-              color: i < 2 ? 'rgba(255,255,255,0.85)' : 'rgba(255,255,255,0.55)',
-              fontSize: i < 2 ? '1.15rem' : '1rem',
-              fontWeight: i < 2 ? 600 : 400,
-              lineHeight: 1.6, margin: 0,
-              fontFamily: i < 2 ? 'var(--font-display)' : 'var(--font-body)',
-            }}>{line}</p>
-          ))}
-        </div>
-        <div style={{ marginTop: 40, paddingTop: 40, borderTop: '1px solid rgba(255,255,255,0.08)' }}>
-          <p style={{ color: 'white', fontSize: '1.15rem', fontWeight: 600, fontFamily: 'var(--font-display)', lineHeight: 1.6, margin: 0 }}>
-            Stratiix helps organizations build the capability required to scale beyond the founder.
-          </p>
-        </div>
-      </div>
-    </section>
-  )
-}
-
-function WhyFails() {
-  const reasons = [
-    { n: '01', title: 'Founder Dependency', body: 'Growth increasingly depends on founder involvement, creating bottlenecks in decision-making and execution.' },
-    { n: '02', title: 'Capability Gaps Go Undiagnosed', body: 'Leaders invest in solutions before understanding what is actually limiting performance.' },
-    { n: '03', title: 'Growth Outpaces Infrastructure', body: 'Organizations scale faster than the systems supporting them.' },
-    { n: '04', title: 'Performance Doesn\'t Hold', body: 'Without governance, accountability, and operating discipline, progress becomes difficult to sustain.' },
-  ]
-  return (
-    <section className="section bg-dark">
-      <div className="container">
-        <span className="eyebrow">The Problem</span>
-        <h2 style={{ color: 'white', maxWidth: 560, marginBottom: 16 }}>When Growth Outpaces Systems</h2>
-        <p style={{ color: 'rgba(255,255,255,0.6)', maxWidth: 560, marginBottom: 64 }}>
-          Most founder-led organizations don\'t have a growth problem. They have a capability problem. Growth creates complexity that exposes gaps in systems, leadership, governance, and execution.
-        </p>
-        <div className="grid-2">
-          {reasons.map(r => (
-            <div key={r.n} style={{ padding: '32px', background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: 12 }}>
-              <div style={{ fontFamily: 'var(--font-display)', fontSize: '0.75rem', fontWeight: 700, color: 'var(--teal)', letterSpacing: '0.1em', marginBottom: 16 }}>{r.n}</div>
-              <h4 style={{ color: 'white', marginBottom: 12, fontSize: '1.05rem' }}>{r.title}</h4>
-              <p style={{ color: 'rgba(255,255,255,0.55)', fontSize: '0.9rem', lineHeight: 1.75, margin: 0 }}>{r.body}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  )
-}
-
-function ArchitectureSection() {
-  const steps = [
-    { label: 'Diagnostic', desc: 'Reveal what is limiting performance', color: '#1D4ED8' },
-    { label: 'TOS', desc: 'Architect the transformation system', color: '#7C3AED' },
-    { label: 'Capability Engines', desc: 'Install the required capabilities', color: '#0D9488' },
-    { label: 'Intelligence', desc: 'Measure, learn, and adapt', color: '#C9A86A' },
-    { label: 'Outcomes', desc: 'Deliver measurable results', color: '#5BB8A8' },
-  ]
-  return (
-    <section className="section bg-white">
-      <div className="container">
-        <div style={{ textAlign: 'center', marginBottom: 64 }}>
-          <span className="eyebrow">The System</span>
-          <h2>The Transformation Operating System™</h2>
-          <div className="divider" style={{ margin: '20px auto 0' }} />
-        </div>
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', flexWrap: 'wrap', gap: 0 }}>
-          {steps.map((s, i) => (
-            <div key={s.label} style={{ display: 'flex', alignItems: 'center' }}>
-              <div style={{ textAlign: 'center', padding: '0 8px' }}>
-                <div style={{ width: 80, height: 80, borderRadius: '50%', background: `${s.color}18`, border: `2px solid ${s.color}`, display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 12px', fontSize: '0.7rem', fontWeight: 700, color: s.color, letterSpacing: '0.06em' }}>
-                  {String(i + 1).padStart(2, '0')}
-                </div>
-                <div style={{ fontFamily: 'var(--font-display)', fontWeight: 600, fontSize: '0.85rem', color: 'var(--charcoal)', marginBottom: 4 }}>{s.label}</div>
-                <div style={{ fontSize: '0.75rem', color: 'var(--muted)', maxWidth: 100 }}>{s.desc}</div>
-              </div>
-              {i < steps.length - 1 && <div style={{ width: 40, height: 2, background: 'var(--slate-mid)', flexShrink: 0, margin: '0 4px', marginBottom: 40 }} />}
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  )
-}
-
-function TOSSection() {
-  const phases = [
-    { n: '01', label: 'Diagnose', desc: 'Establish the baseline. Identify what is limiting performance, where capability gaps exist, and what the organization is actually ready to change.' },
-    { n: '02', label: 'Architect', desc: 'Design the future state. Define the transformation roadmap, sequence the interventions, and align leadership around the path forward.' },
-    { n: '03', label: 'Activate', desc: 'Install the capabilities. Deploy the Capability Engines, build the systems, and begin the structured change process with full adoption support.' },
-    { n: '04', label: 'Accelerate', desc: 'Drive performance. Measure outcomes, remove friction, optimize the installed systems, and build momentum toward the defined results.' },
-    { n: '05', label: 'Sustain', desc: 'Lock in the gains. Establish the governance rhythms, accountability structures, and leadership practices that hold performance without constant intervention.' },
-  ]
-  return (
-    <section className="section bg-slate">
-      <div className="container">
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 80, alignItems: 'start' }}>
-          <div>
-            <span className="eyebrow">The Operating System</span>
-            <h2>Transformation Operating System™</h2>
-            <div className="divider" />
-            <p style={{ color: 'var(--body-text)', marginBottom: 32, fontSize: '1.05rem', lineHeight: 1.8 }}>
-              The TOS is the structured methodology through which Stratiix delivers transformation. Five phases. One integrated system. Designed to move organizations from diagnosis to sustained performance.
-            </p>
-            <Link href="/the-tos" className="btn btn-primary">Explore the TOS →</Link>
-          </div>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
-            {phases.map(p => (
-              <div key={p.n} className="hover-lift" style={{ display: 'flex', gap: 20, padding: '20px 24px', background: 'white', borderRadius: 10, border: '1px solid var(--slate-mid)' }}>
-                <div style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: '0.75rem', color: 'var(--emerald)', letterSpacing: '0.1em', flexShrink: 0, paddingTop: 2 }}>{p.n}</div>
-                <div>
-                  <div style={{ fontFamily: 'var(--font-display)', fontWeight: 600, color: 'var(--charcoal)', marginBottom: 6 }}>{p.label}</div>
-                  <p style={{ fontSize: '0.85rem', color: 'var(--muted)', lineHeight: 1.65, margin: 0 }}>{p.desc}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-    </section>
-  )
-}
-
-function EnginesSection() {
-  const engines = [
-    { icon: '◈', name: 'Intelligence Engine™', desc: 'Data, insight, and decision infrastructure that enables leaders to act on evidence rather than assumption.' },
-    { icon: '⬡', name: 'Operational Excellence Engine™', desc: 'Process discipline, efficiency systems, and quality frameworks that eliminate waste and build execution reliability.' },
-    { icon: '◉', name: 'Governance Engine™', desc: 'Accountability structures, decision rights, and oversight mechanisms that hold performance without micromanagement.' },
-    { icon: '◈', name: 'Growth Engine™', desc: 'Market development, revenue architecture, and customer acquisition systems that drive sustainable top-line growth.' },
-    { icon: '⬡', name: 'Workforce & Adoption Engine™', desc: 'People capability, change adoption, and organizational alignment systems that ensure transformation sticks.' },
-    { icon: '◉', name: 'Performance Engine™', desc: 'Measurement frameworks, KPI architecture, and performance rhythms that connect daily activity to strategic outcomes.' },
-  ]
-  return (
-    <section className="section bg-white">
-      <div className="container">
-        <div style={{ textAlign: 'center', marginBottom: 64 }}>
-          <span className="eyebrow">The Engines</span>
-          <h2>Capability Engines™</h2>
-          <div className="divider" style={{ margin: '20px auto 0' }} />
-          <p style={{ color: 'var(--muted)', maxWidth: 560, margin: '24px auto 0', fontSize: '1.05rem' }}>
-            Six specialized engines that install the capabilities organizations need to perform at the next level.
-          </p>
-        </div>
-        <div className="grid-3">
-          {engines.map(e => (
-            <div key={e.name} className="card hover-lift" style={{ padding: '28px 28px 32px' }}>
-              <div style={{ fontSize: '1.5rem', color: 'var(--emerald)', marginBottom: 16 }}>{e.icon}</div>
-              <h4 style={{ marginBottom: 10, fontSize: '1rem', lineHeight: 1.4 }}>{e.name}</h4>
-              <p style={{ fontSize: '0.875rem', color: 'var(--muted)', lineHeight: 1.7, margin: 0 }}>{e.desc}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  )
-}
-
-function SolutionsSection() {
-  const sectors = [
-    { name: 'HVAC', desc: 'Operational systems, workforce capability, and growth architecture for HVAC businesses scaling beyond the founder.' },
-    { name: 'Trucking & Logistics', desc: 'Fleet operations, compliance systems, and performance infrastructure for logistics companies building for scale.' },
-    { name: 'Professional Services', desc: 'Delivery systems, client management, and practice development for professional service firms.' },
-    { name: 'Nonprofits & Institutions', desc: 'Governance, program effectiveness, and organizational capacity for mission-driven organizations.' },
-  ]
-  return (
-    <section className="section bg-mint">
-      <div className="container">
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 80, alignItems: 'center' }}>
-          <div>
-            <span className="eyebrow">Who We Serve</span>
-            <h2>Built for Organizations Ready to Transform</h2>
-            <div className="divider" />
-            <p style={{ color: 'var(--body-text)', marginBottom: 32, fontSize: '1.05rem', lineHeight: 1.8 }}>
-              The TOS is sector-agnostic but implementation is not. Stratiix brings deep operational knowledge to each engagement.
-            </p>
-            <Link href="/solutions" className="btn btn-primary">View All Solutions →</Link>
-          </div>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
-            {sectors.map(s => (
-              <div key={s.name} className="hover-lift" style={{ padding: '20px 24px', background: 'white', borderRadius: 10, border: '1px solid var(--mint-mid)', display: 'flex', gap: 16, alignItems: 'flex-start' }}>
-                <div style={{ width: 8, height: 8, borderRadius: '50%', background: 'var(--emerald)', flexShrink: 0, marginTop: 6 }} />
-                <div>
-                  <div style={{ fontFamily: 'var(--font-display)', fontWeight: 600, color: 'var(--charcoal)', marginBottom: 4 }}>{s.name}</div>
-                  <p style={{ fontSize: '0.85rem', color: 'var(--muted)', margin: 0, lineHeight: 1.65 }}>{s.desc}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-    </section>
-  )
-}
-
-function ResultsSection() {
-  const outcomes = [
-    { label: 'Installed', desc: 'Capability systems, governance structures, and operational frameworks that are live and functioning inside the organization.' },
-    { label: 'Adopted', desc: 'Workforce aligned, trained, and operating the new systems — not reverting to old patterns within 90 days.' },
-    { label: 'Improved', desc: 'Measurable movement in the performance indicators that matter: efficiency, revenue, capacity, and organizational health.' },
-  ]
-  const colors = ['#1D4ED8', '#0D9488', '#C9A86A']
-  return (
-    <section className="section bg-dark">
-      <div className="container">
-        <div style={{ textAlign: 'center', marginBottom: 64 }}>
-          <span className="eyebrow" style={{ color: '#B2DDD7' }}>What We Deliver</span>
-          <h2 style={{ color: 'white' }}>Results That Are Measurable</h2>
-          <div className="divider" style={{ margin: '20px auto 0', background: 'var(--emerald)' }} />
-          <p style={{ color: 'rgba(255,255,255,0.55)', maxWidth: 520, margin: '24px auto 0' }}>
-            Stratiix does not measure success by deliverables produced. We measure it by what changes inside the organization.
-          </p>
-        </div>
-        <div className="grid-3">
-          {outcomes.map((o, i) => (
-            <div key={o.label} style={{ padding: '40px 32px', background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: 12, textAlign: 'center' }}>
-              <div style={{ width: 56, height: 56, borderRadius: '50%', background: `${colors[i]}22`, border: `2px solid ${colors[i]}`, display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 24px', fontSize: '0.7rem', fontWeight: 700, color: colors[i], letterSpacing: '0.06em' }}>
-                {String(i + 1).padStart(2, '0')}
-              </div>
-              <h3 style={{ color: 'white', fontSize: '1.5rem', marginBottom: 16 }}>{o.label}</h3>
-              <p style={{ color: 'rgba(255,255,255,0.55)', fontSize: '0.9rem', lineHeight: 1.75, margin: 0 }}>{o.desc}</p>
-            </div>
-          ))}
-        </div>
-        <div style={{ textAlign: 'center', marginTop: 48 }}>
-          <Link href="/results" className="btn btn-ghost">View Results →</Link>
-        </div>
-      </div>
-    </section>
-  )
-}
-
-function CTASection() {
-  return (
-    <section className="section bg-white">
-      <div className="container" style={{ textAlign: 'center' }}>
-        <span className="eyebrow">Get Started</span>
-        <h2 style={{ maxWidth: 560, margin: '0 auto 20px' }}>The Diagnostic is where every transformation begins.</h2>
-        <p style={{ color: 'var(--muted)', maxWidth: 480, margin: '0 auto 40px', fontSize: '1.05rem' }}>
-          A structured assessment of your organization's current state, capability gaps, and transformation readiness.
-        </p>
-        <div style={{ display: 'flex', gap: 16, justifyContent: 'center', flexWrap: 'wrap' }}>
-          <Link href="/diagnostic" className="btn btn-primary">Begin with the Diagnostic →</Link>
-          <Link href="/the-tos" className="btn btn-ghost-dark">Explore the TOS</Link>
-        </div>
-      </div>
-    </section>
+      {children}
+    </div>
   )
 }
 
 export default function Home() {
   return (
     <>
-      <section style={{ minHeight: '100vh', background: 'linear-gradient(135deg, #050A14 0%, #062E35 100%)', display: 'flex', alignItems: 'center', position: 'relative', overflow: 'hidden', paddingTop: 68 }}>
+      <style>{`
+        @keyframes orbFloat {
+          0%, 100% { transform: translateY(0) scale(1); }
+          50%       { transform: translateY(-20px) scale(1.05); }
+        }
+        @keyframes heroFadeUp {
+          from { opacity: 0; transform: translateY(32px); }
+          to   { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes pulse {
+          0%, 100% { opacity: 0.6; }
+          50%       { opacity: 1; }
+        }
+        .problem-card {
+          padding: 40px 36px;
+          border-radius: 16px;
+          border: 1px solid rgba(255,255,255,0.06);
+          background: rgba(255,255,255,0.03);
+          transition: all 0.3s ease;
+          position: relative;
+          overflow: hidden;
+        }
+        .problem-card::before {
+          content: '';
+          position: absolute;
+          top: 0; left: 0; right: 0;
+          height: 2px;
+          background: linear-gradient(90deg, transparent, var(--card-accent, #046C5C), transparent);
+          opacity: 0;
+          transition: opacity 0.3s ease;
+        }
+        .problem-card:hover {
+          border-color: rgba(255,255,255,0.12);
+          background: rgba(255,255,255,0.05);
+          transform: translateY(-4px);
+        }
+        .problem-card:hover::before { opacity: 1; }
+        .engine-card {
+          padding: 32px;
+          border-radius: 16px;
+          border: 1px solid var(--slate-mid);
+          background: white;
+          transition: all 0.3s ease;
+          position: relative;
+          overflow: hidden;
+        }
+        .engine-card::after {
+          content: '';
+          position: absolute;
+          bottom: 0; left: 0; right: 0;
+          height: 3px;
+          background: var(--emerald);
+          transform: scaleX(0);
+          transition: transform 0.3s ease;
+          transform-origin: left;
+        }
+        .engine-card:hover {
+          border-color: var(--emerald);
+          box-shadow: 0 12px 40px rgba(4,108,92,0.1);
+          transform: translateY(-4px);
+        }
+        .engine-card:hover::after { transform: scaleX(1); }
+        .phase-row {
+          display: flex;
+          gap: 20px;
+          padding: 24px 28px;
+          background: white;
+          border-radius: 12px;
+          border: 1px solid var(--slate-mid);
+          transition: all 0.25s ease;
+          cursor: default;
+        }
+        .phase-row:hover {
+          border-color: var(--emerald);
+          box-shadow: 0 4px 20px rgba(4,108,92,0.08);
+          transform: translateX(4px);
+        }
+        @media (max-width: 768px) {
+          .hero-grid { grid-template-columns: 1fr !important; }
+          .hero-visual { display: none !important; }
+          .two-col { grid-template-columns: 1fr !important; gap: 40px !important; }
+          .three-col { grid-template-columns: 1fr !important; }
+          .four-col { grid-template-columns: 1fr 1fr !important; }
+          .stat-row { grid-template-columns: 1fr 1fr !important; }
+        }
+      `}</style>
+
+      {/* ── HERO ─────────────────────────────────────────────────────────── */}
+      <section style={{
+        minHeight: '100vh',
+        background: 'radial-gradient(ellipse at 20% 50%, #0a1628 0%, #050A14 50%, #062018 100%)',
+        display: 'flex', alignItems: 'center',
+        position: 'relative', overflow: 'hidden', paddingTop: 68,
+      }}>
+        {/* Orbs */}
         {[
-          { color: '#1D4ED8', top: '15%', left: '5%' },
-          { color: '#7C3AED', top: '10%', right: '8%' },
-          { color: '#C9A86A', bottom: '20%', left: '8%' },
-          { color: '#046C5C', bottom: '15%', right: '5%' },
-        ].map((orb, i) => (
-          <div key={i} style={{ position: 'absolute', width: 320, height: 320, borderRadius: '50%', background: orb.color, opacity: 0.12, filter: 'blur(80px)', top: (orb as any).top, left: (orb as any).left, right: (orb as any).right, bottom: (orb as any).bottom }} />
+          { c: '#2563EB', t: '8%', l: '3%', s: 500, d: '0s' },
+          { c: '#7C3AED', t: '5%', r: '5%', s: 400, d: '2s' },
+          { c: '#C9A86A', b: '15%', l: '5%', s: 360, d: '1s' },
+          { c: '#046C5C', b: '10%', r: '3%', s: 440, d: '3s' },
+        ].map((o, i) => (
+          <div key={i} style={{
+            position: 'absolute',
+            width: o.s, height: o.s, borderRadius: '50%',
+            background: o.c, opacity: 0.1, filter: 'blur(100px)',
+            top: (o as any).t, left: (o as any).l, right: (o as any).r, bottom: (o as any).b,
+            animation: `orbFloat ${8 + i * 2}s ease-in-out infinite`,
+            animationDelay: o.d,
+          }} />
         ))}
-        <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', width: 600, height: 600, borderRadius: '50%', background: 'radial-gradient(circle, rgba(201,168,106,0.06) 0%, transparent 70%)', pointerEvents: 'none' }} />
-        <div className="container" style={{ position: 'relative', zIndex: 1 }}>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 80, alignItems: 'center' }}>
+        {/* Grid lines */}
+        <div style={{
+          position: 'absolute', inset: 0, opacity: 0.03,
+          backgroundImage: 'linear-gradient(rgba(255,255,255,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.5) 1px, transparent 1px)',
+          backgroundSize: '80px 80px',
+        }} />
+
+        <div style={{ maxWidth: 1280, margin: '0 auto', padding: '0 32px', width: '100%', position: 'relative', zIndex: 1 }}>
+          <div className="hero-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 80, alignItems: 'center' }}>
             <div>
-              <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '6px 14px', borderRadius: 100, background: 'rgba(4,108,92,0.15)', border: '1px solid rgba(4,108,92,0.3)', marginBottom: 32 }}>
-                <div style={{ width: 6, height: 6, borderRadius: '50%', background: '#046C5C' }} />
-                <span style={{ fontSize: '0.75rem', fontWeight: 600, color: '#046C5C', letterSpacing: '0.08em', textTransform: 'uppercase' }}>Built for Founder-Led Organizations</span>
+              {/* Badge */}
+              <div style={{
+                display: 'inline-flex', alignItems: 'center', gap: 8,
+                padding: '6px 16px', borderRadius: 100, marginBottom: 36,
+                background: 'rgba(4,108,92,0.12)', border: '1px solid rgba(4,108,92,0.35)',
+                animation: 'heroFadeUp 0.6s ease forwards',
+              }}>
+                <div style={{ width: 6, height: 6, borderRadius: '50%', background: '#046C5C', animation: 'pulse 2s infinite' }} />
+                <span style={{ fontSize: '0.72rem', fontWeight: 700, color: '#046C5C', letterSpacing: '0.12em', textTransform: 'uppercase' }}>
+                  Built for Founder-Led Organizations
+                </span>
               </div>
-              <h1 style={{ color: 'white', marginBottom: 28, lineHeight: 1.1 }}>
-                Transform Complexity.<br />
-                <span style={{ color: '#5BB8A8' }}>Build Capability.</span><br />
-                Accelerate Outcomes.
+
+              <h1 style={{
+                color: 'white', lineHeight: 1.08, marginBottom: 28,
+                fontSize: 'clamp(2.6rem, 5vw, 4.2rem)',
+                animation: 'heroFadeUp 0.6s ease 0.1s forwards', opacity: 0,
+              }}>
+                Transform<br />
+                <span style={{ color: '#B2DDD7' }}>Complexity.</span><br />
+                Build Capability.
               </h1>
-              <p style={{ color: 'rgba(255,255,255,0.65)', fontSize: '1.1rem', lineHeight: 1.8, maxWidth: 480, marginBottom: 40 }}>
+
+              <p style={{
+                color: 'rgba(255,255,255,0.6)', fontSize: '1.1rem', lineHeight: 1.85,
+                maxWidth: 460, marginBottom: 44,
+                animation: 'heroFadeUp 0.6s ease 0.2s forwards', opacity: 0,
+              }}>
                 Stratiix helps founder-led organizations identify what is limiting performance and build the capability required to scale beyond the founder.
               </p>
-              <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap' }}>
-                <Link href="/diagnostic" className="btn btn-primary" style={{ fontSize: '0.95rem', padding: '14px 28px' }}>Begin with the Diagnostic →</Link>
-                <Link href="/the-tos" className="btn btn-ghost" style={{ fontSize: '0.95rem', padding: '14px 28px' }}>Explore the TOS</Link>
+
+              <div style={{
+                display: 'flex', gap: 14, flexWrap: 'wrap',
+                animation: 'heroFadeUp 0.6s ease 0.3s forwards', opacity: 0,
+              }}>
+                <Link href="/diagnostic" style={{
+                  display: 'inline-flex', alignItems: 'center', gap: 8,
+                  padding: '14px 28px', borderRadius: 10,
+                  background: '#046C5C', color: 'white',
+                  fontWeight: 700, fontSize: '0.9rem', textDecoration: 'none',
+                  transition: 'all 0.2s', boxShadow: '0 8px 32px rgba(4,108,92,0.35)',
+                }}>
+                  Begin with the Diagnostic →
+                </Link>
+                <Link href="/the-tos" style={{
+                  display: 'inline-flex', alignItems: 'center', gap: 8,
+                  padding: '14px 28px', borderRadius: 10,
+                  background: 'rgba(255,255,255,0.06)', color: 'rgba(255,255,255,0.85)',
+                  border: '1px solid rgba(255,255,255,0.15)',
+                  fontWeight: 600, fontSize: '0.9rem', textDecoration: 'none',
+                  transition: 'all 0.2s',
+                }}>
+                  Explore the TOS
+                </Link>
               </div>
-              <div style={{ marginTop: 48, display: 'flex', gap: 32 }}>
-                {['Diagnose', 'Activate', 'Accelerate'].map((t, i) => (
-                  <div key={t}>
-                    <div style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: '0.75rem', color: '#046C5C', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: 4 }}>{String(i + 1).padStart(2, '0')}</div>
-                    <div style={{ fontSize: '0.875rem', color: 'rgba(255,255,255,0.5)' }}>{t}</div>
+
+              <div style={{
+                marginTop: 56, display: 'flex', gap: 40,
+                animation: 'heroFadeUp 0.6s ease 0.4s forwards', opacity: 0,
+              }}>
+                {['Diagnose', 'Activate', 'Accelerate'].map((label, i) => (
+                  <div key={label}>
+                    <div style={{ fontSize: '0.68rem', fontWeight: 800, color: '#046C5C', letterSpacing: '0.15em', textTransform: 'uppercase', marginBottom: 4 }}>
+                      {String(i + 1).padStart(2, '0')}
+                    </div>
+                    <div style={{ fontSize: '0.85rem', color: 'rgba(255,255,255,0.45)', fontWeight: 500 }}>{label}</div>
                   </div>
                 ))}
               </div>
             </div>
-            <div style={{ display: 'flex', justifyContent: 'center' }}>
-              <ArchitectureVisual />
+
+            <div className="hero-visual" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+              <TOSVisual />
             </div>
           </div>
         </div>
-        <style>{`@media(max-width:768px){section>div>div{grid-template-columns:1fr!important;gap:48px!important;}section>div>div>div:last-child{display:none;}}`}</style>
+
+        {/* Scroll indicator */}
+        <div style={{
+          position: 'absolute', bottom: 32, left: '50%', transform: 'translateX(-50%)',
+          display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8,
+          animation: 'pulse 2s infinite',
+        }}>
+          <div style={{ width: 1, height: 48, background: 'linear-gradient(to bottom, transparent, rgba(255,255,255,0.3))' }} />
+        </div>
       </section>
-      <FounderSection />
-      <WhyFails />
-      <ArchitectureSection />
-      <TOSSection />
-      <EnginesSection />
-      <SolutionsSection />
-      <ResultsSection />
-      <CTASection />
+
+      {/* ── FOUNDER SECTION — full-width, ivory bg ───────────────────────── */}
+      <section style={{ background: '#FAFAFA', padding: '120px 0', position: 'relative', overflow: 'hidden' }}>
+        <div style={{
+          position: 'absolute', top: 0, left: 0, right: 0, height: 1,
+          background: 'linear-gradient(90deg, transparent, #046C5C44, transparent)',
+        }} />
+        <div style={{ maxWidth: 1280, margin: '0 auto', padding: '0 32px' }}>
+          <div className="two-col" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 100, alignItems: 'center' }}>
+            <FadeIn>
+              <div style={{ fontSize: '0.72rem', fontWeight: 700, color: '#046C5C', letterSpacing: '0.15em', textTransform: 'uppercase', marginBottom: 24 }}>
+                The Founder Problem
+              </div>
+              <h2 style={{ fontSize: 'clamp(2rem, 3.5vw, 3rem)', lineHeight: 1.15, color: '#1E1F22', marginBottom: 32 }}>
+                Your Business Shouldn't Run Because You're Holding It Together
+              </h2>
+              <Link href="/diagnostic" style={{
+                display: 'inline-flex', alignItems: 'center', gap: 8,
+                padding: '13px 26px', borderRadius: 10,
+                background: '#046C5C', color: 'white',
+                fontWeight: 700, fontSize: '0.875rem', textDecoration: 'none',
+              }}>
+                Start with the Diagnostic →
+              </Link>
+            </FadeIn>
+            <FadeIn delay={0.15}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 0 }}>
+                {[
+                  { text: 'Most founders don\'t have a growth problem.', strong: true },
+                  { text: 'They have a capability problem.', strong: true },
+                  { text: 'Growth creates complexity.', strong: false },
+                  { text: 'Complexity exposes gaps in systems, leadership, governance, and execution.', strong: false },
+                  { text: 'Over time, the founder becomes the operating system.', strong: false },
+                ].map((line, i) => (
+                  <div key={i} style={{
+                    padding: '20px 0',
+                    borderBottom: i < 4 ? '1px solid #E5E7EB' : 'none',
+                    display: 'flex', alignItems: 'flex-start', gap: 16,
+                  }}>
+                    <div style={{ width: 6, height: 6, borderRadius: '50%', background: line.strong ? '#046C5C' : '#E5E7EB', flexShrink: 0, marginTop: 8 }} />
+                    <p style={{
+                      margin: 0, lineHeight: 1.65,
+                      fontSize: line.strong ? '1.1rem' : '1rem',
+                      fontWeight: line.strong ? 700 : 400,
+                      color: line.strong ? '#1E1F22' : '#6B7280',
+                      fontFamily: line.strong ? 'var(--font-display)' : 'var(--font-body)',
+                    }}>{line.text}</p>
+                  </div>
+                ))}
+                <div style={{ paddingTop: 28 }}>
+                  <p style={{ margin: 0, fontSize: '1.05rem', fontWeight: 700, color: '#046C5C', fontFamily: 'var(--font-display)', lineHeight: 1.6 }}>
+                    Stratiix helps organizations build the capability required to scale beyond the founder.
+                  </p>
+                </div>
+              </div>
+            </FadeIn>
+          </div>
+        </div>
+      </section>
+
+      {/* ── PROBLEM SECTION — full-width dark, no container cap ──────────── */}
+      <section style={{ background: '#1E1F22', padding: '120px 0', position: 'relative', overflow: 'hidden' }}>
+        <div style={{ position: 'absolute', top: '30%', right: '-5%', width: 600, height: 600, borderRadius: '50%', background: '#2563EB', opacity: 0.04, filter: 'blur(120px)' }} />
+        <div style={{ maxWidth: 1280, margin: '0 auto', padding: '0 32px' }}>
+          <FadeIn>
+            <div style={{ marginBottom: 72 }}>
+              <div style={{ fontSize: '0.72rem', fontWeight: 700, color: '#046C5C', letterSpacing: '0.15em', textTransform: 'uppercase', marginBottom: 16 }}>
+                When Growth Outpaces Systems
+              </div>
+              <h2 style={{ color: 'white', maxWidth: 560, fontSize: 'clamp(1.8rem, 3vw, 2.5rem)' }}>
+                Four patterns that limit every founder-led organization
+              </h2>
+            </div>
+          </FadeIn>
+          <div className="four-col" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 20 }}>
+            {[
+              { n: '01', title: 'Founder Dependency', body: 'Growth increasingly depends on founder involvement, creating bottlenecks in decision-making and execution.', color: '#2563EB' },
+              { n: '02', title: 'Capability Gaps Go Undiagnosed', body: 'Leaders invest in solutions before understanding what is actually limiting performance.', color: '#7C3AED' },
+              { n: '03', title: 'Growth Outpaces Infrastructure', body: 'Organizations scale faster than the systems supporting them.', color: '#046C5C' },
+              { n: '04', title: 'Performance Doesn\'t Hold', body: 'Without governance, accountability, and operating discipline, progress becomes difficult to sustain.', color: '#C9A86A' },
+            ].map((r, i) => (
+              <FadeIn key={r.n} delay={i * 0.1}>
+                <div className="problem-card" style={{ '--card-accent': r.color } as React.CSSProperties}>
+                  <div style={{ fontSize: '0.68rem', fontWeight: 800, color: r.color, letterSpacing: '0.15em', marginBottom: 20 }}>{r.n}</div>
+                  <h4 style={{ color: 'white', marginBottom: 14, fontSize: '1rem', lineHeight: 1.4, fontFamily: 'var(--font-display)' }}>{r.title}</h4>
+                  <p style={{ color: 'rgba(255,255,255,0.45)', fontSize: '0.875rem', lineHeight: 1.75, margin: 0 }}>{r.body}</p>
+                </div>
+              </FadeIn>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── TOS VISUAL SECTION — white, full-width ───────────────────────── */}
+      <section style={{ background: 'white', padding: '120px 0', position: 'relative', overflow: 'hidden' }}>
+        <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-50%)', width: 800, height: 800, borderRadius: '50%', background: 'radial-gradient(circle, rgba(4,108,92,0.04) 0%, transparent 70%)', pointerEvents: 'none' }} />
+        <div style={{ maxWidth: 1280, margin: '0 auto', padding: '0 32px' }}>
+          <FadeIn>
+            <div style={{ textAlign: 'center', marginBottom: 80 }}>
+              <div style={{ fontSize: '0.72rem', fontWeight: 700, color: '#046C5C', letterSpacing: '0.15em', textTransform: 'uppercase', marginBottom: 16 }}>The System</div>
+              <h2 style={{ fontSize: 'clamp(1.8rem, 3vw, 2.75rem)', color: '#1E1F22' }}>The Transformation Operating System™</h2>
+              <div style={{ width: 48, height: 3, background: '#046C5C', borderRadius: 2, margin: '20px auto 0' }} />
+            </div>
+          </FadeIn>
+
+          {/* Full-width 5-step flow */}
+          <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'center', flexWrap: 'wrap', gap: 0, marginBottom: 80 }}>
+            {[
+              { label: 'Diagnostic', desc: 'Reveal what is limiting performance', color: '#2563EB' },
+              { label: 'TOS', desc: 'Architect the transformation system', color: '#7C3AED' },
+              { label: 'Capability Engines', desc: 'Install the required capabilities', color: '#046C5C' },
+              { label: 'Intelligence', desc: 'Measure, learn, and adapt', color: '#10B981' },
+              { label: 'Outcomes', desc: 'Deliver measurable results', color: '#C9A86A' },
+            ].map((s, i) => (
+              <div key={s.label} style={{ display: 'flex', alignItems: 'center' }}>
+                <FadeIn delay={i * 0.1}>
+                  <div style={{ textAlign: 'center', padding: '0 16px' }}>
+                    <div style={{
+                      width: 88, height: 88, borderRadius: '50%',
+                      background: `${s.color}12`, border: `2px solid ${s.color}`,
+                      display: 'flex', alignItems: 'center', justifyContent: 'center',
+                      margin: '0 auto 16px',
+                      fontSize: '0.68rem', fontWeight: 800, color: s.color, letterSpacing: '0.08em',
+                      transition: 'all 0.25s ease',
+                    }}>
+                      {String(i + 1).padStart(2, '0')}
+                    </div>
+                    <div style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: '0.9rem', color: '#1E1F22', marginBottom: 6 }}>{s.label}</div>
+                    <div style={{ fontSize: '0.75rem', color: '#6B7280', maxWidth: 110, lineHeight: 1.5 }}>{s.desc}</div>
+                  </div>
+                </FadeIn>
+                {i < 4 && (
+                  <div style={{ width: 48, height: 1, background: 'linear-gradient(90deg, #E5E7EB, #046C5C44, #E5E7EB)', flexShrink: 0, marginBottom: 48 }} />
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── TOS PHASES — slate bg, two-col ───────────────────────────────── */}
+      <section style={{ background: '#F3F4F6', padding: '120px 0' }}>
+        <div style={{ maxWidth: 1280, margin: '0 auto', padding: '0 32px' }}>
+          <div className="two-col" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 80, alignItems: 'start' }}>
+            <FadeIn>
+              <div style={{ position: 'sticky', top: 100 }}>
+                <div style={{ fontSize: '0.72rem', fontWeight: 700, color: '#046C5C', letterSpacing: '0.15em', textTransform: 'uppercase', marginBottom: 20 }}>The Operating System</div>
+                <h2 style={{ fontSize: 'clamp(1.8rem, 3vw, 2.5rem)', color: '#1E1F22', marginBottom: 24 }}>
+                  Transformation Operating System™
+                </h2>
+                <div style={{ width: 48, height: 3, background: '#046C5C', borderRadius: 2, marginBottom: 28 }} />
+                <p style={{ color: '#4B4C51', fontSize: '1.05rem', lineHeight: 1.85, marginBottom: 36 }}>
+                  Five phases. One integrated system. Designed to move founder-led organizations from diagnosis to sustained performance.
+                </p>
+                <Link href="/the-tos" style={{
+                  display: 'inline-flex', alignItems: 'center', gap: 8,
+                  padding: '13px 26px', borderRadius: 10,
+                  background: '#046C5C', color: 'white',
+                  fontWeight: 700, fontSize: '0.875rem', textDecoration: 'none',
+                }}>
+                  Explore the TOS →
+                </Link>
+              </div>
+            </FadeIn>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+              {[
+                { n: '01', label: 'Diagnose', desc: 'Establish the baseline. Identify what is limiting performance, where capability gaps exist, and what the organization is actually ready to change.' },
+                { n: '02', label: 'Architect', desc: 'Design the future state. Define the transformation roadmap, sequence the interventions, and align leadership around the path forward.' },
+                { n: '03', label: 'Activate', desc: 'Install the capabilities. Deploy the Capability Engines, build the systems, and begin the structured change process with full adoption support.' },
+                { n: '04', label: 'Accelerate', desc: 'Drive performance. Measure outcomes, remove friction, optimize the installed systems, and build momentum toward the defined results.' },
+                { n: '05', label: 'Sustain', desc: 'Lock in the gains. Establish the governance rhythms, accountability structures, and leadership practices that hold performance without constant intervention.' },
+              ].map((ph, i) => (
+                <FadeIn key={ph.n} delay={i * 0.08}>
+                  <div className="phase-row">
+                    <div style={{ fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: '0.72rem', color: '#046C5C', letterSpacing: '0.12em', flexShrink: 0, paddingTop: 3, minWidth: 28 }}>{ph.n}</div>
+                    <div>
+                      <div style={{ fontFamily: 'var(--font-display)', fontWeight: 700, color: '#1E1F22', marginBottom: 6, fontSize: '1rem' }}>{ph.label}</div>
+                      <p style={{ fontSize: '0.875rem', color: '#6B7280', lineHeight: 1.7, margin: 0 }}>{ph.desc}</p>
+                    </div>
+                  </div>
+                </FadeIn>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── CAPABILITY ENGINES — white, full-width ───────────────────────── */}
+      <section style={{ background: 'white', padding: '120px 0' }}>
+        <div style={{ maxWidth: 1280, margin: '0 auto', padding: '0 32px' }}>
+          <FadeIn>
+            <div style={{ textAlign: 'center', marginBottom: 72 }}>
+              <div style={{ fontSize: '0.72rem', fontWeight: 700, color: '#046C5C', letterSpacing: '0.15em', textTransform: 'uppercase', marginBottom: 16 }}>The Engines</div>
+              <h2 style={{ fontSize: 'clamp(1.8rem, 3vw, 2.75rem)', color: '#1E1F22' }}>Capability Engines™</h2>
+              <div style={{ width: 48, height: 3, background: '#046C5C', borderRadius: 2, margin: '20px auto 0' }} />
+              <p style={{ color: '#6B7280', maxWidth: 520, margin: '24px auto 0', fontSize: '1.05rem', lineHeight: 1.75 }}>
+                Six specialized engines that install the capabilities founder-led organizations need to perform beyond the founder.
+              </p>
+            </div>
+          </FadeIn>
+          <div className="three-col" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 24 }}>
+            {[
+              { name: 'Intelligence Engine™', desc: 'Data, insight, and decision infrastructure that enables leaders to act on evidence rather than assumption.', n: '01' },
+              { name: 'Operational Excellence Engine™', desc: 'Process discipline, efficiency systems, and quality frameworks that eliminate variance and build execution reliability.', n: '02' },
+              { name: 'Governance Engine™', desc: 'Accountability structures, decision rights, and oversight mechanisms that hold performance without micromanagement.', n: '03' },
+              { name: 'Growth Engine™', desc: 'Market development, revenue architecture, and customer acquisition systems that drive sustainable top-line growth.', n: '04' },
+              { name: 'Workforce & Adoption Engine™', desc: 'People capability, change adoption, and organizational alignment systems that ensure transformation sticks.', n: '05' },
+              { name: 'Performance Engine™', desc: 'Measurement frameworks, KPI architecture, and performance rhythms that connect daily activity to strategic outcomes.', n: '06' },
+            ].map((e, i) => (
+              <FadeIn key={e.name} delay={i * 0.07}>
+                <div className="engine-card">
+                  <div style={{ fontSize: '0.68rem', fontWeight: 800, color: '#046C5C', letterSpacing: '0.15em', marginBottom: 20 }}>{e.n}</div>
+                  <h4 style={{ marginBottom: 12, fontSize: '1rem', lineHeight: 1.4, color: '#1E1F22', fontFamily: 'var(--font-display)' }}>{e.name}</h4>
+                  <p style={{ fontSize: '0.875rem', color: '#6B7280', lineHeight: 1.75, margin: 0 }}>{e.desc}</p>
+                </div>
+              </FadeIn>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── SOLUTIONS — full-width emerald-light ─────────────────────────── */}
+      <section style={{ background: '#E6F4F1', padding: '120px 0', position: 'relative', overflow: 'hidden' }}>
+        <div style={{ position: 'absolute', bottom: '-10%', right: '-5%', width: 500, height: 500, borderRadius: '50%', background: '#046C5C', opacity: 0.06, filter: 'blur(80px)' }} />
+        <div style={{ maxWidth: 1280, margin: '0 auto', padding: '0 32px' }}>
+          <div className="two-col" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 100, alignItems: 'center' }}>
+            <FadeIn>
+              <div style={{ fontSize: '0.72rem', fontWeight: 700, color: '#046C5C', letterSpacing: '0.15em', textTransform: 'uppercase', marginBottom: 20 }}>Who We Serve</div>
+              <h2 style={{ fontSize: 'clamp(1.8rem, 3vw, 2.5rem)', color: '#1E1F22', marginBottom: 24 }}>
+                Built for Founder-Led Organizations Ready to Scale
+              </h2>
+              <div style={{ width: 48, height: 3, background: '#046C5C', borderRadius: 2, marginBottom: 28 }} />
+              <p style={{ color: '#4B4C51', fontSize: '1.05rem', lineHeight: 1.85, marginBottom: 36 }}>
+                The TOS is sector-agnostic. Implementation is not. Stratiix brings deep operational knowledge to each engagement.
+              </p>
+              <Link href="/solutions" style={{
+                display: 'inline-flex', alignItems: 'center', gap: 8,
+                padding: '13px 26px', borderRadius: 10,
+                background: '#046C5C', color: 'white',
+                fontWeight: 700, fontSize: '0.875rem', textDecoration: 'none',
+              }}>
+                View All Solutions →
+              </Link>
+            </FadeIn>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+              {[
+                { name: 'HVAC', desc: 'Operational systems, workforce capability, and growth architecture for HVAC businesses scaling beyond the founder.' },
+                { name: 'Trucking & Logistics', desc: 'Fleet operations, compliance systems, and performance infrastructure for logistics companies building for scale.' },
+                { name: 'Professional Services', desc: 'Delivery systems, client management, and practice development for professional service firms.' },
+                { name: 'Nonprofits & Institutions', desc: 'Governance, program effectiveness, and organizational capacity for mission-driven organizations.' },
+              ].map((s, i) => (
+                <FadeIn key={s.name} delay={i * 0.08}>
+                  <div style={{
+                    padding: '22px 28px', background: 'white', borderRadius: 12,
+                    border: '1px solid #B2DDD7', display: 'flex', gap: 18, alignItems: 'flex-start',
+                    transition: 'all 0.25s ease',
+                  }}>
+                    <div style={{ width: 8, height: 8, borderRadius: '50%', background: '#046C5C', flexShrink: 0, marginTop: 7 }} />
+                    <div>
+                      <div style={{ fontFamily: 'var(--font-display)', fontWeight: 700, color: '#1E1F22', marginBottom: 5, fontSize: '0.95rem' }}>{s.name}</div>
+                      <p style={{ fontSize: '0.875rem', color: '#6B7280', margin: 0, lineHeight: 1.65 }}>{s.desc}</p>
+                    </div>
+                  </div>
+                </FadeIn>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── RESULTS — full-width dark, dramatic ──────────────────────────── */}
+      <section style={{ background: '#111214', padding: '120px 0', position: 'relative', overflow: 'hidden' }}>
+        <div style={{ position: 'absolute', top: '20%', left: '50%', transform: 'translateX(-50%)', width: 800, height: 400, borderRadius: '50%', background: 'radial-gradient(ellipse, rgba(4,108,92,0.08) 0%, transparent 70%)', pointerEvents: 'none' }} />
+        <div style={{ maxWidth: 1280, margin: '0 auto', padding: '0 32px' }}>
+          <FadeIn>
+            <div style={{ textAlign: 'center', marginBottom: 80 }}>
+              <div style={{ fontSize: '0.72rem', fontWeight: 700, color: '#B2DDD7', letterSpacing: '0.15em', textTransform: 'uppercase', marginBottom: 16 }}>What We Deliver</div>
+              <h2 style={{ color: 'white', fontSize: 'clamp(1.8rem, 3vw, 2.75rem)' }}>Results That Are Measurable</h2>
+              <div style={{ width: 48, height: 3, background: '#046C5C', borderRadius: 2, margin: '20px auto 0' }} />
+              <p style={{ color: 'rgba(255,255,255,0.45)', maxWidth: 480, margin: '24px auto 0', fontSize: '1.05rem', lineHeight: 1.75 }}>
+                Stratiix does not measure success by deliverables produced. We measure it by what changes inside the organization.
+              </p>
+            </div>
+          </FadeIn>
+          <div className="three-col" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 24, marginBottom: 64 }}>
+            {[
+              { label: 'Installed', desc: 'Capability systems, governance structures, and operational frameworks that are live and functioning inside the organization.', color: '#2563EB' },
+              { label: 'Adopted', desc: 'Workforce aligned, trained, and operating the new systems — not reverting to old patterns within 90 days.', color: '#046C5C' },
+              { label: 'Improved', desc: 'Measurable movement in the performance indicators that matter: efficiency, revenue, capacity, and organizational health.', color: '#C9A86A' },
+            ].map((o, i) => (
+              <FadeIn key={o.label} delay={i * 0.1}>
+                <div style={{
+                  padding: '48px 36px', borderRadius: 16, textAlign: 'center',
+                  background: 'rgba(255,255,255,0.03)',
+                  border: `1px solid ${o.color}22`,
+                  transition: 'all 0.3s ease',
+                }}>
+                  <div style={{
+                    width: 64, height: 64, borderRadius: '50%',
+                    background: `${o.color}15`, border: `2px solid ${o.color}`,
+                    display: 'flex', alignItems: 'center', justifyContent: 'center',
+                    margin: '0 auto 28px',
+                    fontSize: '0.68rem', fontWeight: 800, color: o.color, letterSpacing: '0.1em',
+                  }}>
+                    {String(i + 1).padStart(2, '0')}
+                  </div>
+                  <h3 style={{ color: 'white', fontSize: '1.75rem', marginBottom: 16, fontFamily: 'var(--font-display)' }}>{o.label}</h3>
+                  <p style={{ color: 'rgba(255,255,255,0.45)', fontSize: '0.9rem', lineHeight: 1.8, margin: 0 }}>{o.desc}</p>
+                </div>
+              </FadeIn>
+            ))}
+          </div>
+          <div style={{ textAlign: 'center' }}>
+            <Link href="/results" style={{
+              display: 'inline-flex', alignItems: 'center', gap: 8,
+              padding: '13px 26px', borderRadius: 10,
+              background: 'transparent', color: 'rgba(255,255,255,0.7)',
+              border: '1px solid rgba(255,255,255,0.15)',
+              fontWeight: 600, fontSize: '0.875rem', textDecoration: 'none',
+              transition: 'all 0.2s',
+            }}>
+              View Results →
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* ── FINAL CTA — emerald gradient ─────────────────────────────────── */}
+      <section style={{
+        background: 'linear-gradient(135deg, #035549 0%, #046C5C 50%, #057a68 100%)',
+        padding: '100px 0', position: 'relative', overflow: 'hidden',
+      }}>
+        <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-50%)', width: 600, height: 600, borderRadius: '50%', background: 'rgba(255,255,255,0.04)', filter: 'blur(60px)', pointerEvents: 'none' }} />
+        <div style={{ maxWidth: 760, margin: '0 auto', padding: '0 32px', textAlign: 'center', position: 'relative', zIndex: 1 }}>
+          <FadeIn>
+            <div style={{ fontSize: '0.72rem', fontWeight: 700, color: 'rgba(255,255,255,0.6)', letterSpacing: '0.15em', textTransform: 'uppercase', marginBottom: 20 }}>Get Started</div>
+            <h2 style={{ color: 'white', fontSize: 'clamp(1.8rem, 3.5vw, 2.75rem)', marginBottom: 20, lineHeight: 1.2 }}>
+              The Diagnostic is where every transformation begins.
+            </h2>
+            <p style={{ color: 'rgba(255,255,255,0.7)', maxWidth: 440, margin: '0 auto 44px', fontSize: '1.05rem', lineHeight: 1.75 }}>
+              A structured assessment of your organization's current state, capability gaps, and transformation readiness.
+            </p>
+            <div style={{ display: 'flex', gap: 14, justifyContent: 'center', flexWrap: 'wrap' }}>
+              <Link href="/diagnostic" style={{
+                display: 'inline-flex', alignItems: 'center', gap: 8,
+                padding: '15px 32px', borderRadius: 10,
+                background: 'white', color: '#046C5C',
+                fontWeight: 800, fontSize: '0.95rem', textDecoration: 'none',
+                boxShadow: '0 8px 32px rgba(0,0,0,0.2)',
+              }}>
+                Begin with the Diagnostic →
+              </Link>
+              <Link href="/the-tos" style={{
+                display: 'inline-flex', alignItems: 'center', gap: 8,
+                padding: '15px 32px', borderRadius: 10,
+                background: 'rgba(255,255,255,0.1)', color: 'white',
+                border: '1px solid rgba(255,255,255,0.25)',
+                fontWeight: 600, fontSize: '0.95rem', textDecoration: 'none',
+              }}>
+                Explore the TOS
+              </Link>
+            </div>
+          </FadeIn>
+        </div>
+      </section>
     </>
   )
 }
