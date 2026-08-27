@@ -114,158 +114,180 @@ function FadeIn({ children, delay = 0 }: { children: React.ReactNode; delay?: nu
 }
 
 
-// ── TOS Isometric Slab Diagram ───────────────────────────────────────────────
-// Stacked 3D isometric layers, dark background, numbered labels on the right
-// Matches the uploaded TOS.pdf visual exactly
+// ── TOS Isometric Slab Diagram — proper 3D CSS perspective ──────────────────
 function TOSDiagram() {
+  const [hovered, setHovered] = useState<number | null>(null)
   const phases = [
-    { n: '01', label: 'Diagnose',   sub: 'Establish the baseline',  color: '#2563EB' },
-    { n: '02', label: 'Architect',  sub: 'Design the future state',  color: '#7C3AED' },
-    { n: '03', label: 'Activate',   sub: 'Install the capabilities', color: '#046C5C' },
-    { n: '04', label: 'Accelerate', sub: 'Drive performance',        color: '#10B981' },
-    { n: '05', label: 'Sustain',    sub: 'Lock in the gains',        color: '#C9A86A' },
+    { n: '01', label: 'Diagnose',   sub: 'Establish the baseline',  color: '#2563EB', dark: '#1a4db8' },
+    { n: '02', label: 'Architect',  sub: 'Design the future state',  color: '#7C3AED', dark: '#5b28b0' },
+    { n: '03', label: 'Activate',   sub: 'Install the capabilities', color: '#046C5C', dark: '#024d42' },
+    { n: '04', label: 'Accelerate', sub: 'Drive performance',        color: '#10B981', dark: '#0a8a5e' },
+    { n: '05', label: 'Sustain',    sub: 'Lock in the gains',        color: '#C9A86A', dark: '#9a7d4a' },
   ]
 
-  // Slab dimensions
-  const W = 260   // slab width
-  const H = 28    // slab height (face)
-  const D = 14    // slab depth (side)
-  const SKEW = 20 // horizontal offset per layer (staircase)
-  const GAP = 18  // vertical gap between slabs
-  const STEP = H + GAP + D
+  // Slab geometry
+  const slabW = 280
+  const slabH = 36   // face height
+  const depthX = 18  // isometric X offset for depth
+  const depthY = 10  // isometric Y offset for depth
+  const stepY = 64   // vertical distance between slabs
+  const stepX = 22   // horizontal staircase offset per slab
 
-  // Total SVG dimensions
-  const totalH = phases.length * STEP + D + 40
-  const totalW = W + (phases.length - 1) * SKEW + 40
+  // Total canvas
+  const canvasW = slabW + (phases.length - 1) * stepX + depthX + 60
+  const canvasH = (phases.length - 1) * stepY + slabH + depthY + 60
 
   return (
-    <div style={{ width: '100%', display: 'flex', alignItems: 'center', gap: 48, flexWrap: 'wrap' }}>
+    <div style={{ width: '100%', display: 'flex', alignItems: 'center', gap: 56, flexWrap: 'wrap' }}>
       <style>{`
-        @keyframes slabIn {
-          from { opacity: 0; transform: translateY(20px); }
+        @keyframes slabDrop {
+          from { opacity: 0; transform: translateY(-16px); }
           to   { opacity: 1; transform: translateY(0); }
         }
-        @keyframes labelSlide {
-          from { opacity: 0; transform: translateX(-12px); }
+        @keyframes labelFade {
+          from { opacity: 0; transform: translateX(-10px); }
           to   { opacity: 1; transform: translateX(0); }
         }
-        .tos-slab-group { cursor: default; }
-        .tos-slab-face {
-          transition: filter 0.25s ease, transform 0.25s ease;
-          transform-origin: center;
+        .slab-group {
+          cursor: default;
+          transition: transform 0.25s ease, filter 0.25s ease;
         }
-        .tos-slab-group:hover .tos-slab-face {
-          filter: brightness(1.35);
-        }
-        .tos-slab-group:hover {
-          transform: translateY(-3px);
+        .slab-group:hover {
+          transform: translateY(-5px);
+          filter: brightness(1.15);
         }
       `}</style>
 
-      {/* Left: SVG isometric stack */}
-      <div style={{ flexShrink: 0 }}>
-        <svg
-          width={totalW}
-          height={totalH}
-          viewBox={`0 0 ${totalW} ${totalH}`}
-          style={{ overflow: 'visible' }}
-        >
-          {phases.map((ph, i) => {
-            // Each slab is offset: top layers are higher and to the right
-            // Layer 0 (Diagnose) = top = rightmost
-            const x = (phases.length - 1 - i) * SKEW + 20
-            const y = i * STEP + 20
+      {/* SVG isometric stack */}
+      <svg
+        width={canvasW}
+        height={canvasH}
+        viewBox={`0 0 ${canvasW} ${canvasH}`}
+        style={{ flexShrink: 0, overflow: 'visible' }}
+      >
+        {phases.map((ph, i) => {
+          // Staircase: layer 0 (Diagnose) = top-right, layer 4 (Sustain) = bottom-left
+          const x = (phases.length - 1 - i) * stepX + 20
+          const y = i * stepY + 20
 
-            // Darken colour for side/bottom faces
-            const faceColor = ph.color
-            const sideColor = ph.color + 'aa'
-            const bottomColor = ph.color + '55'
+          // Top face corners (parallelogram for isometric look)
+          // Top-left, top-right, bottom-right, bottom-left of the TOP face
+          const topFace = [
+            [x,           y],
+            [x + slabW,   y],
+            [x + slabW,   y + slabH],
+            [x,           y + slabH],
+          ]
 
-            // Connector line x endpoint (right edge of slab)
-            const lineX = x + W
-            const lineY = y + H / 2
+          // Right side face (depth illusion — right edge going back)
+          const rightFace = [
+            [x + slabW,         y],
+            [x + slabW + depthX, y - depthY],
+            [x + slabW + depthX, y - depthY + slabH],
+            [x + slabW,         y + slabH],
+          ]
 
-            return (
-              <g
-                key={ph.n}
-                className="tos-slab-group"
-                style={{
-                  animation: `slabIn 0.5s ease forwards`,
-                  animationDelay: `${i * 0.12}s`,
-                  opacity: 0,
-                }}
+          // Bottom face (top edge going back)
+          const bottomFace = [
+            [x,           y],
+            [x + depthX,  y - depthY],
+            [x + slabW + depthX, y - depthY],
+            [x + slabW,   y],
+          ]
+
+          const toPoints = (pts: number[][]) => pts.map(p => p.join(',')).join(' ')
+          const isHov = hovered === i
+
+          return (
+            <g
+              key={ph.n}
+              className="slab-group"
+              onMouseEnter={() => setHovered(i)}
+              onMouseLeave={() => setHovered(null)}
+              style={{
+                animation: `slabDrop 0.5s ease forwards`,
+                animationDelay: `${i * 0.1}s`,
+                opacity: 0,
+              }}
+            >
+              {/* Top face (brightest) */}
+              <polygon
+                points={toPoints(topFace)}
+                fill={isHov ? ph.color : ph.color}
+                opacity={isHov ? 1 : 0.92}
+              />
+              {/* Right side face (darker) */}
+              <polygon
+                points={toPoints(rightFace)}
+                fill={ph.dark}
+                opacity={0.85}
+              />
+              {/* Top/back face (medium) */}
+              <polygon
+                points={toPoints(bottomFace)}
+                fill={ph.color}
+                opacity={0.6}
+              />
+              {/* Number on slab */}
+              <text
+                x={x + 14}
+                y={y + slabH / 2 + 5}
+                fill="rgba(255,255,255,0.95)"
+                fontSize="11"
+                fontWeight="800"
+                fontFamily="Space Grotesk, sans-serif"
+                letterSpacing="1.5"
               >
-                {/* Bottom face (depth illusion) */}
-                <rect
-                  x={x} y={y + H}
-                  width={W} height={D}
-                  fill={bottomColor}
-                  rx={2}
-                />
-                {/* Right side face */}
-                <polygon
-                  points={`${x + W},${y} ${x + W + 0},${y} ${x + W},${y + H} ${x + W},${y + H + D}`}
-                  fill={sideColor}
-                />
-                {/* Top face (main) */}
-                <rect
-                  className="tos-slab-face"
-                  x={x} y={y}
-                  width={W} height={H}
-                  fill={faceColor}
-                  rx={3}
-                />
-                {/* Number on slab */}
-                <text
-                  x={x + 16} y={y + H / 2 + 5}
-                  fill="rgba(255,255,255,0.9)"
-                  fontSize="11"
-                  fontWeight="800"
-                  fontFamily="Space Grotesk, sans-serif"
-                  letterSpacing="1"
-                >
-                  {ph.n}
-                </text>
-                {/* Label on slab */}
-                <text
-                  x={x + 44} y={y + H / 2 + 5}
-                  fill="white"
-                  fontSize="12"
-                  fontWeight="700"
-                  fontFamily="Space Grotesk, sans-serif"
-                >
-                  {ph.label}
-                </text>
-              </g>
-            )
-          })}
-        </svg>
-      </div>
+                {ph.n}
+              </text>
+              {/* Label on slab */}
+              <text
+                x={x + 46}
+                y={y + slabH / 2 + 5}
+                fill="white"
+                fontSize="13"
+                fontWeight="700"
+                fontFamily="Space Grotesk, sans-serif"
+              >
+                {ph.label}
+              </text>
+            </g>
+          )
+        })}
+      </svg>
 
       {/* Right: numbered labels */}
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 20, flex: 1, minWidth: 200 }}>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 22, flex: 1, minWidth: 180 }}>
         {phases.map((ph, i) => (
           <div
             key={ph.n}
             style={{
               display: 'flex', alignItems: 'flex-start', gap: 14,
-              animation: `labelSlide 0.5s ease forwards`,
-              animationDelay: `${0.1 + i * 0.12}s`,
+              animation: `labelFade 0.45s ease forwards`,
+              animationDelay: `${0.08 + i * 0.1}s`,
               opacity: 0,
+              cursor: 'default',
             }}
+            onMouseEnter={() => setHovered(i)}
+            onMouseLeave={() => setHovered(null)}
           >
             <span style={{
               fontFamily: 'var(--font-display)', fontWeight: 800,
               fontSize: '0.72rem', color: ph.color,
-              letterSpacing: '0.1em', flexShrink: 0, paddingTop: 2,
+              letterSpacing: '0.1em', flexShrink: 0, paddingTop: 3,
             }}>
               {ph.n}
             </span>
             <div>
-              <div style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: '1rem', color: 'white', marginBottom: 3 }}>
+              <div style={{
+                fontFamily: 'var(--font-display)', fontWeight: 700,
+                fontSize: '1rem', color: '#1E1F22', marginBottom: 3,
+                transition: 'color 0.2s',
+                ...(hovered === i ? { color: ph.color } : {}),
+              }}>
                 {ph.label}
               </div>
-              <div style={{ fontSize: '0.82rem', color: 'rgba(255,255,255,0.5)', lineHeight: 1.5 }}>
+              <div style={{ fontSize: '0.82rem', color: '#6B7280', lineHeight: 1.5 }}>
                 {ph.sub}
               </div>
             </div>
