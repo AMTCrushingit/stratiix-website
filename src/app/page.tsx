@@ -312,64 +312,98 @@ export default function Home() {
 
       </section>
 
-      {/* ── FOUNDER SECTION — full-width, ivory bg ───────────────────────── */}
-      <section style={{ background: '#FAFAFA', padding: '120px 0', position: 'relative', overflow: 'hidden' }}>
-        <div style={{
-          position: 'absolute', top: 0, left: 0, right: 0, height: 1,
-          background: 'linear-gradient(90deg, transparent, #046C5C44, transparent)',
-        }} />
-        <div style={{ maxWidth: '100%', padding: '0 6vw' }}>
-          <div className="two-col" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 100, alignItems: 'center' }}>
-            <FadeIn>
-              <div style={{ fontSize: '0.72rem', fontWeight: 700, color: '#046C5C', letterSpacing: '0.15em', textTransform: 'uppercase', marginBottom: 24 }}>
-                The Founder Problem
-              </div>
-              <h2 style={{ fontSize: 'clamp(2rem, 3.5vw, 3rem)', lineHeight: 1.1, color: '#1E1F22', marginBottom: 32, fontWeight: 800 }}>
-                Your Business Shouldn't Run<br/>
-                <span style={{ color: '#046C5C' }}>Because You're Holding</span><br/>
-                It Together
-              </h2>
-              <Link href="/diagnostic" style={{
-                display: 'inline-flex', alignItems: 'center', gap: 8,
-                padding: '13px 26px', borderRadius: 10,
-                background: '#046C5C', color: 'white',
-                fontWeight: 700, fontSize: '0.875rem', textDecoration: 'none',
+      {/* ── FOUNDER SECTION — typographic reveal, centred ─────────────────── */}
+      <section style={{ background: '#FAFAFA', padding: '140px 0 120px', position: 'relative', overflow: 'hidden' }}>
+        {/* Top edge line */}
+        <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 1, background: 'linear-gradient(90deg, transparent, #046C5C44, transparent)' }} />
+        {/* Subtle bg glow */}
+        <div style={{ position: 'absolute', top: '30%', left: '50%', transform: 'translateX(-50%)', width: 800, height: 400, borderRadius: '50%', background: 'radial-gradient(ellipse, rgba(4,108,92,0.05) 0%, transparent 70%)', pointerEvents: 'none' }} />
+
+        <div style={{ padding: '0 6vw', textAlign: 'center', position: 'relative', zIndex: 1 }}>
+
+          {/* Eyebrow */}
+          <FadeIn>
+            <div style={{ fontSize: '0.72rem', fontWeight: 700, color: '#046C5C', letterSpacing: '0.18em', textTransform: 'uppercase', marginBottom: 56 }}>
+              The Founder Problem
+            </div>
+          </FadeIn>
+
+          {/* Build-up lines — small, muted */}
+          <FadeIn delay={0.1}>
+            <p style={{ fontSize: 'clamp(1rem, 1.8vw, 1.25rem)', color: '#9CA3AF', fontWeight: 400, lineHeight: 1.7, marginBottom: 0, fontFamily: 'var(--font-body)' }}>
+              Most founders don't have a growth problem.
+            </p>
+          </FadeIn>
+
+          {/* THE REVEAL — massive centred statement */}
+          <FadeIn delay={0.2}>
+            <div style={{ margin: '32px 0 40px', position: 'relative' }}>
+              {/* Ghost text behind */}
+              <div style={{
+                position: 'absolute', top: '50%', left: '50%',
+                transform: 'translate(-50%, -50%)',
+                fontSize: 'clamp(6rem, 14vw, 13rem)', fontWeight: 900,
+                color: 'rgba(4,108,92,0.04)', lineHeight: 1, whiteSpace: 'nowrap',
+                fontFamily: 'var(--font-display)', userSelect: 'none', pointerEvents: 'none',
+                letterSpacing: '-0.04em',
+              }}>CAPABILITY</div>
+              <h2 style={{
+                fontSize: 'clamp(2.8rem, 6vw, 5.5rem)',
+                fontWeight: 900,
+                lineHeight: 1.0,
+                letterSpacing: '-0.03em',
+                color: '#1E1F22',
+                fontFamily: 'var(--font-display)',
+                margin: 0,
+                position: 'relative',
               }}>
-                Start with the Diagnostic →
-              </Link>
-            </FadeIn>
-            <FadeIn delay={0.15}>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 0 }}>
-                {[
-                  { text: 'Most founders don\'t have a growth problem.', strong: true },
-                  { text: 'They have a capability problem.', strong: true },
-                  { text: 'Growth creates complexity.', strong: false },
-                  { text: 'Complexity exposes gaps in systems, leadership, governance, and execution.', strong: false },
-                  { text: 'Over time, the founder becomes the operating system.', strong: false },
-                ].map((line, i) => (
-                  <div key={i} style={{
-                    padding: '20px 0',
-                    borderBottom: i < 4 ? '1px solid #E5E7EB' : 'none',
-                    display: 'flex', alignItems: 'flex-start', gap: 16,
-                  }}>
-                    <div style={{ width: 6, height: 6, borderRadius: '50%', background: line.strong ? '#046C5C' : '#E5E7EB', flexShrink: 0, marginTop: 8 }} />
-                    <p style={{
-                      margin: 0, lineHeight: 1.65,
-                      fontSize: line.strong ? '1.1rem' : '1rem',
-                      fontWeight: line.strong ? 700 : 400,
-                      color: line.strong ? '#1E1F22' : '#6B7280',
-                      fontFamily: line.strong ? 'var(--font-display)' : 'var(--font-body)',
-                    }}>{line.text}</p>
-                  </div>
-                ))}
-                <div style={{ paddingTop: 28 }}>
-                  <p style={{ margin: 0, fontSize: '1.05rem', fontWeight: 700, color: '#046C5C', fontFamily: 'var(--font-display)', lineHeight: 1.6 }}>
-                    Stratiix helps organizations build the capability required to scale beyond the founder.
-                  </p>
-                </div>
-              </div>
-            </FadeIn>
-          </div>
+                They have a<br/>
+                <span style={{ color: '#046C5C' }}>capability problem.</span>
+              </h2>
+            </div>
+          </FadeIn>
+
+          {/* Supporting lines — muted, smaller */}
+          <FadeIn delay={0.3}>
+            <div style={{ maxWidth: 560, margin: '0 auto 48px', display: 'flex', flexDirection: 'column', gap: 0 }}>
+              {[
+                'Growth creates complexity.',
+                'Complexity exposes gaps in systems, leadership, governance, and execution.',
+                'Over time, the founder becomes the operating system.',
+              ].map((line, i) => (
+                <p key={i} style={{
+                  fontSize: 'clamp(0.95rem, 1.5vw, 1.1rem)',
+                  color: i === 2 ? '#4B4C51' : '#9CA3AF',
+                  fontWeight: i === 2 ? 500 : 400,
+                  lineHeight: 1.75,
+                  margin: 0,
+                  padding: '14px 0',
+                  borderBottom: i < 2 ? '1px solid #E5E7EB' : 'none',
+                  fontFamily: 'var(--font-body)',
+                }}>{line}</p>
+              ))}
+            </div>
+          </FadeIn>
+
+          {/* Divider line */}
+          <FadeIn delay={0.4}>
+            <div style={{ width: 1, height: 48, background: 'linear-gradient(to bottom, #E5E7EB, #046C5C)', margin: '0 auto 40px' }} />
+          </FadeIn>
+
+          {/* CTA */}
+          <FadeIn delay={0.45}>
+            <Link href="/diagnostic" style={{
+              display: 'inline-flex', alignItems: 'center', gap: 8,
+              padding: '14px 32px', borderRadius: 10,
+              background: '#046C5C', color: 'white',
+              fontWeight: 700, fontSize: '0.95rem', textDecoration: 'none',
+              boxShadow: '0 8px 32px rgba(4,108,92,0.25)',
+              fontFamily: 'var(--font-display)',
+            }}>
+              Start with the Diagnostic →
+            </Link>
+          </FadeIn>
+
         </div>
       </section>
 
