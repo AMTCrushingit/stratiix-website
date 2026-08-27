@@ -398,49 +398,49 @@ export default function Home() {
 
           {/* Narrative — wider, no bullets */}
           <FadeIn delay={0.24}>
-            <div style={{ maxWidth: 760, margin: '0 auto 40px' }}>
+            <div style={{ maxWidth: 720, margin: '0 auto 48px' }}>
 
-              {/* Without the required capabilities — prominent label */}
-              <p style={{
-                fontSize: 'clamp(1rem, 1.6vw, 1.15rem)',
-                fontWeight: 800,
-                color: '#1E1F22',
-                lineHeight: 1.6,
-                marginBottom: 32,
-                fontFamily: 'var(--font-display)',
-                letterSpacing: '-0.01em',
+              {/* Glass card */}
+              <div style={{
+                background: 'rgba(255,255,255,0.7)',
+                backdropFilter: 'blur(16px)',
+                WebkitBackdropFilter: 'blur(16px)',
+                border: '1px solid rgba(255,255,255,0.9)',
+                borderRadius: 20,
+                padding: 'clamp(28px, 4vw, 48px)',
+                boxShadow: '0 8px 40px rgba(4,108,92,0.06), 0 2px 8px rgba(0,0,0,0.04)',
               }}>
-                Without the required capabilities:
-              </p>
-
-              {/* Flowing paragraphs */}
-              <p style={{ fontSize: 'clamp(1rem, 1.5vw, 1.1rem)', color: '#6B7280', lineHeight: 1.85, marginBottom: 20, fontFamily: 'var(--font-body)' }}>
-                Growth creates complexity.
-              </p>
-              <p style={{ fontSize: 'clamp(1rem, 1.5vw, 1.1rem)', color: '#6B7280', lineHeight: 1.85, marginBottom: 32, fontFamily: 'var(--font-body)' }}>
-                Complexity exposes gaps in systems, leadership, governance, and execution.
-              </p>
-              <p style={{ fontSize: 'clamp(1rem, 1.6vw, 1.15rem)', color: '#1E1F22', fontWeight: 600, lineHeight: 1.75, marginBottom: 40, fontFamily: 'var(--font-display)' }}>
-                Over time, the founder becomes the operating system of the business.
-              </p>
-
-              {/* Highlight — inline, no box */}
-              <p style={{
-                fontSize: 'clamp(1rem, 1.5vw, 1.1rem)',
-                color: '#046C5C',
-                fontWeight: 700,
-                lineHeight: 1.75,
-                fontFamily: 'var(--font-display)',
-                fontStyle: 'italic',
-                borderLeft: '3px solid #046C5C',
-                paddingLeft: 24,
-                margin: 0,
-              }}>
-                The gap between ambition and results is rarely a strategy problem. It's a capability problem.
-              </p>
+                <p style={{ fontSize: 'clamp(1rem, 1.5vw, 1.1rem)', color: '#6B7280', lineHeight: 1.85, marginBottom: 20, fontFamily: 'var(--font-body)', margin: '0 0 20px' }}>
+                  Growth creates complexity.
+                </p>
+                <p style={{ fontSize: 'clamp(1rem, 1.5vw, 1.1rem)', color: '#6B7280', lineHeight: 1.85, marginBottom: 24, fontFamily: 'var(--font-body)', margin: '0 0 24px' }}>
+                  Complexity exposes gaps in systems, leadership, governance, and execution.
+                </p>
+                <p style={{ fontSize: 'clamp(1rem, 1.6vw, 1.1rem)', color: '#1E1F22', fontWeight: 700, lineHeight: 1.75, fontFamily: 'var(--font-display)', margin: 0 }}>
+                  Over time, the founder becomes the operating system of the business.
+                </p>
+              </div>
 
             </div>
           </FadeIn>
+
+          {/* Gap statement */}
+          <FadeIn delay={0.32}>
+            <p style={{
+              fontSize: 'clamp(1rem, 1.5vw, 1.1rem)',
+              color: '#046C5C',
+              fontWeight: 700,
+              lineHeight: 1.75,
+              fontFamily: 'var(--font-display)',
+              fontStyle: 'italic',
+              maxWidth: 620,
+              margin: '0 auto 56px',
+            }}>
+              The gap between ambition and results is rarely a strategy problem. It's a capability problem.
+            </p>
+          </FadeIn>
+
+
 
 
 
