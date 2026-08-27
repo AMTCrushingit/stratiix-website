@@ -114,146 +114,168 @@ function FadeIn({ children, delay = 0 }: { children: React.ReactNode; delay?: nu
 }
 
 
-// ── TOS Diagram — faithful recreation of the PowerPoint original ─────────────
-// 5 numbered circles in a horizontal flow with dashed connectors
-// Animated: circles build in on load, hover glows + raises + shows description
+// ── TOS Isometric Slab Diagram ───────────────────────────────────────────────
+// Stacked 3D isometric layers, dark background, numbered labels on the right
+// Matches the uploaded TOS.pdf visual exactly
 function TOSDiagram() {
-  const [hovered, setHovered] = useState<number | null>(null)
   const phases = [
-    { n: '01', label: 'Diagnose',  sub: 'Establish the baseline',   color: '#2563EB', desc: 'Identify what is limiting performance, where capability gaps exist, and what the organization is actually ready to change.' },
-    { n: '02', label: 'Architect', sub: 'Design the future state',   color: '#7C3AED', desc: 'Define the transformation roadmap, sequence the interventions, and align leadership around the path forward.' },
-    { n: '03', label: 'Activate',  sub: 'Install the capabilities',  color: '#046C5C', desc: 'Deploy the Capability Engines, build the systems, and begin the structured change process with full adoption support.' },
-    { n: '04', label: 'Accelerate',sub: 'Drive performance',         color: '#10B981', desc: 'Measure outcomes, remove friction, optimize the installed systems, and build momentum toward the defined results.' },
-    { n: '05', label: 'Sustain',   sub: 'Lock in the gains',         color: '#C9A86A', desc: 'Establish the governance rhythms, accountability structures, and leadership practices that hold performance without constant intervention.' },
+    { n: '01', label: 'Diagnose',   sub: 'Establish the baseline',  color: '#2563EB' },
+    { n: '02', label: 'Architect',  sub: 'Design the future state',  color: '#7C3AED' },
+    { n: '03', label: 'Activate',   sub: 'Install the capabilities', color: '#046C5C' },
+    { n: '04', label: 'Accelerate', sub: 'Drive performance',        color: '#10B981' },
+    { n: '05', label: 'Sustain',    sub: 'Lock in the gains',        color: '#C9A86A' },
   ]
+
+  // Slab dimensions
+  const W = 260   // slab width
+  const H = 28    // slab height (face)
+  const D = 14    // slab depth (side)
+  const SKEW = 20 // horizontal offset per layer (staircase)
+  const GAP = 18  // vertical gap between slabs
+  const STEP = H + GAP + D
+
+  // Total SVG dimensions
+  const totalH = phases.length * STEP + D + 40
+  const totalW = W + (phases.length - 1) * SKEW + 40
+
   return (
-    <div style={{ width: '100%' }}>
+    <div style={{ width: '100%', display: 'flex', alignItems: 'center', gap: 48, flexWrap: 'wrap' }}>
       <style>{`
-        @keyframes circleIn {
-          from { opacity: 0; transform: translateY(16px) scale(0.9); }
-          to   { opacity: 1; transform: translateY(0) scale(1); }
+        @keyframes slabIn {
+          from { opacity: 0; transform: translateY(20px); }
+          to   { opacity: 1; transform: translateY(0); }
         }
-        @keyframes connectorIn {
-          from { opacity: 0; width: 0; }
-          to   { opacity: 1; width: 100%; }
+        @keyframes labelSlide {
+          from { opacity: 0; transform: translateX(-12px); }
+          to   { opacity: 1; transform: translateX(0); }
         }
-        .tos-circle {
-          transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
-          cursor: default;
+        .tos-slab-group { cursor: default; }
+        .tos-slab-face {
+          transition: filter 0.25s ease, transform 0.25s ease;
+          transform-origin: center;
         }
-        .tos-circle:hover {
-          transform: translateY(-6px) !important;
+        .tos-slab-group:hover .tos-slab-face {
+          filter: brightness(1.35);
         }
-        .tos-label {
-          transition: color 0.25s ease;
-        }
-        .tos-desc-box {
-          position: absolute;
-          bottom: calc(100% + 12px);
-          left: 50%;
-          transform: translateX(-50%);
-          width: 180px;
-          background: #1E1F22;
-          border-radius: 10px;
-          padding: 12px 14px;
-          pointer-events: none;
-          opacity: 0;
-          transition: opacity 0.2s ease, transform 0.2s ease;
-          transform: translateX(-50%) translateY(4px);
-          z-index: 10;
-        }
-        .tos-circle-wrap:hover .tos-desc-box {
-          opacity: 1;
-          transform: translateX(-50%) translateY(0);
-        }
-        .tos-desc-box::after {
-          content: '';
-          position: absolute;
-          top: 100%;
-          left: 50%;
-          transform: translateX(-50%);
-          border: 6px solid transparent;
-          border-top-color: #1E1F22;
+        .tos-slab-group:hover {
+          transform: translateY(-3px);
         }
       `}</style>
 
-      {/* Horizontal flow */}
-      <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 0 }}>
-        {phases.map((ph, i) => (
-          <div key={ph.n} style={{ display: 'flex', alignItems: 'center', flex: 1 }}>
-            {/* Circle + label */}
-            <div
-              className="tos-circle-wrap"
-              style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', flex: 1, position: 'relative' }}
-            >
-              {/* Tooltip */}
-              <div className="tos-desc-box">
-                <p style={{ margin: 0, fontSize: '0.75rem', color: 'rgba(255,255,255,0.8)', lineHeight: 1.6 }}>{ph.desc}</p>
-              </div>
+      {/* Left: SVG isometric stack */}
+      <div style={{ flexShrink: 0 }}>
+        <svg
+          width={totalW}
+          height={totalH}
+          viewBox={`0 0 ${totalW} ${totalH}`}
+          style={{ overflow: 'visible' }}
+        >
+          {phases.map((ph, i) => {
+            // Each slab is offset: top layers are higher and to the right
+            // Layer 0 (Diagnose) = top = rightmost
+            const x = (phases.length - 1 - i) * SKEW + 20
+            const y = i * STEP + 20
 
-              {/* Circle */}
-              <div
-                className="tos-circle"
+            // Darken colour for side/bottom faces
+            const faceColor = ph.color
+            const sideColor = ph.color + 'aa'
+            const bottomColor = ph.color + '55'
+
+            // Connector line x endpoint (right edge of slab)
+            const lineX = x + W
+            const lineY = y + H / 2
+
+            return (
+              <g
+                key={ph.n}
+                className="tos-slab-group"
                 style={{
-                  width: 80, height: 80, borderRadius: '50%',
-                  background: hovered === i ? ph.color : `${ph.color}15`,
-                  border: `2px solid ${ph.color}`,
-                  display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  marginBottom: 14,
-                  fontSize: '0.72rem', fontWeight: 800,
-                  color: hovered === i ? 'white' : ph.color,
-                  letterSpacing: '0.08em',
-                  boxShadow: hovered === i ? `0 8px 28px ${ph.color}50` : 'none',
-                  animation: `circleIn 0.5s ease forwards`,
+                  animation: `slabIn 0.5s ease forwards`,
                   animationDelay: `${i * 0.12}s`,
                   opacity: 0,
                 }}
-                onMouseEnter={() => setHovered(i)}
-                onMouseLeave={() => setHovered(null)}
               >
-                {ph.n}
-              </div>
+                {/* Bottom face (depth illusion) */}
+                <rect
+                  x={x} y={y + H}
+                  width={W} height={D}
+                  fill={bottomColor}
+                  rx={2}
+                />
+                {/* Right side face */}
+                <polygon
+                  points={`${x + W},${y} ${x + W + 0},${y} ${x + W},${y + H} ${x + W},${y + H + D}`}
+                  fill={sideColor}
+                />
+                {/* Top face (main) */}
+                <rect
+                  className="tos-slab-face"
+                  x={x} y={y}
+                  width={W} height={H}
+                  fill={faceColor}
+                  rx={3}
+                />
+                {/* Number on slab */}
+                <text
+                  x={x + 16} y={y + H / 2 + 5}
+                  fill="rgba(255,255,255,0.9)"
+                  fontSize="11"
+                  fontWeight="800"
+                  fontFamily="Space Grotesk, sans-serif"
+                  letterSpacing="1"
+                >
+                  {ph.n}
+                </text>
+                {/* Label on slab */}
+                <text
+                  x={x + 44} y={y + H / 2 + 5}
+                  fill="white"
+                  fontSize="12"
+                  fontWeight="700"
+                  fontFamily="Space Grotesk, sans-serif"
+                >
+                  {ph.label}
+                </text>
+              </g>
+            )
+          })}
+        </svg>
+      </div>
 
-              {/* Label */}
-              <div className="tos-label" style={{
-                fontFamily: 'var(--font-display)', fontWeight: 700,
-                fontSize: '0.88rem', color: hovered === i ? ph.color : '#1E1F22',
-                marginBottom: 4, textAlign: 'center',
-                animation: `circleIn 0.5s ease forwards`,
-                animationDelay: `${0.6 + i * 0.08}s`,
-                opacity: 0,
-              }}>
+      {/* Right: numbered labels */}
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 20, flex: 1, minWidth: 200 }}>
+        {phases.map((ph, i) => (
+          <div
+            key={ph.n}
+            style={{
+              display: 'flex', alignItems: 'flex-start', gap: 14,
+              animation: `labelSlide 0.5s ease forwards`,
+              animationDelay: `${0.1 + i * 0.12}s`,
+              opacity: 0,
+            }}
+          >
+            <span style={{
+              fontFamily: 'var(--font-display)', fontWeight: 800,
+              fontSize: '0.72rem', color: ph.color,
+              letterSpacing: '0.1em', flexShrink: 0, paddingTop: 2,
+            }}>
+              {ph.n}
+            </span>
+            <div>
+              <div style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: '1rem', color: 'white', marginBottom: 3 }}>
                 {ph.label}
               </div>
-
-              {/* Subtitle */}
-              <div style={{
-                fontSize: '0.72rem', color: '#9CA3AF',
-                textAlign: 'center', lineHeight: 1.4, maxWidth: 90,
-                animation: `circleIn 0.5s ease forwards`,
-                animationDelay: `${0.65 + i * 0.08}s`,
-                opacity: 0,
-              }}>
+              <div style={{ fontSize: '0.82rem', color: 'rgba(255,255,255,0.5)', lineHeight: 1.5 }}>
                 {ph.sub}
               </div>
             </div>
-
-            {/* Dashed connector */}
-            {i < phases.length - 1 && (
-              <div style={{
-                width: 32, flexShrink: 0, marginBottom: 52,
-                borderTop: `2px dashed ${ph.color}60`,
-                animation: `circleIn 0.4s ease forwards`,
-                animationDelay: `${0.15 + i * 0.12}s`,
-                opacity: 0,
-              }} />
-            )}
           </div>
         ))}
       </div>
     </div>
   )
 }
+
 
 export default function Home() {
   return (
