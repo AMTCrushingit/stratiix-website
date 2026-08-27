@@ -124,11 +124,18 @@ export default function Home() {
           50%       { transform: translateY(-20px) scale(1.05); }
         }
         @keyframes dropletFloat {
-          0%   { transform: translateY(0) rotate(0deg) scale(1); border-radius: 60% 40% 70% 30% / 50% 60% 40% 50%; }
-          25%  { transform: translateY(-18px) rotate(5deg) scale(1.04); border-radius: 40% 60% 30% 70% / 60% 40% 60% 40%; }
-          50%  { transform: translateY(-8px) rotate(-3deg) scale(0.97); border-radius: 70% 30% 50% 50% / 40% 70% 30% 60%; }
-          75%  { transform: translateY(-22px) rotate(8deg) scale(1.02); border-radius: 30% 70% 60% 40% / 50% 30% 70% 50%; }
-          100% { transform: translateY(0) rotate(0deg) scale(1); border-radius: 60% 40% 70% 30% / 50% 60% 40% 50%; }
+          0%   { transform: translateY(0px) rotate(0deg) scale(1); }
+          20%  { transform: translateY(-22px) rotate(4deg) scale(1.04); }
+          40%  { transform: translateY(-10px) rotate(-3deg) scale(0.97); }
+          60%  { transform: translateY(-28px) rotate(7deg) scale(1.03); }
+          80%  { transform: translateY(-6px) rotate(-2deg) scale(1.01); }
+          100% { transform: translateY(0px) rotate(0deg) scale(1); }
+        }
+        @keyframes dropletMorph {
+          0%, 100% { border-radius: 60% 40% 70% 30% / 50% 60% 40% 50%; }
+          25%      { border-radius: 40% 60% 30% 70% / 60% 40% 60% 40%; }
+          50%      { border-radius: 70% 30% 50% 50% / 40% 70% 30% 60%; }
+          75%      { border-radius: 30% 70% 60% 40% / 50% 30% 70% 50%; }
         }
         @keyframes heroFadeUp {
           from { opacity: 0; transform: translateY(32px); }
@@ -237,6 +244,12 @@ export default function Home() {
             position: 'absolute', inset: 0,
             background: 'linear-gradient(105deg, rgba(5,10,20,0.92) 0%, rgba(5,10,20,0.85) 45%, rgba(5,10,20,0.35) 75%, rgba(5,10,20,0.15) 100%)',
           }} />
+          {/* TOS colour wash — 5 colours at 6% opacity, connected to the system */}
+          <div style={{
+            position: 'absolute', inset: 0,
+            background: 'linear-gradient(135deg, rgba(37,99,235,0.06) 0%, rgba(124,58,237,0.05) 25%, rgba(4,108,92,0.06) 50%, rgba(16,185,129,0.05) 75%, rgba(201,168,106,0.06) 100%)',
+            mixBlendMode: 'screen',
+          }} />
           {/* Bottom fade */}
           <div style={{
             position: 'absolute', bottom: 0, left: 0, right: 0, height: '30%',
@@ -246,22 +259,22 @@ export default function Home() {
 
         {/* Droplet orbs on top of image */}
         {[
-          { c:'#2563EB', w:320, h:420, t:'5%',  l:'2%',  dur:'9s',  del:'0s' },
-          { c:'#7C3AED', w:280, h:360, t:'3%',  r:'3%',  dur:'11s', del:'1.5s' },
-          { c:'#046C5C', w:360, h:280, b:'8%',  l:'5%',  dur:'13s', del:'0.8s' },
-          { c:'#C9A86A', w:240, h:320, b:'5%',  r:'2%',  dur:'10s', del:'2s' },
-          { c:'#10B981', w:200, h:260, t:'40%', l:'40%', dur:'14s', del:'1s' },
+          { c:'#2563EB', w:380, h:480, t:'5%',  l:'2%',  dur:'9s',  mdur:'7s',  del:'0s' },
+          { c:'#7C3AED', w:320, h:400, t:'3%',  r:'3%',  dur:'11s', mdur:'9s',  del:'1.5s' },
+          { c:'#046C5C', w:400, h:300, b:'8%',  l:'5%',  dur:'13s', mdur:'11s', del:'0.8s' },
+          { c:'#C9A86A', w:280, h:360, b:'5%',  r:'2%',  dur:'10s', mdur:'8s',  del:'2s' },
+          { c:'#10B981', w:240, h:300, t:'38%', l:'38%', dur:'14s', mdur:'12s', del:'1s' },
         ].map((d,i) => (
           <div key={i} style={{
             position:'absolute', zIndex: 1,
             width: d.w, height: d.h,
             borderRadius: '60% 40% 70% 30% / 50% 60% 40% 50%',
             background: d.c,
-            opacity: 0.08,
-            filter: 'blur(60px)',
+            opacity: 0.14,
+            filter: 'blur(55px)',
             top:(d as any).t, left:(d as any).l, right:(d as any).r, bottom:(d as any).b,
-            animation: `dropletFloat ${d.dur} ease-in-out infinite`,
-            animationDelay: d.del,
+            animation: `dropletFloat ${d.dur} ease-in-out infinite, dropletMorph ${d.mdur} ease-in-out infinite`,
+            animationDelay: `${d.del}, ${d.del}`,
           }} />
         ))}
 
@@ -298,7 +311,7 @@ export default function Home() {
               maxWidth: 460, marginBottom: 44,
               animation: 'heroFadeUp 0.6s ease 0.2s forwards', opacity: 0,
             }}>
-              Stratiix helps founder-led organizations identify what is limiting performance and build the capability required to scale beyond the founder.
+              Stratiix helps founder-led organizations identify what is limiting performance and build the capability required to perform beyond the founder.
             </p>
 
             <div style={{
