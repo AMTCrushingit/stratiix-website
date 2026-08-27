@@ -175,44 +175,63 @@ export default function DiagnosticPage() {
       </section>
 
       {/* Who it's for */}
-      <section style={{ background: '#F3F4F6', padding: '96px 0' }}>
-        <div style={{ padding: '0 6vw' }}>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 80, alignItems: 'center' }} className="two-col">
-            <div>
-              <div style={{ fontSize: '0.72rem', fontWeight: 700, color: '#046C5C', letterSpacing: '0.18em', textTransform: 'uppercase', marginBottom: 16 }}>Who It's For</div>
-              <h2 style={{ color: '#1E1F22', fontSize: 'clamp(1.8rem, 3vw, 2.5rem)', fontWeight: 800, lineHeight: 1.1, marginBottom: 24 }}>
-                Built for Founder-Led Organizations<br/>
-                <span style={{ color: '#046C5C' }}>at an Inflection Point.</span>
-              </h2>
-              <div style={{ width: 48, height: 3, background: '#046C5C', borderRadius: 2, marginBottom: 28 }} />
-              <p style={{ color: '#4B4C51', lineHeight: 1.85, marginBottom: 20, fontSize: '1.05rem' }}>
-                The Diagnostic is designed for organizations that know something needs to change but are not certain what, or for organizations that have tried to change and have not achieved the results they expected.
-              </p>
-              <p style={{ color: '#6B7280', lineHeight: 1.8 }}>
-                It is also the starting point for any organization that wants to undertake a structured transformation: regardless of size, sector, or current performance level.
-              </p>
-            </div>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
-              {[
-                'Founder-led organizations that have grown beyond their current systems',
-                'Leaders who sense capability gaps but cannot pinpoint them',
-                'Organizations that have a strategy but are not executing it',
-                'Businesses where the founder has become the bottleneck',
-                'Organizations that have tried transformation and not sustained it',
-                'Leadership teams that need an objective external assessment',
-              ].map(s => (
-                <div key={s} style={{ display: 'flex', gap: 14, alignItems: 'flex-start' }}>
-                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" style={{ flexShrink: 0, marginTop: 2 }}>
-                    <circle cx="10" cy="10" r="9" stroke="#046C5C" strokeWidth="1.5" fill="rgba(4,108,92,0.1)" />
-                    <polyline points="6,10 9,13 14,7" stroke="#046C5C" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" fill="none" />
-                  </svg>
-                  <span style={{ color: '#4B4C51', fontSize: '0.95rem', lineHeight: 1.65 }}>{s}</span>
-                </div>
-              ))}
-            </div>
+      {/* Who it's for — dark, full-width, typographic grid */}
+      <section style={{ background: '#111214', padding: '96px 0', position: 'relative', overflow: 'hidden' }}>
+        <div style={{ position: 'absolute', bottom: '10%', left: '5%', width: 400, height: 400, borderRadius: '50%', background: '#7C3AED', opacity: 0.04, filter: 'blur(80px)' }} />
+
+        <div style={{ padding: '0 6vw', position: 'relative', zIndex: 1 }}>
+
+          {/* Centred heading */}
+          <div style={{ textAlign: 'center', marginBottom: 72 }}>
+            <div style={{ fontSize: '0.72rem', fontWeight: 700, color: '#B2DDD7', letterSpacing: '0.18em', textTransform: 'uppercase', marginBottom: 20 }}>Who It's For</div>
+            <h2 style={{ color: 'white', fontSize: 'clamp(2rem, 3.5vw, 3rem)', fontWeight: 900, lineHeight: 1.1, letterSpacing: '-0.02em', marginBottom: 20 }}>
+              Built for Founder-Led Organizations<br/>
+              <span style={{ color: '#046C5C' }}>at an Inflection Point.</span>
+            </h2>
+            <p style={{ color: 'rgba(255,255,255,0.5)', maxWidth: 580, margin: '0 auto', fontSize: '1.05rem', lineHeight: 1.8 }}>
+              The Diagnostic is the starting point for any organization that wants to understand what is actually limiting performance — regardless of size, sector, or current performance level.
+            </p>
           </div>
+
+          {/* 3-col typographic grid — no boxes */}
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '3vw' }} className="three-col">
+            {[
+              { n: '01', text: 'Founder-led organizations that have grown beyond their current systems', color: '#2563EB' },
+              { n: '02', text: 'Leaders who sense capability gaps but cannot pinpoint them', color: '#7C3AED' },
+              { n: '03', text: 'Organizations that have a strategy but are not executing it', color: '#046C5C' },
+              { n: '04', text: 'Businesses where the founder has become the bottleneck', color: '#10B981' },
+              { n: '05', text: 'Organizations that have tried transformation and not sustained it', color: '#C9A86A' },
+              { n: '06', text: 'Leadership teams that need an objective external assessment', color: '#046C5C' },
+            ].map((s, i) => (
+              <div key={s.n} style={{
+                padding: '32px 0',
+                borderTop: '1px solid rgba(255,255,255,0.07)',
+              }}>
+                <div style={{
+                  fontSize: 'clamp(2rem, 3vw, 2.8rem)',
+                  fontWeight: 900,
+                  color: s.color,
+                  opacity: 0.5,
+                  lineHeight: 1,
+                  marginBottom: 16,
+                  fontFamily: 'var(--font-display)',
+                  letterSpacing: '-0.04em',
+                }}>{s.n}</div>
+                <p style={{
+                  color: 'rgba(255,255,255,0.7)',
+                  fontSize: '0.95rem',
+                  lineHeight: 1.75,
+                  margin: 0,
+                  fontFamily: 'var(--font-body)',
+                }}>{s.text}</p>
+              </div>
+            ))}
+          </div>
+
         </div>
       </section>
+
+
 
       {/* Final CTA */}
       <section style={{
