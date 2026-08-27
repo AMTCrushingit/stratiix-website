@@ -27,6 +27,16 @@ export default function ResultsPage() {
 
       {/* Three Outcomes */}
       <section className="section bg-white">
+        <style>{`
+          @keyframes checkCircleR {
+            from { stroke-dashoffset: 200; opacity: 0; }
+            to   { stroke-dashoffset: 0; opacity: 1; }
+          }
+          @keyframes checkDrawR {
+            from { stroke-dashoffset: 60; opacity: 0; }
+            to   { stroke-dashoffset: 0; opacity: 1; }
+          }
+        `}</style>
         <div className="container">
           <div style={{ textAlign: 'center', marginBottom: 64 }}>
             <span className="eyebrow">The Outcomes Framework</span>

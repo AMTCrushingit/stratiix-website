@@ -618,48 +618,60 @@ export default function Home() {
       </section>
 
 
-      {/* ── CAPABILITY ENGINES: white, full-width ───────────────────────── */}
+      {/* ── CAPABILITY ENGINES: 2-col list, no cards ──────────────────────────── */}
       <section style={{ background: 'white', padding: '120px 0' }}>
-        <div style={{ maxWidth: '100%', padding: '0 6vw' }}>
+        <div style={{ padding: '0 6vw' }}>
           <FadeIn>
-            <div style={{ textAlign: 'center', marginBottom: 72, position: 'relative' }}>
-              <div style={{
-                position: 'absolute', top: -32, left: '50%', transform: 'translateX(-50%)',
-                fontSize: 'clamp(5rem, 10vw, 9rem)', fontWeight: 800,
-                color: 'rgba(4,108,92,0.05)', lineHeight: 1, whiteSpace: 'nowrap',
-                fontFamily: 'var(--font-display)', userSelect: 'none', pointerEvents: 'none',
-                letterSpacing: '-0.04em',
-              }}>ENGINES</div>
-              <div style={{ fontSize: '0.72rem', fontWeight: 700, color: '#046C5C', letterSpacing: '0.15em', textTransform: 'uppercase', marginBottom: 16, position: 'relative' }}>The Engines</div>
-              <h2 style={{ fontSize: 'clamp(1.8rem, 3vw, 2.75rem)', color: '#1E1F22', position: 'relative', fontWeight: 800 }}>
-                Capability Engines™
-              </h2>
-              <div style={{ width: 48, height: 3, background: '#046C5C', borderRadius: 2, margin: '20px auto 0' }} />
-              <p style={{ color: '#6B7280', maxWidth: 520, margin: '24px auto 0', fontSize: '1.05rem', lineHeight: 1.75 }}>
-                Six specialized engines that install the capabilities founder-led organizations need to perform beyond the founder.
-              </p>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '6vw', alignItems: 'start', marginBottom: 72 }} className="two-col">
+              <div style={{ position: 'sticky', top: 100 }}>
+                <div style={{ fontSize: '0.72rem', fontWeight: 700, color: '#046C5C', letterSpacing: '0.15em', textTransform: 'uppercase', marginBottom: 16 }}>The Engines</div>
+                <h2 style={{ fontSize: 'clamp(1.8rem, 3vw, 2.75rem)', color: '#1E1F22', fontWeight: 800, lineHeight: 1.1, marginBottom: 20 }}>
+                  Capability Engines™
+                </h2>
+                <div style={{ width: 48, height: 3, background: '#046C5C', borderRadius: 2, marginBottom: 24 }} />
+                <p style={{ color: '#6B7280', fontSize: '1.05rem', lineHeight: 1.75 }}>
+                  Six specialized engines that install the capabilities founder-led organizations need to perform beyond the founder.
+                </p>
+              </div>
+              <div>
+                {[
+                  { name: 'Intelligence Engine™', desc: 'Data, insight, and decision infrastructure that enables leaders to act on evidence rather than assumption.', n: '01', color: '#2563EB' },
+                  { name: 'Operational Excellence Engine™', desc: 'Process discipline, efficiency systems, and quality frameworks that eliminate variance and build execution reliability.', n: '02', color: '#7C3AED' },
+                  { name: 'Governance Engine™', desc: 'Accountability structures, decision rights, and oversight mechanisms that hold performance without micromanagement.', n: '03', color: '#046C5C' },
+                  { name: 'Growth Engine™', desc: 'Market development, revenue architecture, and customer acquisition systems that drive sustainable top-line growth.', n: '04', color: '#10B981' },
+                  { name: 'Workforce & Adoption Engine™', desc: 'People capability, change adoption, and organizational alignment systems that ensure transformation sticks.', n: '05', color: '#C9A86A' },
+                  { name: 'Performance Engine™', desc: 'Measurement frameworks, KPI architecture, and performance rhythms that connect daily activity to strategic outcomes.', n: '06', color: '#046C5C' },
+                ].map((e, i) => (
+                  <FadeIn key={e.name} delay={i * 0.08}>
+                    <div style={{
+                      display: 'grid', gridTemplateColumns: '48px 1fr',
+                      gap: 20, alignItems: 'start',
+                      padding: '24px 0',
+                      borderBottom: i < 5 ? '1px solid #F3F4F6' : 'none',
+                    }}>
+                      {/* Animated SVG check */}
+                      <svg width="36" height="36" viewBox="0 0 36 36" fill="none" style={{ flexShrink: 0, marginTop: 2 }}>
+                        <circle cx="18" cy="18" r="14" stroke={e.color} strokeWidth="1.5"
+                          fill={`${e.color}10`}
+                          style={{ strokeDasharray: 90, strokeDashoffset: 90, animation: `checkCircle 0.6s ease ${i * 0.08 + 0.3}s both` }} />
+                        <polyline points="11,18 16,23 25,12" stroke={e.color} strokeWidth="2"
+                          strokeLinecap="round" strokeLinejoin="round" fill="none"
+                          style={{ strokeDasharray: 30, strokeDashoffset: 30, animation: `checkDraw 0.35s ease ${i * 0.08 + 0.75}s both` }} />
+                      </svg>
+                      <div>
+                        <div style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: '1rem', color: '#1E1F22', marginBottom: 6 }}>{e.name}</div>
+                        <p style={{ fontSize: '0.875rem', color: '#6B7280', lineHeight: 1.75, margin: 0 }}>{e.desc}</p>
+                      </div>
+                    </div>
+                  </FadeIn>
+                ))}
+              </div>
             </div>
           </FadeIn>
-          <div className="three-col" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 24 }}>
-            {[
-              { name: 'Intelligence Engine™', desc: 'Data, insight, and decision infrastructure that enables leaders to act on evidence rather than assumption.', n: '01' },
-              { name: 'Operational Excellence Engine™', desc: 'Process discipline, efficiency systems, and quality frameworks that eliminate variance and build execution reliability.', n: '02' },
-              { name: 'Governance Engine™', desc: 'Accountability structures, decision rights, and oversight mechanisms that hold performance without micromanagement.', n: '03' },
-              { name: 'Growth Engine™', desc: 'Market development, revenue architecture, and customer acquisition systems that drive sustainable top-line growth.', n: '04' },
-              { name: 'Workforce & Adoption Engine™', desc: 'People capability, change adoption, and organizational alignment systems that ensure transformation sticks.', n: '05' },
-              { name: 'Performance Engine™', desc: 'Measurement frameworks, KPI architecture, and performance rhythms that connect daily activity to strategic outcomes.', n: '06' },
-            ].map((e, i) => (
-              <FadeIn key={e.name} delay={i * 0.07}>
-                <div className="engine-card">
-                  <div style={{ fontSize: '0.68rem', fontWeight: 800, color: '#046C5C', letterSpacing: '0.15em', marginBottom: 20 }}>{e.n}</div>
-                  <h4 style={{ marginBottom: 12, fontSize: '1rem', lineHeight: 1.4, color: '#1E1F22', fontFamily: 'var(--font-display)' }}>{e.name}</h4>
-                  <p style={{ fontSize: '0.875rem', color: '#6B7280', lineHeight: 1.75, margin: 0 }}>{e.desc}</p>
-                </div>
-              </FadeIn>
-            ))}
-          </div>
         </div>
       </section>
+
+
 
       {/* ── SOLUTIONS: full-width, icons, new copy ──────────────────────────── */}
       <section style={{ background: '#E6F4F1', padding: '120px 0', position: 'relative', overflow: 'hidden' }}>
