@@ -219,40 +219,26 @@ export default function Home() {
         display: 'flex', alignItems: 'center',
         position: 'relative', overflow: 'hidden', paddingTop: 68,
       }}>
-        {/* Orbs */}
+
+        {/* Floating droplet orbs — organic morphing shapes */}
         {[
-          { c: '#2563EB', t: '8%', l: '3%', s: 500, d: '0s' },
-          { c: '#7C3AED', t: '5%', r: '5%', s: 400, d: '2s' },
-          { c: '#C9A86A', b: '15%', l: '5%', s: 360, d: '1s' },
-          { c: '#046C5C', b: '10%', r: '3%', s: 440, d: '3s' },
-        ].map((o, i) => (
-          <div key={i} style={{
-            position: 'absolute',
-            width: o.s, height: o.s, borderRadius: '50%',
-            background: o.c, opacity: 0.15, filter: 'blur(80px)',
-            top: (o as any).t, left: (o as any).l, right: (o as any).r, bottom: (o as any).b,
-            animation: `orbFloat ${8 + i * 2}s ease-in-out infinite`,
-            animationDelay: o.d,
-          }} />
-        ))}
-        {/* Floating droplet orbs — subtle ambient movement */}
-        {[
-          { c:'#2563EB', w:180, h:240, t:'12%', l:'8%', dur:'9s', del:'0s' },
-          { c:'#7C3AED', w:140, h:200, t:'8%', r:'12%', dur:'11s', del:'1.5s' },
-          { c:'#046C5C', w:200, h:160, b:'18%', l:'15%', dur:'13s', del:'0.8s' },
-          { c:'#C9A86A', w:120, h:180, b:'12%', r:'8%', dur:'10s', del:'2s' },
-          { c:'#10B981', w:100, h:140, t:'45%', l:'45%', dur:'14s', del:'1s' },
+          { c:'#2563EB', w:320, h:420, t:'5%',  l:'2%',  dur:'9s',  del:'0s' },
+          { c:'#7C3AED', w:280, h:360, t:'3%',  r:'3%',  dur:'11s', del:'1.5s' },
+          { c:'#046C5C', w:360, h:280, b:'8%',  l:'5%',  dur:'13s', del:'0.8s' },
+          { c:'#C9A86A', w:240, h:320, b:'5%',  r:'2%',  dur:'10s', del:'2s' },
+          { c:'#10B981', w:200, h:260, t:'40%', l:'40%', dur:'14s', del:'1s' },
         ].map((d,i) => (
           <div key={i} style={{
             position:'absolute',
             width: d.w, height: d.h,
             borderRadius: '60% 40% 70% 30% / 50% 60% 40% 50%',
             background: d.c,
-            opacity: 0.13,
-            filter: 'blur(50px)',
+            opacity: 0.18,
+            filter: 'blur(60px)',
             top:(d as any).t, left:(d as any).l, right:(d as any).r, bottom:(d as any).b,
             animation: `dropletFloat ${d.dur} ease-in-out infinite`,
             animationDelay: d.del,
+            zIndex: 0,
           }} />
         ))}
 
@@ -275,7 +261,7 @@ export default function Home() {
             color: 'white',
             lineHeight: 1.05,
             marginBottom: 36,
-            fontSize: 'clamp(3.2rem, 7vw, 6.5rem)',
+            fontSize: 'clamp(2.4rem, 5.5vw, 5rem)',
             fontWeight: 900,
             letterSpacing: '-0.03em',
             animation: 'heroFadeUp 0.6s ease 0.1s forwards',
@@ -288,8 +274,8 @@ export default function Home() {
           </h1>
 
           <p style={{
-            color: 'rgba(255,255,255,0.55)', fontSize: '1.15rem', lineHeight: 1.85,
-            maxWidth: 560, marginBottom: 48,
+            color: 'rgba(255,255,255,0.6)', fontSize: '1.1rem', lineHeight: 1.75,
+            maxWidth: 480, marginBottom: 48,
             animation: 'heroFadeUp 0.6s ease 0.2s forwards', opacity: 0,
           }}>
             Stratiix helps founder-led organizations identify what is limiting performance and build the capability required to scale beyond the founder.
