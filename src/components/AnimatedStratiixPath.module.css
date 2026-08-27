@@ -1,0 +1,161 @@
+.root {
+  --surface: #1E1F22;
+  position: relative;
+  width: min(100%, 820px);
+  min-height: 560px;
+  overflow: hidden;
+  border-radius: 28px;
+  background:
+    radial-gradient(circle at 32% 48%, rgba(4, 108, 92, 0.08), transparent 34%),
+    linear-gradient(145deg, #111214, var(--surface));
+  color: #fff;
+  isolation: isolate;
+}
+
+.ambientGlow {
+  position: absolute;
+  left: 22%;
+  top: 15%;
+  width: 280px;
+  height: 360px;
+  border-radius: 50%;
+  background: linear-gradient(180deg, rgba(37,99,235,.12), rgba(124,58,237,.1), rgba(4,108,92,.11), rgba(16,185,129,.1), rgba(201,168,106,.1));
+  filter: blur(55px);
+  z-index: -1;
+}
+
+.stack {
+  position: absolute;
+  inset: 48px 44px 38px 58px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2px;
+}
+
+.row {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(280px, 360px) minmax(50px, 110px) minmax(220px, 1fr);
+  align-items: center;
+  min-height: 88px;
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity .7s var(--step-delay) ease,
+    transform .7s var(--step-delay) cubic-bezier(.2,.75,.2,1);
+}
+
+.visible .row { opacity: 1; transform: translateY(0); }
+
+.blockButton,
+.label {
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+
+.blockButton {
+  position: relative;
+  height: 92px;
+  outline: none;
+}
+
+.block {
+  position: absolute;
+  inset: 0;
+  display: block;
+  transform: translateY(0) scale(1);
+  transition: transform .35s cubic-bezier(.2,.75,.2,1), filter .3s ease;
+  filter: drop-shadow(0 17px 12px rgba(0,0,0,.24));
+}
+
+.topFace,
+.leftFace,
+.rightFace {
+  position: absolute;
+  inset: 0;
+  display: block;
+  background: var(--step-color);
+}
+
+.topFace { clip-path: polygon(46% 4%, 100% 35%, 46% 68%, 0 35%); }
+.leftFace { clip-path: polygon(0 35%, 46% 68%, 46% 84%, 0 51%); filter: brightness(.58); }
+.rightFace { clip-path: polygon(46% 68%, 100% 35%, 100% 51%, 46% 84%); filter: brightness(.76); }
+
+.connector {
+  display: block;
+  height: 1px;
+  background: color-mix(in srgb, var(--step-color) 72%, transparent);
+  transform: scaleX(0);
+  transform-origin: left;
+  opacity: .75;
+  transition: transform .55s calc(var(--step-delay) + 420ms) ease;
+}
+
+.visible .connector { transform: scaleX(1); }
+
+.label {
+  padding: 8px 0 8px 18px;
+  text-align: left;
+  opacity: 0;
+  transform: translateX(-10px);
+  transition:
+    opacity .55s calc(var(--step-delay) + 530ms) ease,
+    transform .55s calc(var(--step-delay) + 530ms) ease;
+  outline: none;
+}
+
+.visible .label { opacity: 1; transform: translateX(0); }
+.labelTop { display: flex; align-items: baseline; gap: 16px; }
+.labelTop strong { color: var(--step-color); font-size: .73rem; letter-spacing: .16em; }
+.labelTop b { color: #fff; font-size: 1.1rem; letter-spacing: -.015em; }
+.description { display: block; margin-left: 47px; color: rgba(255,255,255,.55); font-size: .78rem; }
+
+.active .block { transform: translateY(-7px) scale(1.025); filter: brightness(1.08) drop-shadow(0 24px 18px rgba(0,0,0,.32)); }
+.active .connector { opacity: 1; box-shadow: 0 0 12px color-mix(in srgb, var(--step-color) 32%, transparent); }
+.active .labelTop b { color: color-mix(in srgb, var(--step-color) 30%, #fff); }
+.active .description { color: rgba(255,255,255,.78); }
+
+.blockButton:focus-visible .block,
+.label:focus-visible {
+  outline: 2px solid var(--step-color);
+  outline-offset: 4px;
+  border-radius: 10px;
+}
+
+@media (max-width: 760px) {
+  .root { min-height: 700px; }
+  .stack { inset: 28px 22px; gap: 8px; }
+  .row {
+    grid-template-columns: minmax(215px, 1fr) 42px minmax(165px, .9fr);
+    min-height: 115px;
+  }
+  .blockButton { height: 88px; }
+  .label { padding-left: 8px; }
+  .labelTop { gap: 8px; align-items: flex-start; flex-direction: column; }
+  .labelTop b { font-size: .93rem; }
+  .description { margin: 3px 0 0; font-size: .72rem; }
+}
+
+@media (max-width: 520px) {
+  .root { min-height: 760px; border-radius: 20px; }
+  .stack { position: relative; inset: auto; padding: 24px 18px; }
+  .row {
+    grid-template-columns: 1fr;
+    min-height: 140px;
+  }
+  .blockButton { height: 84px; }
+  .connector { display: none; }
+  .label { padding: 0 12px; text-align: center; }
+  .labelTop { flex-direction: row; justify-content: center; align-items: baseline; }
+  .description { margin-left: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .row, .connector, .label, .block { transition: none !important; }
+  .row, .label { opacity: 1; transform: none; }
+  .connector { transform: scaleX(1); }
+}
