@@ -401,69 +401,53 @@ export default function Home() {
             </div>
           </FadeIn>
 
-          {/* Narrative body */}
+          {/* Narrative — wider, no bullets */}
           <FadeIn delay={0.24}>
-            <div style={{ maxWidth: 620, margin: '0 auto 40px' }}>
-              <p style={{ fontSize: 'clamp(0.95rem, 1.4vw, 1.05rem)', color: '#6B7280', lineHeight: 1.85, marginBottom: 24, fontFamily: 'var(--font-body)' }}>
+            <div style={{ maxWidth: 760, margin: '0 auto 40px' }}>
+
+              {/* Without the required capabilities — prominent label */}
+              <p style={{
+                fontSize: 'clamp(1rem, 1.6vw, 1.15rem)',
+                fontWeight: 800,
+                color: '#1E1F22',
+                lineHeight: 1.6,
+                marginBottom: 32,
+                fontFamily: 'var(--font-display)',
+                letterSpacing: '-0.01em',
+              }}>
+                Without the required capabilities:
+              </p>
+
+              {/* Flowing paragraphs */}
+              <p style={{ fontSize: 'clamp(1rem, 1.5vw, 1.1rem)', color: '#6B7280', lineHeight: 1.85, marginBottom: 20, fontFamily: 'var(--font-body)' }}>
                 Growth creates complexity.
               </p>
-              <p style={{ fontSize: 'clamp(0.95rem, 1.4vw, 1.05rem)', color: '#6B7280', lineHeight: 1.85, marginBottom: 0, fontFamily: 'var(--font-body)' }}>
-                As organizations grow, the systems, leadership capacity, governance, and operating structures that once worked begin to show strain.
+              <p style={{ fontSize: 'clamp(1rem, 1.5vw, 1.1rem)', color: '#6B7280', lineHeight: 1.85, marginBottom: 32, fontFamily: 'var(--font-body)' }}>
+                Complexity exposes gaps in systems, leadership, governance, and execution.
               </p>
+              <p style={{ fontSize: 'clamp(1rem, 1.6vw, 1.15rem)', color: '#1E1F22', fontWeight: 600, lineHeight: 1.75, marginBottom: 40, fontFamily: 'var(--font-display)' }}>
+                Over time, the founder becomes the operating system of the business.
+              </p>
+
+              {/* Highlight — inline, no box */}
+              <p style={{
+                fontSize: 'clamp(1rem, 1.5vw, 1.1rem)',
+                color: '#046C5C',
+                fontWeight: 700,
+                lineHeight: 1.75,
+                fontFamily: 'var(--font-display)',
+                fontStyle: 'italic',
+                borderLeft: '3px solid #046C5C',
+                paddingLeft: 24,
+                margin: 0,
+              }}>
+                The gap between ambition and results is rarely a strategy problem. It's a capability problem.
+              </p>
+
             </div>
           </FadeIn>
 
-          {/* Without the required capabilities — bullet list */}
-          <FadeIn delay={0.3}>
-            <div style={{ maxWidth: 520, margin: '0 auto 48px' }}>
-              <p style={{ fontSize: '0.72rem', fontWeight: 700, color: '#046C5C', letterSpacing: '0.15em', textTransform: 'uppercase', marginBottom: 20, fontFamily: 'var(--font-display)' }}>
-                Without the required capabilities
-              </p>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 0 }}>
-                {[
-                  'Decisions become concentrated.',
-                  'Teams become dependent.',
-                  'Execution becomes inconsistent.',
-                  'Growth creates more friction than leverage.',
-                  'Performance becomes difficult to sustain.',
-                ].map((item, i) => (
-                  <div key={i} style={{
-                    display: 'flex', alignItems: 'center', gap: 14,
-                    padding: '13px 0',
-                    borderBottom: i < 4 ? '1px solid #E5E7EB' : 'none',
-                    justifyContent: 'center',
-                  }}>
-                    <div style={{ width: 5, height: 5, borderRadius: '50%', background: '#046C5C', flexShrink: 0, opacity: 0.6 }} />
-                    <span style={{ fontSize: 'clamp(0.875rem, 1.3vw, 1rem)', color: '#4B4C51', fontFamily: 'var(--font-body)', lineHeight: 1.5 }}>{item}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </FadeIn>
 
-          {/* Closing narrative line */}
-          <FadeIn delay={0.36}>
-            <p style={{ fontSize: 'clamp(1rem, 1.6vw, 1.15rem)', color: '#1E1F22', fontWeight: 600, lineHeight: 1.7, maxWidth: 560, margin: '0 auto 56px', fontFamily: 'var(--font-display)' }}>
-              Over time, the founder becomes the operating system of the business.
-            </p>
-          </FadeIn>
-
-          {/* Highlight box */}
-          <FadeIn delay={0.42}>
-            <div style={{
-              maxWidth: 640, margin: '0 auto 56px',
-              padding: '28px 36px',
-              background: 'white',
-              border: '1px solid #E5E7EB',
-              borderLeft: '4px solid #046C5C',
-              borderRadius: '0 12px 12px 0',
-              textAlign: 'left',
-            }}>
-              <p style={{ margin: 0, fontSize: 'clamp(1rem, 1.5vw, 1.1rem)', color: '#1E1F22', fontWeight: 600, lineHeight: 1.75, fontFamily: 'var(--font-display)', fontStyle: 'italic' }}>
-                The gap between ambition and results is rarely a strategy problem. It is a capability problem.
-              </p>
-            </div>
-          </FadeIn>
 
           {/* Closing statement */}
           <FadeIn delay={0.46}>
