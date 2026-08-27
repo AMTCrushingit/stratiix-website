@@ -2,7 +2,7 @@ import Link from 'next/link'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Solutions — Sector-Specific Transformation',
+  title: 'Solutions: Sector-Specific Transformation',
   description: 'Stratiix delivers transformation across HVAC, Trucking & Logistics, Professional Services, and Nonprofits & Institutions.',
 }
 
@@ -25,7 +25,7 @@ const sectors = [
     id: 'trucking',
     name: 'Trucking & Logistics',
     headline: 'Operational systems for logistics companies building for scale.',
-    body: 'Trucking and logistics operations require precision at every level — fleet management, compliance, driver performance, customer service, and financial controls. The TOS installs the systems that allow logistics businesses to grow without losing operational control.',
+    body: 'Trucking and logistics operations require precision at every level: fleet management, compliance, driver performance, customer service, and financial controls. The TOS installs the systems that allow logistics businesses to grow without losing operational control.',
     challenges: [
       'Fleet utilization and maintenance management',
       'Driver performance and compliance systems',
@@ -39,7 +39,7 @@ const sectors = [
     id: 'professional',
     name: 'Professional Services',
     headline: 'Practice development for professional service firms.',
-    body: 'Professional service firms — consulting, legal, accounting, engineering — face the challenge of delivering consistent quality while growing. The TOS builds the delivery systems, client management infrastructure, and practice development capabilities that allow professional service firms to scale without sacrificing quality.',
+    body: 'Professional service firms: consulting, legal, accounting, engineering: face the challenge of delivering consistent quality while growing. The TOS builds the delivery systems, client management infrastructure, and practice development capabilities that allow professional service firms to scale without sacrificing quality.',
     challenges: [
       'Inconsistent client delivery and experience',
       'Utilization and capacity management',

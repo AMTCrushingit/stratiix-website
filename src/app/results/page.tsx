@@ -2,8 +2,8 @@ import Link from 'next/link'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Results — What Stratiix Delivers',
-  description: 'Stratiix measures success by what changes inside the organization — capabilities installed, systems adopted, and performance improved.',
+  title: 'Results: What Stratiix Delivers',
+  description: 'Stratiix measures success by what changes inside the organization: capabilities installed, systems adopted, and performance improved.',
 }
 
 export default function ResultsPage() {
@@ -41,13 +41,13 @@ export default function ResultsPage() {
               {
                 n: '01', label: 'Installed', color: 'var(--path-discover)',
                 headline: 'Capability systems that are live and functioning.',
-                body: 'Installed means that the capability systems, governance structures, operational frameworks, and processes that were designed during the engagement are live inside the organization — not in a document, not in a pilot, but operating as part of how the organization functions.',
+                body: 'Installed means that the capability systems, governance structures, operational frameworks, and processes that were designed during the engagement are live inside the organization, not in a document, not in a pilot, but operating as part of how the organization functions.',
                 examples: ['Operational systems deployed and running', 'Governance structures in place', 'Performance measurement infrastructure live', 'Capability Engine frameworks operational'],
               },
               {
                 n: '02', label: 'Adopted', color: 'var(--teal)',
                 headline: 'Workforce operating the new systems.',
-                body: 'Adopted means that the people inside the organization are actually using the installed systems — not reverting to old patterns within 90 days. Adoption is the most common failure point in transformation. The TOS includes a dedicated adoption infrastructure to ensure it happens.',
+                body: 'Adopted means that the people inside the organization are actually using the installed systems, not reverting to old patterns within 90 days. Adoption is the most common failure point in transformation. The TOS includes a dedicated adoption infrastructure to ensure it happens.',
                 examples: ['Workforce trained and operating new systems', 'Leadership behaviours aligned to new structures', 'Old patterns replaced, not just supplemented', 'Adoption sustained beyond the engagement'],
               },
               {
@@ -91,7 +91,7 @@ export default function ResultsPage() {
               <h2 style={{ color: 'white' }}>How Stratiix Measures Results</h2>
               <div className="divider" />
               <p style={{ color: 'rgba(255,255,255,0.65)', lineHeight: 1.8, marginBottom: 20 }}>
-                Every engagement begins with the Diagnostic, which establishes the baseline against which results are measured. This is not a subjective assessment — it is a structured evaluation that produces specific, measurable data points.
+                Every engagement begins with the Diagnostic, which establishes the baseline against which results are measured. This is not a subjective assessment: it is a structured evaluation that produces specific, measurable data points.
               </p>
               <p style={{ color: 'rgba(255,255,255,0.5)', lineHeight: 1.8 }}>
                 At the conclusion of each TOS phase, Stratiix conducts a structured review against the defined outputs and outcomes. Results are reported against the baseline, not against industry benchmarks or fabricated comparisons.
@@ -102,7 +102,7 @@ export default function ResultsPage() {
                 { label: 'Baseline Established', desc: 'The Diagnostic creates a precise baseline of current performance across all relevant dimensions.' },
                 { label: 'Outcomes Defined', desc: 'The Architect phase defines specific, measurable outcomes for each phase of the engagement.' },
                 { label: 'Progress Tracked', desc: 'Each phase includes structured measurement against the defined outcomes and the established baseline.' },
-                { label: 'Results Reported', desc: 'At engagement conclusion, results are reported against the baseline — transparently and without fabrication.' },
+                { label: 'Results Reported', desc: 'At engagement conclusion, results are reported against the baseline: transparently and without fabrication.' },
               ].map((m, i) => (
                 <div key={m.label} style={{ display: 'flex', gap: 20, alignItems: 'flex-start' }}>
                   <div style={{
@@ -129,7 +129,7 @@ export default function ResultsPage() {
           <span className="eyebrow">Begin</span>
           <h2 style={{ maxWidth: 520, margin: '0 auto 20px' }}>Results begin with the Diagnostic.</h2>
           <p style={{ color: 'var(--muted)', maxWidth: 440, margin: '0 auto 40px', fontSize: '1.05rem' }}>
-            The Diagnostic establishes the baseline that makes measurement — and results — possible.
+            The Diagnostic establishes the baseline that makes measurement: and results: possible.
           </p>
           <Link href="/diagnostic" className="btn btn-primary">Begin with the Diagnostic →</Link>
         </div>

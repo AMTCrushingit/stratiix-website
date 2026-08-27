@@ -36,13 +36,13 @@ export default function AboutPage() {
               <h2>The distinction matters.</h2>
               <div className="divider" />
               <p style={{ fontSize: '1.05rem', lineHeight: 1.8, marginBottom: 20 }}>
-                Consulting firms produce recommendations. Transformation platforms install capability. The distinction is not semantic — it determines whether anything actually changes.
+                Consulting firms produce recommendations. Transformation platforms install capability. The distinction is not semantic: it determines whether anything actually changes.
               </p>
               <p style={{ color: 'var(--muted)', lineHeight: 1.8, marginBottom: 20 }}>
-                Stratiix does not deliver reports, frameworks, or strategic plans. We deliver installed capability — the systems, processes, structures, and behaviours that allow organizations to perform at the next level.
+                Stratiix does not deliver reports, frameworks, or strategic plans. We deliver installed capability: the systems, processes, structures, and behaviours that allow organizations to perform at the next level.
               </p>
               <p style={{ color: 'var(--muted)', lineHeight: 1.8 }}>
-                The Transformation Operating System™ is the methodology through which we do this. It is not a consulting framework. It is an operating system — designed to be installed, operated, and sustained.
+                The Transformation Operating System™ is the methodology through which we do this. It is not a consulting framework. It is an operating system: designed to be installed, operated, and sustained.
               </p>
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
@@ -97,7 +97,7 @@ export default function AboutPage() {
             <h2>What We Share. What We Protect.</h2>
             <div className="divider" style={{ margin: '20px auto 32px' }} />
             <p style={{ fontSize: '1.05rem', lineHeight: 1.8, marginBottom: 20 }}>
-              Stratiix shares the framework — the TOS, the Capability Engines, the Transformation Architecture™, and the Outcomes Framework. These are visible because they need to be understood to be valued.
+              Stratiix shares the framework: the TOS, the Capability Engines, the Transformation Architecture™, and the Outcomes Framework. These are visible because they need to be understood to be valued.
             </p>
             <p style={{ color: 'var(--muted)', lineHeight: 1.8 }}>
               What Stratiix does not share: the Diagnostic scoring logic, the transformation sequencing algorithms, the internal playbooks, the intelligence models, and the Qualia algorithms. These are the proprietary methodology that makes the framework work. They are protected accordingly.

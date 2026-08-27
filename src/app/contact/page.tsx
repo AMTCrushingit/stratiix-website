@@ -14,9 +14,31 @@ export default function ContactPage() {
   const submit = async (e: React.FormEvent) => {
     e.preventDefault()
     setLoading(true)
-    await new Promise(r => setTimeout(r, 1200))
-    setLoading(false)
-    setSubmitted(true)
+    try {
+      const res = await fetch('https://formspree.io/f/diagnostic@stratiixpartners.com', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({
+          name: form.name,
+          organization: form.org,
+          email: form.email,
+          role: form.role,
+          interest: form.interest,
+          message: form.message,
+          _replyto: form.email,
+          _subject: `Stratiix Diagnostic Request: ${form.org || form.name}`,
+        }),
+      })
+      if (res.ok) {
+        setSubmitted(true)
+      } else {
+        alert('Something went wrong. Please email us directly at diagnostic@stratiixpartners.com')
+      }
+    } catch {
+      alert('Connection error. Please email us directly at diagnostic@stratiixpartners.com')
+    } finally {
+      setLoading(false)
+    }
   }
 
   const inputStyle: React.CSSProperties = {
@@ -64,7 +86,7 @@ export default function ContactPage() {
               <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
                 {[
                   { n: '01', title: 'Initial Conversation', desc: 'A structured discussion about your organization, your current challenges, and what you are trying to achieve.' },
-                  { n: '02', title: 'Diagnostic Assessment', desc: 'If there is a fit, we begin with the Diagnostic — a structured assessment of your organization\'s current state and transformation readiness.' },
+                  { n: '02', title: 'Diagnostic Assessment', desc: 'If there is a fit, we begin with the Diagnostic: a structured assessment of your organization\'s current state and transformation readiness.' },
                   { n: '03', title: 'Engagement Design', desc: 'Based on the Diagnostic findings, we design the TOS engagement that is right for your organization.' },
                 ].map(s => (
                   <div key={s.n} style={{ display: 'flex', gap: 16 }}>

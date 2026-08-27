@@ -2,7 +2,7 @@ import Link from 'next/link'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'The Diagnostic™ — Organizational Assessment',
+  title: 'The Diagnostic™: Organizational Assessment',
   description: 'The Stratiix Diagnostic is a structured assessment of your organization\'s current state, capability gaps, and transformation readiness.',
 }
 
@@ -48,10 +48,10 @@ export default function DiagnosticPage() {
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
               {[
-                { title: 'Capability Assessment', desc: 'A structured evaluation of the six Capability Engine domains — identifying where the organization is strong, where it is weak, and where gaps are creating the most drag on performance.' },
+                { title: 'Capability Assessment', desc: 'A structured evaluation of the six Capability Engine domains: identifying where the organization is strong, where it is weak, and where gaps are creating the most drag on performance.' },
                 { title: 'Execution Barrier Analysis', desc: 'Identification of the specific systems, processes, structures, and behaviours that are preventing the organization from executing its strategy.' },
                 { title: 'Leadership Alignment Review', desc: 'An assessment of leadership alignment around priorities, direction, and the organization\'s readiness to lead a transformation.' },
-                { title: 'Transformation Readiness Score', desc: 'A composite assessment of the organization\'s readiness to undertake transformation — including capacity, commitment, and capability.' },
+                { title: 'Transformation Readiness Score', desc: 'A composite assessment of the organization\'s readiness to undertake transformation: including capacity, commitment, and capability.' },
               ].map(i => (
                 <div key={i.title} style={{ padding: '20px 24px', background: 'var(--slate)', borderRadius: 10, border: '1px solid var(--slate-mid)' }}>
                   <div style={{ fontFamily: 'var(--font-display)', fontWeight: 600, color: 'var(--charcoal)', marginBottom: 6 }}>{i.title}</div>
@@ -74,11 +74,11 @@ export default function DiagnosticPage() {
           <div className="grid-3">
             {[
               { n: '01', title: 'Organizational Capability Report', desc: 'A detailed assessment of capability across all six Capability Engine domains, with specific findings and priority gaps identified.' },
-              { n: '02', title: 'Performance Gap Analysis', desc: 'A clear mapping of the distance between current performance and the organization\'s stated objectives — with root cause analysis.' },
+              { n: '02', title: 'Performance Gap Analysis', desc: 'A clear mapping of the distance between current performance and the organization\'s stated objectives: with root cause analysis.' },
               { n: '03', title: 'Transformation Readiness Score', desc: 'A composite score that reflects the organization\'s readiness to undertake transformation across capacity, commitment, and capability dimensions.' },
-              { n: '04', title: 'Priority Intervention Map', desc: 'A sequenced view of the interventions required to close the identified gaps — ordered by impact and feasibility.' },
-              { n: '05', title: 'TOS Engagement Recommendation', desc: 'A specific recommendation for how the TOS should be structured for this organization — which engines to deploy, in what sequence, and with what resources.' },
-              { n: '06', title: 'Executive Briefing', desc: 'A leadership-ready summary of findings, priorities, and recommended next steps — designed to align the executive team around the transformation path.' },
+              { n: '04', title: 'Priority Intervention Map', desc: 'A sequenced view of the interventions required to close the identified gaps: ordered by impact and feasibility.' },
+              { n: '05', title: 'TOS Engagement Recommendation', desc: 'A specific recommendation for how the TOS should be structured for this organization: which engines to deploy, in what sequence, and with what resources.' },
+              { n: '06', title: 'Executive Briefing', desc: 'A leadership-ready summary of findings, priorities, and recommended next steps: designed to align the executive team around the transformation path.' },
             ].map(o => (
               <div key={o.n} style={{ padding: '28px', background: 'white', borderRadius: 12, border: '1px solid var(--mint-mid)' }}>
                 <div style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: '0.75rem', color: 'var(--teal)', letterSpacing: '0.1em', marginBottom: 12 }}>{o.n}</div>
@@ -102,7 +102,7 @@ export default function DiagnosticPage() {
                 The Diagnostic is designed for organizations that know something needs to change but are not certain what, or for organizations that have tried to change and have not achieved the results they expected.
               </p>
               <p style={{ color: 'rgba(255,255,255,0.5)', lineHeight: 1.8 }}>
-                It is also the starting point for any organization that wants to undertake a structured transformation — regardless of size, sector, or current performance level.
+                It is also the starting point for any organization that wants to undertake a structured transformation: regardless of size, sector, or current performance level.
               </p>
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>

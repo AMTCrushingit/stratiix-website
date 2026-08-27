@@ -10,19 +10,19 @@ const phases = [
   {
     n: '01', label: 'Diagnose', color: 'var(--path-discover)',
     headline: 'Reveal what is actually limiting performance.',
-    body: 'Before any transformation can begin, the organization must understand its current state with precision. The Diagnostic phase establishes the baseline — identifying capability gaps, execution barriers, leadership alignment issues, and the specific constraints that are preventing the organization from performing at the next level. This is not a survey. It is a structured assessment that produces a clear picture of where the organization is, what it is ready to change, and what the transformation must address.',
+    body: 'Before any transformation can begin, the organization must understand its current state with precision. The Diagnostic phase establishes the baseline: identifying capability gaps, execution barriers, leadership alignment issues, and the specific constraints that are preventing the organization from performing at the next level. This is not a survey. It is a structured assessment that produces a clear picture of where the organization is, what it is ready to change, and what the transformation must address.',
     outputs: ['Organizational Capability Assessment', 'Performance Gap Analysis', 'Transformation Readiness Score', 'Priority Intervention Map'],
   },
   {
     n: '02', label: 'Architect', color: 'var(--path-design)',
     headline: 'Design the transformation system.',
-    body: 'With the diagnostic complete, Stratiix architects the future state. This phase defines the transformation roadmap — which Capability Engines to deploy, in what sequence, and with what resources. The architecture phase aligns leadership around a shared picture of the destination and the path to get there. It produces the transformation blueprint that guides every subsequent phase.',
+    body: 'With the diagnostic complete, Stratiix architects the future state. This phase defines the transformation roadmap: which Capability Engines to deploy, in what sequence, and with what resources. The architecture phase aligns leadership around a shared picture of the destination and the path to get there. It produces the transformation blueprint that guides every subsequent phase.',
     outputs: ['Transformation Blueprint', 'Capability Engine Selection', 'Sequenced Intervention Roadmap', 'Leadership Alignment Framework'],
   },
   {
     n: '03', label: 'Activate', color: 'var(--teal)',
     headline: 'Install the required capabilities.',
-    body: 'Activation is where the transformation becomes real. Stratiix deploys the selected Capability Engines, builds the systems and processes, and begins the structured change process with full adoption support. This phase is not about training or workshops — it is about installing functional capability that the organization can operate independently.',
+    body: 'Activation is where the transformation becomes real. Stratiix deploys the selected Capability Engines, builds the systems and processes, and begins the structured change process with full adoption support. This phase is not about training or workshops: it is about installing functional capability that the organization can operate independently.',
     outputs: ['Capability Engine Deployment', 'System and Process Installation', 'Workforce Activation Programme', 'Adoption Infrastructure'],
   },
   {
@@ -34,7 +34,7 @@ const phases = [
   {
     n: '05', label: 'Sustain', color: 'var(--mint-deep)',
     headline: 'Lock in the gains without constant intervention.',
-    body: 'The final phase of the TOS ensures that what has been built holds. Stratiix establishes the governance rhythms, accountability structures, and leadership practices that sustain performance after the engagement concludes. The goal is an organization that can maintain and build on its transformation independently — not one that requires ongoing external support to function.',
+    body: 'The final phase of the TOS ensures that what has been built holds. Stratiix establishes the governance rhythms, accountability structures, and leadership practices that sustain performance after the engagement concludes. The goal is an organization that can maintain and build on its transformation independently, not one that requires ongoing external support to function.',
     outputs: ['Governance Rhythm Design', 'Accountability Architecture', 'Leadership Sustainability Practices', 'Performance Maintenance System'],
   },
 ]
@@ -70,7 +70,7 @@ export default function TOSPage() {
               <h2>A system for turning strategy into results.</h2>
               <div className="divider" />
               <p style={{ marginBottom: 20, fontSize: '1.05rem', lineHeight: 1.8 }}>
-                The Transformation Operating System™ is the structured methodology through which Stratiix delivers transformation engagements. It is not a framework to be studied — it is a system to be operated.
+                The Transformation Operating System™ is the structured methodology through which Stratiix delivers transformation engagements. It is not a framework to be studied: it is a system to be operated.
               </p>
               <p style={{ color: 'var(--muted)', lineHeight: 1.8 }}>
                 The TOS addresses the fundamental reason most transformation efforts fail: they treat strategy and execution as separate problems. The TOS integrates diagnosis, design, capability installation, performance acceleration, and sustainability into a single coherent system.

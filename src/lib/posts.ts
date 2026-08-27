@@ -18,12 +18,12 @@ export const posts: Post[] = [
   {
     slug: 'why-strategy-alone-does-not-create-results',
     title: 'Why Strategy Alone Does Not Create Results',
-    excerpt: 'Most organizations can articulate a strategy. Few have the systems to execute it. The gap between intent and outcome is not a strategy problem — it is a capability problem.',
+    excerpt: 'Most organizations can articulate a strategy. Few have the systems to execute it. The gap between intent and outcome is not a strategy problem: it is a capability problem.',
     category: 'Transformation',
     date: 'June 12, 2026',
     readTime: '7 min read',
     body: `
-Most organizations can articulate a strategy. They have vision statements, strategic plans, annual priorities, and leadership alignment sessions. They invest in strategy consultants, offsite retreats, and planning processes. And then, twelve months later, they find themselves in the same position — or worse.
+Most organizations can articulate a strategy. They have vision statements, strategic plans, annual priorities, and leadership alignment sessions. They invest in strategy consultants, offsite retreats, and planning processes. And then, twelve months later, they find themselves in the same position: or worse.
 
 The problem is not the strategy. The problem is the assumption that strategy creates results.
 
@@ -37,11 +37,11 @@ The gap between strategy and results is not a planning problem. It is a capabili
 
 Capability is not a vague concept. It is specific and measurable. An organization has capability when it has the systems, processes, structures, people, and behaviours required to perform a specific function reliably and at scale.
 
-When an organization lacks capability, it compensates with effort. Leaders work harder. Teams put in longer hours. Heroic individual performance substitutes for systematic execution. This works — until it doesn't. Effort-based performance has a ceiling. Capability-based performance does not.
+When an organization lacks capability, it compensates with effort. Leaders work harder. Teams put in longer hours. Heroic individual performance substitutes for systematic execution. This works: until it doesn't. Effort-based performance has a ceiling. Capability-based performance does not.
 
 ## The Transformation Operating System™
 
-The TOS was designed to address this gap directly. It begins with a Diagnostic that identifies the specific capability gaps limiting performance — not the symptoms, but the root causes. It then architects a transformation that installs the required capabilities in the right sequence, with the right adoption infrastructure, and with the measurement systems to confirm that performance has actually changed.
+The TOS was designed to address this gap directly. It begins with a Diagnostic that identifies the specific capability gaps limiting performance, not the symptoms, but the root causes. It then architects a transformation that installs the required capabilities in the right sequence, with the right adoption infrastructure, and with the measurement systems to confirm that performance has actually changed.
 
 The TOS does not produce strategy documents. It produces installed capability.
 
@@ -49,7 +49,7 @@ The TOS does not produce strategy documents. It produces installed capability.
 
 If your organization has a strategy that is not producing results, the question to ask is not "what is wrong with our strategy?" The question is: "what capability does our strategy require that we do not currently have?"
 
-That question leads to a different kind of work — and a different kind of result.
+That question leads to a different kind of work: and a different kind of result.
     `,
   },
   {
@@ -60,7 +60,7 @@ That question leads to a different kind of work — and a different kind of resu
     date: 'June 5, 2026',
     readTime: '6 min read',
     body: `
-The most common failure mode in organizational transformation is not a bad strategy or a flawed design. It is adoption failure — the inability to get the workforce to actually use what has been built.
+The most common failure mode in organizational transformation is not a bad strategy or a flawed design. It is adoption failure: the inability to get the workforce to actually use what has been built.
 
 Organizations invest in new systems, redesign processes, restructure teams, and install new governance frameworks. Then, six months later, they find that people have reverted to the old way of doing things. The new system is technically live but practically unused. The transformation has not stuck.
 
@@ -68,19 +68,19 @@ Organizations invest in new systems, redesign processes, restructure teams, and 
 
 Adoption fails for predictable reasons. The workforce was not involved in the design. The change was announced, not explained. Training was delivered once and not reinforced. The old way of doing things was not actively dismantled. Leadership modelled the old behaviour while asking for the new one.
 
-These are not random failures. They are the predictable consequences of treating adoption as an afterthought — something that happens after the "real work" of transformation is done.
+These are not random failures. They are the predictable consequences of treating adoption as an afterthought: something that happens after the "real work" of transformation is done.
 
 ## Adoption Is Not Training
 
-The most common response to adoption failure is more training. This rarely works. Training transfers knowledge. Adoption requires behaviour change. Behaviour change requires a different kind of infrastructure — one that addresses motivation, environment, reinforcement, and accountability simultaneously.
+The most common response to adoption failure is more training. This rarely works. Training transfers knowledge. Adoption requires behaviour change. Behaviour change requires a different kind of infrastructure: one that addresses motivation, environment, reinforcement, and accountability simultaneously.
 
 The Workforce & Adoption Engine™ within the TOS is designed specifically for this. It does not deliver training programmes. It builds the adoption infrastructure that makes new behaviours the path of least resistance.
 
 ## What Sustainable Adoption Looks Like
 
-Sustainable adoption has three characteristics. First, the new way of working is easier than the old way — not harder. Second, the environment reinforces the new behaviour rather than tolerating the old one. Third, leadership consistently models what it is asking of the workforce.
+Sustainable adoption has three characteristics. First, the new way of working is easier than the old way, not harder. Second, the environment reinforces the new behaviour rather than tolerating the old one. Third, leadership consistently models what it is asking of the workforce.
 
-When these three conditions are present, adoption happens. When they are absent, it does not — regardless of how good the underlying transformation is.
+When these three conditions are present, adoption happens. When they are absent, it does not: regardless of how good the underlying transformation is.
     `,
   },
   {
@@ -103,7 +103,7 @@ This is not a people problem. It is a governance problem. The organization has n
 
 ## What the Governance Engine™ Installs
 
-The Governance Engine™ within the TOS installs four things. First, decision rights — clarity about who decides what, at what level, and with what authority. Second, oversight mechanisms — the systems that allow leadership to monitor performance without micromanaging operations. Third, accountability structures — the rhythms, reviews, and consequences that hold people to their commitments. Fourth, institutional knowledge systems — the processes that capture and retain organizational knowledge independent of specific individuals.
+The Governance Engine™ within the TOS installs four things. First, decision rights: clarity about who decides what, at what level, and with what authority. Second, oversight mechanisms: the systems that allow leadership to monitor performance without micromanaging operations. Third, accountability structures: the rhythms, reviews, and consequences that hold people to their commitments. Fourth, institutional knowledge systems: the processes that capture and retain organizational knowledge independent of specific individuals.
 
 ## Governance as a Competitive Advantage
 
@@ -115,18 +115,18 @@ This is not a compliance function. It is a performance function. And it is one o
   {
     slug: 'operational-excellence-is-not-efficiency',
     title: 'Operational Excellence Is Not Efficiency',
-    excerpt: 'Efficiency is doing the same things faster. Operational excellence is building the systems that make consistent, high-quality performance the default — not the exception.',
+    excerpt: 'Efficiency is doing the same things faster. Operational excellence is building the systems that make consistent, high-quality performance the default, not the exception.',
     category: 'Operational Excellence',
     date: 'May 20, 2026',
     readTime: '6 min read',
     body: `
-The most common misunderstanding about operational excellence is that it is about efficiency — doing more with less, cutting costs, speeding up processes. This misunderstanding leads organizations to pursue the wrong interventions and wonder why performance does not improve.
+The most common misunderstanding about operational excellence is that it is about efficiency: doing more with less, cutting costs, speeding up processes. This misunderstanding leads organizations to pursue the wrong interventions and wonder why performance does not improve.
 
 Efficiency is a component of operational excellence. It is not the definition of it.
 
 ## What Operational Excellence Actually Is
 
-Operational excellence is the state in which an organization's core processes are reliable, consistent, and capable of delivering the required output at the required quality level — without heroic individual effort, without constant management intervention, and without significant variance from one execution to the next.
+Operational excellence is the state in which an organization's core processes are reliable, consistent, and capable of delivering the required output at the required quality level: without heroic individual effort, without constant management intervention, and without significant variance from one execution to the next.
 
 An operationally excellent organization does not depend on its best people performing at their best every day. It has systems that produce consistent results regardless of who is operating them.
 
@@ -134,7 +134,7 @@ An operationally excellent organization does not depend on its best people perfo
 
 Most organizations have a reliability problem disguised as a performance problem. They have processes that work well when the right people are involved and conditions are favourable. They have significant variance in output quality. They have performance that depends on individual effort rather than systematic execution.
 
-The Operational Excellence Engine™ addresses this directly. It does not focus on making existing processes faster. It focuses on making them reliable — building the process discipline, quality frameworks, and execution systems that eliminate variance and make consistent performance the default.
+The Operational Excellence Engine™ addresses this directly. It does not focus on making existing processes faster. It focuses on making them reliable: building the process discipline, quality frameworks, and execution systems that eliminate variance and make consistent performance the default.
 
 ## The Difference It Makes
 
@@ -151,17 +151,17 @@ This is not efficiency. It is capability.
     date: 'May 12, 2026',
     readTime: '8 min read',
     body: `
-Caribbean organizations operate in a context that creates specific transformation challenges — challenges that are not well understood by global consulting frameworks designed for North American or European markets.
+Caribbean organizations operate in a context that creates specific transformation challenges: challenges that are not well understood by global consulting frameworks designed for North American or European markets.
 
 Understanding these challenges is not an academic exercise. It is a prerequisite for designing transformation approaches that actually work in the Caribbean context.
 
 ## The Founder Dependency Problem
 
-The most pervasive challenge in Caribbean business is founder dependency. A significant proportion of Caribbean businesses — across all sectors — are operationally dependent on their founders or a small number of key individuals. When those individuals are present, the business functions. When they are absent, it struggles.
+The most pervasive challenge in Caribbean business is founder dependency. A significant proportion of Caribbean businesses: across all sectors: are operationally dependent on their founders or a small number of key individuals. When those individuals are present, the business functions. When they are absent, it struggles.
 
-This is not a personal failing. It is a structural consequence of how most Caribbean businesses were built — through individual effort, personal relationships, and founder-driven execution rather than through systems and processes.
+This is not a personal failing. It is a structural consequence of how most Caribbean businesses were built: through individual effort, personal relationships, and founder-driven execution rather than through systems and processes.
 
-The transformation imperative for these organizations is not growth. It is systematization — building the operational infrastructure that allows the business to function independently of specific individuals.
+The transformation imperative for these organizations is not growth. It is systematization: building the operational infrastructure that allows the business to function independently of specific individuals.
 
 ## The Capability Gap
 
@@ -171,7 +171,7 @@ This gap is not unique to the Caribbean. But it is more pronounced here, for sev
 
 ## The Transformation Opportunity
 
-The same factors that create these challenges also create a significant opportunity. Caribbean organizations that invest in building genuine organizational capability — through structured transformation rather than ad hoc improvement — can achieve performance levels that are genuinely differentiated in their markets.
+The same factors that create these challenges also create a significant opportunity. Caribbean organizations that invest in building genuine organizational capability: through structured transformation rather than ad hoc improvement: can achieve performance levels that are genuinely differentiated in their markets.
 
 The TOS was designed with this context in mind. It is not a framework imported from a different market and applied without adaptation. It is a system built to address the specific transformation challenges that Caribbean organizations face.
     `,
@@ -184,27 +184,27 @@ The TOS was designed with this context in mind. It is not a framework imported f
     date: 'May 5, 2026',
     readTime: '5 min read',
     body: `
-Most organizations have data. Few have intelligence. The difference is not a technology problem — it is a capability problem.
+Most organizations have data. Few have intelligence. The difference is not a technology problem: it is a capability problem.
 
 Data is raw information. Intelligence is the processed, contextualized, decision-relevant insight that allows leaders to act with confidence. The gap between data and intelligence is where most organizational decision-making fails.
 
 ## The Decision Quality Problem
 
-Leaders in most organizations make decisions based on incomplete information, outdated data, and intuition shaped by experience. This is not a criticism — it is a description of the reality that most organizations create for their leaders. The systems that would provide better information either do not exist or are not connected to the decision-making process.
+Leaders in most organizations make decisions based on incomplete information, outdated data, and intuition shaped by experience. This is not a criticism: it is a description of the reality that most organizations create for their leaders. The systems that would provide better information either do not exist or are not connected to the decision-making process.
 
 The consequence is predictable: decisions that are slower than they need to be, less accurate than they could be, and more dependent on individual judgment than organizational intelligence.
 
 ## What the Intelligence Engine™ Installs
 
-The Intelligence Engine™ within the TOS installs the infrastructure that closes this gap. It begins with a clear definition of the decisions that matter most to the organization — the decisions that, if made better, would produce the most significant improvement in outcomes.
+The Intelligence Engine™ within the TOS installs the infrastructure that closes this gap. It begins with a clear definition of the decisions that matter most to the organization: the decisions that, if made better, would produce the most significant improvement in outcomes.
 
 It then builds the data architecture, measurement systems, and reporting infrastructure that provides leaders with the information they need to make those decisions well. This is not a business intelligence project. It is a decision infrastructure project.
 
 ## Intelligence and AI
 
-Artificial intelligence is increasingly relevant to organizational intelligence — but not in the way most organizations approach it. AI does not replace the need for good data architecture, clear decision frameworks, and leadership capability. It amplifies them.
+Artificial intelligence is increasingly relevant to organizational intelligence: but not in the way most organizations approach it. AI does not replace the need for good data architecture, clear decision frameworks, and leadership capability. It amplifies them.
 
-Organizations that invest in building genuine intelligence capability — the human and organizational infrastructure for evidence-based decision-making — are better positioned to leverage AI effectively than those that attempt to use AI as a substitute for that capability.
+Organizations that invest in building genuine intelligence capability: the human and organizational infrastructure for evidence-based decision-making: are better positioned to leverage AI effectively than those that attempt to use AI as a substitute for that capability.
     `,
   },
 ]

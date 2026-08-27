@@ -60,7 +60,7 @@ function TOSVisual() {
           }}>
             <div style={{ width: 6, height: 6, borderRadius: '50%', background: l.color, flexShrink: 0 }} />
             <span style={{ fontSize: '0.78rem', color: 'rgba(255,255,255,0.6)', fontFamily: 'var(--font-body)', letterSpacing: '0.02em' }}>
-              {String(i + 1).padStart(2, '0')} — {l.label}
+              {String(i + 1).padStart(2, '0')}: {l.label}
             </span>
           </div>
         ))}
@@ -239,12 +239,12 @@ export default function Home() {
               display: 'block',
             }}
           />
-          {/* Dark overlay — heavier on left for text legibility, lighter on right to show founder */}
+          {/* Dark overlay: heavier on left for text legibility, lighter on right to show founder */}
           <div style={{
             position: 'absolute', inset: 0,
             background: 'linear-gradient(105deg, rgba(5,10,20,0.92) 0%, rgba(5,10,20,0.85) 45%, rgba(5,10,20,0.35) 75%, rgba(5,10,20,0.15) 100%)',
           }} />
-          {/* TOS colour wash — 5 colours at 6% opacity, connected to the system */}
+          {/* TOS colour wash: 5 colours at 6% opacity, connected to the system */}
           <div style={{
             position: 'absolute', inset: 0,
             background: 'linear-gradient(135deg, rgba(37,99,235,0.06) 0%, rgba(124,58,237,0.05) 25%, rgba(4,108,92,0.06) 50%, rgba(16,185,129,0.05) 75%, rgba(201,168,106,0.06) 100%)',
@@ -278,7 +278,7 @@ export default function Home() {
           }} />
         ))}
 
-        {/* Content — left-aligned, max 55% width */}
+        {/* Content: left-aligned, max 55% width */}
         <div style={{ width: '100%', padding: '0 6vw', position: 'relative', zIndex: 2 }}>
           <div style={{ maxWidth: '55%' }} className="hero-text">
 
@@ -340,6 +340,23 @@ export default function Home() {
               </Link>
             </div>
 
+            {/* Diagnose. Activate. Accelerate. */}
+            <div style={{
+              marginTop: 44, display: 'flex', gap: 32,
+              animation: 'heroFadeUp 0.6s ease 0.4s forwards', opacity: 0,
+            }}>
+              {['Diagnose.', 'Activate.', 'Accelerate.'].map((label, i) => (
+                <div key={label} style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                  <span style={{ fontSize: '0.68rem', fontWeight: 800, color: '#046C5C', letterSpacing: '0.15em', fontFamily: 'var(--font-display)' }}>
+                    {String(i + 1).padStart(2, '0')}
+                  </span>
+                  <span style={{ fontSize: '0.85rem', color: 'rgba(255,255,255,0.5)', fontWeight: 500, fontFamily: 'var(--font-display)' }}>
+                    {label}
+                  </span>
+                </div>
+              ))}
+            </div>
+
           </div>
         </div>
 
@@ -348,7 +365,7 @@ export default function Home() {
       </section>
 
 
-      {/* ── FOUNDER SECTION — full typographic narrative, centred ────────── */}
+      {/* ── FOUNDER SECTION: full typographic narrative, centred ────────── */}
       <section style={{ background: '#FAFAFA', padding: '140px 0 120px', position: 'relative', overflow: 'hidden' }}>
         <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 1, background: 'linear-gradient(90deg, transparent, #046C5C44, transparent)' }} />
 
@@ -361,7 +378,7 @@ export default function Home() {
             </div>
           </FadeIn>
 
-          {/* THE REVEAL — two-line heading */}
+          {/* THE REVEAL: two-line heading */}
           <FadeIn delay={0.1}>
             <div style={{ margin: '0 0 48px', position: 'relative' }}>
               {/* Ghost watermark */}
@@ -389,7 +406,7 @@ export default function Home() {
             </div>
           </FadeIn>
 
-          {/* Narrative — wider, no bullets */}
+          {/* Narrative: wider, no bullets */}
           <FadeIn delay={0.24}>
             <div style={{ maxWidth: 720, margin: '0 auto 48px' }}>
 
@@ -456,7 +473,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── PROBLEM SECTION — editorial typographic layout ──────────────────── */}
+      {/* ── PROBLEM SECTION: editorial typographic layout ──────────────────── */}
       <section style={{ background: '#111214', padding: '120px 0', position: 'relative', overflow: 'hidden' }}>
         {/* Ambient glow */}
         <div style={{ position: 'absolute', top: '20%', right: '10%', width: 500, height: 500, borderRadius: '50%', background: '#2563EB', opacity: 0.04, filter: 'blur(120px)' }} />
@@ -477,7 +494,7 @@ export default function Home() {
             </div>
           </FadeIn>
 
-          {/* Four reasons — horizontal rule layout, no boxes */}
+          {/* Four reasons: horizontal rule layout, no boxes */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: 0 }}>
             {[
               { n: '01', title: 'Founder Dependency', body: 'Growth increasingly depends on founder involvement, creating bottlenecks in decision-making and execution.', color: '#2563EB' },
@@ -537,7 +554,7 @@ export default function Home() {
       </section>
 
 
-      {/* ── TOS SECTION — centred, visual as hero ────────────────────────────── */}
+      {/* ── TOS SECTION: centred, visual as hero ────────────────────────────── */}
       <section style={{ background: '#F3F4F6', padding: '120px 0' }}>
         <div style={{ padding: '0 6vw' }}>
 
@@ -564,14 +581,14 @@ export default function Home() {
             </div>
           </FadeIn>
 
-          {/* Visual — centred, large, dominant */}
+          {/* Visual: centred, large, dominant */}
           <FadeIn delay={0.15}>
             <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 56 }}>
               <AnimatedStratiixPath />
             </div>
           </FadeIn>
 
-          {/* Under visual — five phases plain text */}
+          {/* Under visual: five phases plain text */}
           <FadeIn delay={0.25}>
             <div style={{ textAlign: 'center' }}>
               <div style={{ fontSize: '0.72rem', fontWeight: 700, color: '#046C5C', letterSpacing: '0.18em', textTransform: 'uppercase', marginBottom: 28 }}>
@@ -601,7 +618,7 @@ export default function Home() {
       </section>
 
 
-      {/* ── CAPABILITY ENGINES — white, full-width ───────────────────────── */}
+      {/* ── CAPABILITY ENGINES: white, full-width ───────────────────────── */}
       <section style={{ background: 'white', padding: '120px 0' }}>
         <div style={{ maxWidth: '100%', padding: '0 6vw' }}>
           <FadeIn>
@@ -644,7 +661,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── SOLUTIONS — full-width, icons, new copy ──────────────────────────── */}
+      {/* ── SOLUTIONS: full-width, icons, new copy ──────────────────────────── */}
       <section style={{ background: '#E6F4F1', padding: '120px 0', position: 'relative', overflow: 'hidden' }}>
         <div style={{ position: 'absolute', bottom: '-10%', right: '-5%', width: 500, height: 500, borderRadius: '50%', background: '#046C5C', opacity: 0.06, filter: 'blur(80px)' }} />
         <div style={{ padding: '0 6vw', position: 'relative', zIndex: 1 }}>
@@ -687,7 +704,7 @@ export default function Home() {
             </div>
           </FadeIn>
 
-          {/* Industry cards — 4 col with icons */}
+          {/* Industry cards: 4 col with icons */}
           <div className="four-col" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 20 }}>
             {[
               {
@@ -754,7 +771,7 @@ export default function Home() {
       </section>
 
 
-      {/* ── RESULTS — full-width dark, dramatic ──────────────────────────── */}
+      {/* ── RESULTS: full-width dark, dramatic ──────────────────────────── */}
       <section style={{ background: '#111214', padding: '120px 0', position: 'relative', overflow: 'hidden' }}>
         <div style={{ position: 'absolute', top: '20%', left: '50%', transform: 'translateX(-50%)', width: 800, height: 400, borderRadius: '50%', background: 'radial-gradient(ellipse, rgba(4,108,92,0.08) 0%, transparent 70%)', pointerEvents: 'none' }} />
         <div style={{ maxWidth: '100%', padding: '0 6vw' }}>
@@ -802,7 +819,7 @@ export default function Home() {
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '4vw', marginBottom: 64 }} className="three-col">
             {[
               { label: 'Installed', desc: 'Capability systems, governance structures, and operational frameworks that are live and functioning inside the organization.', color: '#2563EB', delay: '0s' },
-              { label: 'Adopted',   desc: 'Workforce aligned, trained, and operating the new systems — not reverting to old patterns within 90 days.', color: '#046C5C', delay: '0.2s' },
+              { label: 'Adopted',   desc: 'Workforce aligned, trained, and operating the new systems, not reverting to old patterns within 90 days.', color: '#046C5C', delay: '0.2s' },
               { label: 'Improved',  desc: 'Measurable movement in the performance indicators that matter: efficiency, revenue, capacity, and organizational health.', color: '#C9A86A', delay: '0.4s' },
             ].map((o, i) => (
               <FadeIn key={o.label} delay={i * 0.2}>
@@ -869,7 +886,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── FINAL CTA — emerald gradient ─────────────────────────────────── */}
+      {/* ── FINAL CTA: emerald gradient ─────────────────────────────────── */}
       <section style={{
         background: 'linear-gradient(135deg, #035549 0%, #046C5C 50%, #057a68 100%)',
         padding: '100px 0', position: 'relative', overflow: 'hidden',
