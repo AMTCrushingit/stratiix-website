@@ -1,91 +1,81 @@
+'use client'
 import Link from 'next/link'
-import type { Metadata } from 'next'
-
-export const metadata: Metadata = {
-  title: 'The Transformation Operating System™',
-  description: 'The TOS is the structured methodology through which Stratiix delivers transformation. Five phases. One integrated system.',
-}
-
-const phases = [
-  {
-    n: '01', label: 'Diagnose', color: 'var(--path-discover)',
-    headline: 'Reveal what is actually limiting performance.',
-    body: 'Before any transformation can begin, the organization must understand its current state with precision. The Diagnostic phase establishes the baseline: identifying capability gaps, execution barriers, leadership alignment issues, and the specific constraints that are preventing the organization from performing at the next level. This is not a survey. It is a structured assessment that produces a clear picture of where the organization is, what it is ready to change, and what the transformation must address.',
-    outputs: ['Organizational Capability Assessment', 'Performance Gap Analysis', 'Transformation Readiness Score', 'Priority Intervention Map'],
-  },
-  {
-    n: '02', label: 'Architect', color: 'var(--path-design)',
-    headline: 'Design the transformation system.',
-    body: 'With the diagnostic complete, Stratiix architects the future state. This phase defines the transformation roadmap: which Capability Engines to deploy, in what sequence, and with what resources. The architecture phase aligns leadership around a shared picture of the destination and the path to get there. It produces the transformation blueprint that guides every subsequent phase.',
-    outputs: ['Transformation Blueprint', 'Capability Engine Selection', 'Sequenced Intervention Roadmap', 'Leadership Alignment Framework'],
-  },
-  {
-    n: '03', label: 'Activate', color: 'var(--teal)',
-    headline: 'Install the required capabilities.',
-    body: 'Activation is where the transformation becomes real. Stratiix deploys the selected Capability Engines, builds the systems and processes, and begins the structured change process with full adoption support. This phase is not about training or workshops: it is about installing functional capability that the organization can operate independently.',
-    outputs: ['Capability Engine Deployment', 'System and Process Installation', 'Workforce Activation Programme', 'Adoption Infrastructure'],
-  },
-  {
-    n: '04', label: 'Accelerate', color: 'var(--path-sustain)',
-    headline: 'Drive performance toward the defined outcomes.',
-    body: 'Once capabilities are installed, the Accelerate phase focuses on driving performance. Stratiix measures outcomes against the baseline, removes friction from the installed systems, optimizes what is working, and builds the momentum required to reach the defined results. This phase is where the investment begins to produce measurable returns.',
-    outputs: ['Performance Measurement System', 'Optimization Interventions', 'Outcome Tracking Dashboard', 'Momentum Acceleration Plan'],
-  },
-  {
-    n: '05', label: 'Sustain', color: 'var(--mint-deep)',
-    headline: 'Lock in the gains without constant intervention.',
-    body: 'The final phase of the TOS ensures that what has been built holds. Stratiix establishes the governance rhythms, accountability structures, and leadership practices that sustain performance after the engagement concludes. The goal is an organization that can maintain and build on its transformation independently, not one that requires ongoing external support to function.',
-    outputs: ['Governance Rhythm Design', 'Accountability Architecture', 'Leadership Sustainability Practices', 'Performance Maintenance System'],
-  },
-]
+import { AnimatedStratiixPath } from '@/components/AnimatedStratiixPath'
 
 export default function TOSPage() {
   return (
     <>
       {/* Hero */}
       <section style={{
-        background: 'linear-gradient(135deg, #050A14 0%, #062E35 100%)',
+        background: 'linear-gradient(135deg, #111214 0%, #1E1F22 100%)',
         paddingTop: 140, paddingBottom: 96,
         position: 'relative', overflow: 'hidden',
       }}>
-        <div style={{ position: 'absolute', top: '20%', right: '10%', width: 400, height: 400, borderRadius: '50%', background: 'var(--path-design)', opacity: 0.08, filter: 'blur(80px)' }} />
-        <div className="container" style={{ position: 'relative', zIndex: 1 }}>
-          <span className="eyebrow">The Operating System</span>
-          <h1 style={{ color: 'white', maxWidth: 680, marginBottom: 24 }}>
-            Transformation Operating System™
+        <div style={{ position: 'absolute', top: '20%', right: '10%', width: 400, height: 400, borderRadius: '50%', background: '#7C3AED', opacity: 0.07, filter: 'blur(80px)' }} />
+        <div style={{ position: 'absolute', bottom: '10%', left: '5%', width: 300, height: 300, borderRadius: '50%', background: '#046C5C', opacity: 0.07, filter: 'blur(60px)' }} />
+        <div style={{ padding: '0 6vw', position: 'relative', zIndex: 1 }}>
+          <div style={{ fontSize: '0.72rem', fontWeight: 700, color: '#046C5C', letterSpacing: '0.18em', textTransform: 'uppercase', marginBottom: 20 }}>
+            The Transformation Operating System™
+          </div>
+          <h1 style={{ color: 'white', maxWidth: 760, marginBottom: 28, fontSize: 'clamp(2.2rem, 4vw, 3.8rem)', fontWeight: 900, lineHeight: 1.08, letterSpacing: '-0.02em' }}>
+            A system for helping founder-led organizations<br/>
+            <span style={{ color: '#B2DDD7' }}>scale beyond the founder.</span>
           </h1>
-          <p style={{ color: 'rgba(255,255,255,0.65)', fontSize: '1.15rem', maxWidth: 580, lineHeight: 1.8, marginBottom: 40 }}>
-            Five phases. One integrated system. Designed to move organizations from diagnosis to sustained performance improvement.
+          <p style={{ color: 'rgba(255,255,255,0.65)', fontSize: '1.1rem', maxWidth: 620, lineHeight: 1.85, marginBottom: 20 }}>
+            The Transformation Operating System™ connects diagnosis, capability building, performance improvement, and sustainability into a single integrated system.
           </p>
-          <Link href="/diagnostic" className="btn btn-primary">Begin with the Diagnostic →</Link>
+          <p style={{ color: 'rgba(255,255,255,0.5)', fontSize: '1rem', maxWidth: 560, lineHeight: 1.8, marginBottom: 44 }}>
+            It is how Stratiix transforms founder dependency into organizational capability.
+          </p>
+          <Link href="/diagnostic" style={{
+            display: 'inline-flex', alignItems: 'center', gap: 8,
+            padding: '14px 32px', borderRadius: 10,
+            background: '#046C5C', color: 'white',
+            fontWeight: 700, fontSize: '0.95rem', textDecoration: 'none',
+            boxShadow: '0 8px 32px rgba(4,108,92,0.35)',
+            fontFamily: 'var(--font-display)',
+          }}>
+            Begin with the Diagnostic™ →
+          </Link>
         </div>
       </section>
 
-      {/* What is the TOS */}
-      <section className="section bg-white">
-        <div className="container">
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 80, alignItems: 'center' }}>
+      {/* What It Is */}
+      <section style={{ background: 'white', padding: '96px 0' }}>
+        <div style={{ padding: '0 6vw' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 80, alignItems: 'start' }} className="two-col">
             <div>
-              <span className="eyebrow">What It Is</span>
-              <h2>A system for turning strategy into results.</h2>
-              <div className="divider" />
-              <p style={{ marginBottom: 20, fontSize: '1.05rem', lineHeight: 1.8 }}>
-                The Transformation Operating System™ is the structured methodology through which Stratiix delivers transformation engagements. It is not a framework to be studied: it is a system to be operated.
+              <div style={{ fontSize: '0.72rem', fontWeight: 700, color: '#046C5C', letterSpacing: '0.18em', textTransform: 'uppercase', marginBottom: 16 }}>What It Is</div>
+              <h2 style={{ fontSize: 'clamp(1.8rem, 3vw, 2.5rem)', fontWeight: 800, color: '#1E1F22', marginBottom: 20, lineHeight: 1.1 }}>
+                The system behind every<br/>successful transformation.
+              </h2>
+              <div style={{ width: 48, height: 3, background: '#046C5C', borderRadius: 2, marginBottom: 28 }} />
+              <p style={{ marginBottom: 20, fontSize: '1.05rem', lineHeight: 1.85, color: '#4B4C51' }}>
+                Most organizations don't struggle because they lack strategy.
               </p>
-              <p style={{ color: 'var(--muted)', lineHeight: 1.8 }}>
-                The TOS addresses the fundamental reason most transformation efforts fail: they treat strategy and execution as separate problems. The TOS integrates diagnosis, design, capability installation, performance acceleration, and sustainability into a single coherent system.
+              <p style={{ marginBottom: 20, fontSize: '1.05rem', lineHeight: 1.85, color: '#4B4C51' }}>
+                They struggle because strategy, execution, leadership, governance, and performance improvement are often treated as separate challenges.
+              </p>
+              <p style={{ marginBottom: 20, fontSize: '1.05rem', lineHeight: 1.85, color: '#4B4C51' }}>
+                The Transformation Operating System™ integrates them into one connected system.
+              </p>
+              <p style={{ color: '#6B7280', lineHeight: 1.8 }}>
+                Through five structured phases, organizations move from diagnosis to capability, from capability to performance, and from performance to sustainable growth.
               </p>
             </div>
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
               {[
-                { label: 'Integrated', desc: 'Five phases that build on each other, not independent workstreams.' },
-                { label: 'Sequenced', desc: 'Each phase unlocks the next. The order is not arbitrary.' },
-                { label: 'Measurable', desc: 'Every phase produces defined outputs and measurable outcomes.' },
-                { label: 'Sustainable', desc: 'Built to hold without ongoing external support.' },
+                { label: 'Integrated', desc: 'Five phases that build on each other, not independent workstreams.', color: '#2563EB' },
+                { label: 'Sequenced', desc: 'Each phase unlocks the next. The order is not arbitrary.', color: '#7C3AED' },
+                { label: 'Measurable', desc: 'Every phase produces defined outputs and measurable outcomes.', color: '#046C5C' },
+                { label: 'Sustainable', desc: 'Built to hold without ongoing external support.', color: '#C9A86A' },
               ].map(f => (
-                <div key={f.label} style={{ padding: '24px', background: 'var(--slate)', borderRadius: 10, border: '1px solid var(--slate-mid)' }}>
-                  <div style={{ fontFamily: 'var(--font-display)', fontWeight: 700, color: 'var(--teal)', marginBottom: 8 }}>{f.label}</div>
-                  <p style={{ fontSize: '0.85rem', color: 'var(--muted)', margin: 0, lineHeight: 1.65 }}>{f.desc}</p>
+                <div key={f.label} style={{
+                  padding: '24px', background: '#F3F4F6', borderRadius: 12,
+                  border: '1px solid #E5E7EB', borderTop: `3px solid ${f.color}`,
+                }}>
+                  <div style={{ fontFamily: 'var(--font-display)', fontWeight: 800, color: f.color, marginBottom: 8, fontSize: '0.95rem' }}>{f.label}</div>
+                  <p style={{ fontSize: '0.85rem', color: '#6B7280', margin: 0, lineHeight: 1.65 }}>{f.desc}</p>
                 </div>
               ))}
             </div>
@@ -93,46 +83,66 @@ export default function TOSPage() {
         </div>
       </section>
 
-      {/* Five Phases */}
-      <section className="section bg-slate">
-        <div className="container">
-          <div style={{ textAlign: 'center', marginBottom: 64 }}>
-            <span className="eyebrow">The Five Phases</span>
-            <h2>How the TOS Works</h2>
-            <div className="divider" style={{ margin: '20px auto 0' }} />
+      {/* Animated TOS Visual */}
+      <section style={{ background: '#F3F4F6', padding: '96px 0' }}>
+        <div style={{ padding: '0 6vw' }}>
+          <div style={{ textAlign: 'center', marginBottom: 56 }}>
+            <div style={{ fontSize: '0.72rem', fontWeight: 700, color: '#046C5C', letterSpacing: '0.18em', textTransform: 'uppercase', marginBottom: 16 }}>
+              Visual Representation
+            </div>
+            <h2 style={{ fontSize: 'clamp(1.8rem, 3vw, 2.5rem)', fontWeight: 800, color: '#1E1F22', lineHeight: 1.1 }}>
+              The Transformation Operating System™
+            </h2>
           </div>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 32 }}>
-            {phases.map((p, i) => (
+          <div style={{ display: 'flex', justifyContent: 'center' }}>
+            <AnimatedStratiixPath />
+          </div>
+        </div>
+      </section>
+
+      {/* Five Phases — compressed */}
+      <section style={{ background: '#1E1F22', padding: '96px 0' }}>
+        <div style={{ padding: '0 6vw' }}>
+          <div style={{ textAlign: 'center', marginBottom: 72 }}>
+            <div style={{ fontSize: '0.72rem', fontWeight: 700, color: '#B2DDD7', letterSpacing: '0.18em', textTransform: 'uppercase', marginBottom: 16 }}>The Five Phases</div>
+            <h2 style={{ color: 'white', fontSize: 'clamp(1.8rem, 3vw, 2.5rem)', fontWeight: 800, lineHeight: 1.1 }}>
+              How the TOS Works
+            </h2>
+          </div>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 0 }}>
+            {[
+              { n: '01', label: 'Diagnose', color: '#2563EB', desc: 'Identify what is limiting performance and establish a clear baseline.', outputs: ['Capability Assessment', 'Performance Gap Analysis', 'Readiness Score'] },
+              { n: '02', label: 'Architect', color: '#7C3AED', desc: 'Design the systems, capabilities, and roadmap required for the next stage of growth.', outputs: ['Transformation Blueprint', 'Capability Engine Selection', 'Leadership Alignment'] },
+              { n: '03', label: 'Activate', color: '#046C5C', desc: 'Install the required capabilities, operating systems, and infrastructure.', outputs: ['Capability Engine Deployment', 'System Installation', 'Adoption Infrastructure'] },
+              { n: '04', label: 'Accelerate', color: '#10B981', desc: 'Improve adoption, execution, and performance.', outputs: ['Performance Measurement', 'Optimization Interventions', 'Outcome Tracking'] },
+              { n: '05', label: 'Sustain', color: '#C9A86A', desc: 'Embed governance, accountability, and continuous improvement.', outputs: ['Governance Rhythms', 'Accountability Architecture', 'Performance Maintenance'] },
+            ].map((p, i) => (
               <div key={p.n} style={{
-                display: 'grid', gridTemplateColumns: '80px 1fr 280px', gap: 40,
-                padding: '40px', background: 'white', borderRadius: 12,
-                border: '1px solid var(--slate-mid)',
+                display: 'grid', gridTemplateColumns: '80px 1fr 260px', gap: 40,
+                padding: '36px 0',
+                borderTop: '1px solid rgba(255,255,255,0.07)',
+                borderBottom: i === 4 ? '1px solid rgba(255,255,255,0.07)' : 'none',
                 alignItems: 'start',
-              }}>
+              }} className="tos-phase-row">
                 <div style={{ textAlign: 'center' }}>
                   <div style={{
-                    width: 56, height: 56, borderRadius: '50%',
-                    background: `${p.color}18`, border: `2px solid ${p.color}`,
-                    display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: '0.8rem',
-                    color: p.color, margin: '0 auto 8px',
+                    fontSize: 'clamp(1.8rem, 2.5vw, 2.2rem)', fontWeight: 900,
+                    color: p.color, opacity: 0.7, lineHeight: 1,
+                    fontFamily: 'var(--font-display)', letterSpacing: '-0.04em',
                   }}>{p.n}</div>
-                  <div style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: '0.85rem', color: 'var(--charcoal)' }}>{p.label}</div>
+                  <div style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: '0.85rem', color: 'white', marginTop: 6 }}>{p.label}</div>
                 </div>
                 <div>
-                  <h3 style={{ fontSize: '1.15rem', marginBottom: 12, color: 'var(--charcoal)' }}>{p.headline}</h3>
-                  <p style={{ color: 'var(--body-text)', lineHeight: 1.8, margin: 0, fontSize: '0.95rem' }}>{p.body}</p>
+                  <p style={{ color: 'rgba(255,255,255,0.75)', lineHeight: 1.75, margin: 0, fontSize: '1rem' }}>{p.desc}</p>
                 </div>
                 <div>
-                  <div style={{ fontSize: '0.72rem', fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--muted)', marginBottom: 12 }}>Phase Outputs</div>
-                  <ul style={{ listStyle: 'none' }}>
-                    {p.outputs.map(o => (
-                      <li key={o} style={{ display: 'flex', gap: 8, alignItems: 'flex-start', marginBottom: 8 }}>
-                        <div style={{ width: 6, height: 6, borderRadius: '50%', background: p.color, flexShrink: 0, marginTop: 6 }} />
-                        <span style={{ fontSize: '0.82rem', color: 'var(--body-text)', lineHeight: 1.5 }}>{o}</span>
-                      </li>
-                    ))}
-                  </ul>
+                  <div style={{ fontSize: '0.68rem', fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.3)', marginBottom: 10 }}>Outputs</div>
+                  {p.outputs.map(o => (
+                    <div key={o} style={{ display: 'flex', gap: 8, alignItems: 'flex-start', marginBottom: 6 }}>
+                      <div style={{ width: 4, height: 4, borderRadius: '50%', background: p.color, flexShrink: 0, marginTop: 7, opacity: 0.8 }} />
+                      <span style={{ fontSize: '0.8rem', color: 'rgba(255,255,255,0.45)', lineHeight: 1.5 }}>{o}</span>
+                    </div>
+                  ))}
                 </div>
               </div>
             ))}
@@ -140,17 +150,81 @@ export default function TOSPage() {
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="section bg-dark">
-        <div className="container" style={{ textAlign: 'center' }}>
-          <span className="eyebrow" style={{ color: 'var(--mint-deep)' }}>Begin</span>
-          <h2 style={{ color: 'white', maxWidth: 520, margin: '0 auto 20px' }}>
-            Every TOS engagement begins with the Diagnostic.
+      {/* Who It's For */}
+      <section style={{ background: '#E6F4F1', padding: '96px 0' }}>
+        <div style={{ padding: '0 6vw' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 80, alignItems: 'center' }} className="two-col">
+            <div>
+              <div style={{ fontSize: '0.72rem', fontWeight: 700, color: '#046C5C', letterSpacing: '0.18em', textTransform: 'uppercase', marginBottom: 16 }}>Who It's For</div>
+              <h2 style={{ color: '#1E1F22', fontSize: 'clamp(1.8rem, 3vw, 2.5rem)', fontWeight: 800, lineHeight: 1.1, marginBottom: 24 }}>
+                Built for<br/>
+                <span style={{ color: '#046C5C' }}>Founder-Led Organizations</span>
+              </h2>
+              <div style={{ width: 48, height: 3, background: '#046C5C', borderRadius: 2, marginBottom: 28 }} />
+              <p style={{ color: '#4B4C51', lineHeight: 1.85, fontSize: '1.05rem' }}>
+                The TOS is not for everyone. It is for organizations where the gap between ambition and performance has become impossible to ignore.
+              </p>
+            </div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
+              {[
+                { text: 'Growth has outpaced systems', color: '#2563EB' },
+                { text: 'Founder dependency is increasing', color: '#7C3AED' },
+                { text: 'Capability gaps are limiting performance', color: '#046C5C' },
+                { text: 'Leadership teams need greater operational capacity', color: '#C9A86A' },
+              ].map((item, i) => (
+                <div key={item.text} style={{
+                  display: 'flex', gap: 20, alignItems: 'center',
+                  padding: '20px 24px',
+                  background: 'white', borderRadius: 12,
+                  border: '1px solid #B2DDD7',
+                  borderLeft: `4px solid ${item.color}`,
+                }}>
+                  <div style={{ fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: '0.68rem', color: item.color, letterSpacing: '0.12em', flexShrink: 0 }}>
+                    {String(i + 1).padStart(2, '0')}
+                  </div>
+                  <span style={{ color: '#1E1F22', fontSize: '1rem', fontWeight: 600, fontFamily: 'var(--font-display)' }}>{item.text}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Final CTA */}
+      <section style={{
+        background: 'linear-gradient(135deg, #035549 0%, #046C5C 50%, #057a68 100%)',
+        padding: '100px 0', position: 'relative', overflow: 'hidden',
+      }}>
+        <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-50%)', width: 600, height: 600, borderRadius: '50%', background: 'rgba(255,255,255,0.04)', filter: 'blur(60px)', pointerEvents: 'none' }} />
+        <div style={{ padding: '0 6vw', textAlign: 'center', position: 'relative', zIndex: 1, maxWidth: 720, margin: '0 auto' }}>
+          <div style={{ fontSize: '0.72rem', fontWeight: 700, color: 'rgba(255,255,255,0.6)', letterSpacing: '0.18em', textTransform: 'uppercase', marginBottom: 20 }}>Get Started</div>
+          <h2 style={{ color: 'white', fontSize: 'clamp(2rem, 3.5vw, 3rem)', fontWeight: 900, marginBottom: 20, lineHeight: 1.1, letterSpacing: '-0.02em' }}>
+            Ready to Scale Beyond the Founder?
           </h2>
-          <p style={{ color: 'rgba(255,255,255,0.55)', maxWidth: 440, margin: '0 auto 40px' }}>
-            The Diagnostic establishes the baseline that makes everything else possible.
+          <p style={{ color: 'rgba(255,255,255,0.7)', maxWidth: 520, margin: '0 auto 12px', fontSize: '1.05rem', lineHeight: 1.8 }}>
+            The Transformation Operating System™ begins with understanding what is limiting performance.
           </p>
-          <Link href="/diagnostic" className="btn btn-primary">Begin with the Diagnostic →</Link>
+          <p style={{ color: 'rgba(255,255,255,0.7)', maxWidth: 520, margin: '0 auto 36px', fontSize: '1.05rem', lineHeight: 1.8 }}>
+            Every engagement starts with the Stratiix Path Diagnostic™.
+          </p>
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8, marginBottom: 40 }}>
+            <div style={{ fontSize: '2rem', fontWeight: 900, color: 'white', letterSpacing: '-0.03em', fontFamily: 'var(--font-display)' }}>
+              $1,499 <span style={{ fontSize: '1rem', fontWeight: 500, color: 'rgba(255,255,255,0.6)' }}>USD</span>
+            </div>
+            <div style={{ fontSize: '0.875rem', color: 'rgba(255,255,255,0.6)' }}>
+              50% credited toward any subsequent Stratiix engagement.
+            </div>
+          </div>
+          <Link href="/diagnostic" style={{
+            display: 'inline-flex', alignItems: 'center', gap: 8,
+            padding: '15px 36px', borderRadius: 10,
+            background: 'white', color: '#046C5C',
+            fontWeight: 800, fontSize: '0.95rem', textDecoration: 'none',
+            boxShadow: '0 8px 32px rgba(0,0,0,0.2)',
+            fontFamily: 'var(--font-display)',
+          }}>
+            Begin with the Diagnostic™ →
+          </Link>
         </div>
       </section>
     </>
