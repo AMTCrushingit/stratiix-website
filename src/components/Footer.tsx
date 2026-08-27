@@ -32,7 +32,7 @@ const cols = [
 export default function Footer() {
   return (
     <footer style={{ background: 'var(--footer-black)', color: 'rgba(255,255,255,0.5)', paddingTop: 64, paddingBottom: 40 }}>
-      <div className="container">
+      <div style={{ padding: '0 6vw' }}>
         <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr 1fr', gap: 48, marginBottom: 64 }}>
           {/* Brand */}
           <div>

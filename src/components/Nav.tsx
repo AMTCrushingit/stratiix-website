@@ -30,7 +30,7 @@ export default function Nav() {
         backdropFilter: scrolled ? 'blur(12px)' : 'none',
         transition: 'all 0.3s ease',
       }}>
-        <div className="container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: 68 }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: 68, padding: '0 6vw', width: '100%' }}>
           <Link href="/" style={{ textDecoration: 'none' }}>
             <span style={{
               fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: '1.25rem',
