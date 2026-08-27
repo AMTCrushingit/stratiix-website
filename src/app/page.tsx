@@ -402,13 +402,12 @@ export default function Home() {
 
               {/* Glass card */}
               <div style={{
-                background: 'rgba(255,255,255,0.7)',
-                backdropFilter: 'blur(16px)',
-                WebkitBackdropFilter: 'blur(16px)',
-                border: '1px solid rgba(255,255,255,0.9)',
-                borderRadius: 20,
+                background: 'white',
+                border: '1px solid #E5E7EB',
+                borderLeft: '4px solid #046C5C',
+                borderRadius: '0 16px 16px 0',
                 padding: 'clamp(28px, 4vw, 48px)',
-                boxShadow: '0 8px 40px rgba(4,108,92,0.06), 0 2px 8px rgba(0,0,0,0.04)',
+                boxShadow: '0 4px 32px rgba(0,0,0,0.08)',
               }}>
                 <p style={{ fontSize: 'clamp(1rem, 1.5vw, 1.1rem)', color: '#6B7280', lineHeight: 1.85, marginBottom: 20, fontFamily: 'var(--font-body)', margin: '0 0 20px' }}>
                   Growth creates complexity.
@@ -444,12 +443,7 @@ export default function Home() {
 
 
 
-          {/* Closing statement */}
-          <FadeIn delay={0.46}>
-            <p style={{ fontSize: 'clamp(1rem, 1.6vw, 1.15rem)', color: '#046C5C', fontWeight: 700, lineHeight: 1.75, maxWidth: 580, margin: '0 auto 48px', fontFamily: 'var(--font-display)' }}>
-              Stratiix helps founder-led organizations identify what is limiting performance and build the capability required to scale beyond the founder.
-            </p>
-          </FadeIn>
+
 
           {/* Vertical connector + CTA */}
           <FadeIn delay={0.5}>
