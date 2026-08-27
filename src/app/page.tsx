@@ -293,7 +293,7 @@ export default function Home() {
               transition: 'all 0.2s', boxShadow: '0 8px 32px rgba(4,108,92,0.4)',
               fontFamily: 'var(--font-display)',
             }}>
-              Begin with the Diagnostic →
+              Begin with the Diagnostic™ →
             </Link>
             <Link href="/the-tos" style={{
               display: 'inline-flex', alignItems: 'center', gap: 8,
@@ -304,7 +304,7 @@ export default function Home() {
               transition: 'all 0.2s',
               fontFamily: 'var(--font-display)',
             }}>
-              Explore the TOS
+              Explore Solutions
             </Link>
           </div>
         </div>
@@ -513,7 +513,7 @@ export default function Home() {
                 background: '#046C5C', color: 'white',
                 fontWeight: 700, fontSize: '0.875rem', textDecoration: 'none',
               }}>
-                Explore the TOS →
+                Explore Solutions →
               </Link>
             </div>
           </FadeIn>
@@ -722,7 +722,7 @@ export default function Home() {
                 letterSpacing: '-0.04em',
               }}>RESULTS</div>
               <div style={{ fontSize: '0.72rem', fontWeight: 700, color: '#B2DDD7', letterSpacing: '0.15em', textTransform: 'uppercase', marginBottom: 16, position: 'relative' }}>What We Deliver</div>
-              <h2 style={{ color: 'white', fontSize: 'clamp(1.8rem, 3vw, 2.75rem)', position: 'relative', fontWeight: 800 }}>Results That Are <span style={{ color: '#046C5C' }}>Measurable</span></h2>
+              <h2 style={{ color: 'white', fontSize: 'clamp(1.8rem, 3vw, 2.75rem)', position: 'relative', fontWeight: 800 }}>Results That Hold <span style={{ color: '#046C5C' }}>Beyond the Founder</span></h2>
               <div style={{ width: 48, height: 3, background: '#046C5C', borderRadius: 2, margin: '20px auto 0' }} />
               <p style={{ color: 'rgba(255,255,255,0.45)', maxWidth: 480, margin: '24px auto 0', fontSize: '1.05rem', lineHeight: 1.75 }}>
                 Stratiix does not measure success by deliverables produced. We measure it by what changes inside the organization.
@@ -782,10 +782,10 @@ export default function Home() {
           <FadeIn>
             <div style={{ fontSize: '0.72rem', fontWeight: 700, color: 'rgba(255,255,255,0.6)', letterSpacing: '0.15em', textTransform: 'uppercase', marginBottom: 20 }}>Get Started</div>
             <h2 style={{ color: 'white', fontSize: 'clamp(1.8rem, 3.5vw, 2.75rem)', marginBottom: 20, lineHeight: 1.2 }}>
-              The Diagnostic is where every transformation begins.
+              Ready to Scale Beyond the Founder?
             </h2>
-            <p style={{ color: 'rgba(255,255,255,0.7)', maxWidth: 440, margin: '0 auto 44px', fontSize: '1.05rem', lineHeight: 1.75 }}>
-              A structured assessment of your organization's current state, capability gaps, and transformation readiness.
+            <p style={{ color: 'rgba(255,255,255,0.7)', maxWidth: 480, margin: '0 auto 44px', fontSize: '1.05rem', lineHeight: 1.75 }}>
+              The first step isn't another strategy session. It's diagnosis.
             </p>
             <div style={{ display: 'flex', gap: 14, justifyContent: 'center', flexWrap: 'wrap' }}>
               <Link href="/diagnostic" style={{
