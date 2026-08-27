@@ -465,9 +465,9 @@ export default function Home() {
               <div style={{ fontSize: '0.72rem', fontWeight: 700, color: '#046C5C', letterSpacing: '0.15em', textTransform: 'uppercase', marginBottom: 16, position: 'relative' }}>
                 When Growth Outpaces Systems
               </div>
-              <h2 style={{ color: 'white', maxWidth: 560, fontSize: 'clamp(1.8rem, 3vw, 2.5rem)', position: 'relative', fontWeight: 800 }}>
-                Four patterns that limit<br/>
-                <span style={{ color: '#046C5C' }}>every founder-led</span> organization
+              <h2 style={{ color: 'white', maxWidth: 640, fontSize: 'clamp(1.8rem, 3vw, 2.5rem)', position: 'relative', fontWeight: 800 }}>
+                Founder-Led Organizations Often Get Stuck<br/>
+                <span style={{ color: '#046C5C' }}>for the Same Four Reasons</span>
               </h2>
             </div>
           </FadeIn>
@@ -475,7 +475,7 @@ export default function Home() {
             {[
               { n: '01', title: 'Founder Dependency', body: 'Growth increasingly depends on founder involvement, creating bottlenecks in decision-making and execution.', color: '#2563EB' },
               { n: '02', title: 'Capability Gaps Go Undiagnosed', body: 'Leaders invest in solutions before understanding what is actually limiting performance.', color: '#7C3AED' },
-              { n: '03', title: 'Growth Outpaces Infrastructure', body: 'Organizations scale faster than the systems supporting them.', color: '#046C5C' },
+              { n: '03', title: 'Growth Outpaces Systems', body: 'Organizations scale faster than the systems supporting them.', color: '#046C5C' },
               { n: '04', title: 'Performance Doesn\'t Hold', body: 'Without governance, accountability, and operating discipline, progress becomes difficult to sustain.', color: '#C9A86A' },
             ].map((r, i) => (
               <FadeIn key={r.n} delay={i * 0.1}>
@@ -491,56 +491,69 @@ export default function Home() {
       </section>
 
 
-      {/* ── TOS SECTION — full-width, diagram below intro ────────────────── */}
+      {/* ── TOS SECTION — centred, visual as hero ────────────────────────────── */}
       <section style={{ background: '#F3F4F6', padding: '120px 0' }}>
-        <div style={{ maxWidth: '100%', padding: '0 6vw' }}>
-          {/* Top: intro text + CTA */}
+        <div style={{ padding: '0 6vw' }}>
+
+          {/* Centred heading block */}
           <FadeIn>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 80, alignItems: 'end', marginBottom: 80 }} className="two-col">
-              <div style={{ position: 'relative' }}>
-                <div style={{
-                  position: 'absolute', top: -24, left: -16,
-                  fontSize: 'clamp(6rem, 10vw, 10rem)', fontWeight: 800,
-                  color: 'rgba(4,108,92,0.06)', lineHeight: 1,
-                  fontFamily: 'var(--font-display)', userSelect: 'none', pointerEvents: 'none',
-                  letterSpacing: '-0.05em',
-                }}>TOS</div>
-                <div style={{ fontSize: '0.72rem', fontWeight: 700, color: '#046C5C', letterSpacing: '0.15em', textTransform: 'uppercase', marginBottom: 20, position: 'relative' }}>The Operating System</div>
-                <h2 style={{ fontSize: 'clamp(1.8rem, 3vw, 2.5rem)', color: '#1E1F22', marginBottom: 24, position: 'relative', fontWeight: 800 }}>
-                  Transformation<br/>
-                  <span style={{ color: '#046C5C' }}>Operating System</span>™
-                </h2>
-                <div style={{ width: 48, height: 3, background: '#046C5C', borderRadius: 2, marginBottom: 28 }} />
-                <p style={{ color: '#4B4C51', fontSize: '1.05rem', lineHeight: 1.85, margin: 0 }}>
-                  Five phases. One integrated system. Designed to move founder-led organizations from diagnosis to sustained performance.
-                </p>
+            <div style={{ textAlign: 'center', marginBottom: 64 }}>
+              <div style={{ fontSize: '0.72rem', fontWeight: 700, color: '#046C5C', letterSpacing: '0.18em', textTransform: 'uppercase', marginBottom: 20 }}>
+                The Operating System
               </div>
-              <div style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'flex-end' }}>
-                <Link href="/the-tos" style={{
-                  display: 'inline-flex', alignItems: 'center', gap: 8,
-                  padding: '13px 26px', borderRadius: 10,
-                  background: '#046C5C', color: 'white',
-                  fontWeight: 700, fontSize: '0.875rem', textDecoration: 'none',
-                }}>
-                  Explore the TOS →
-                </Link>
+              <h2 style={{ fontSize: 'clamp(2rem, 3.5vw, 3rem)', color: '#1E1F22', fontWeight: 800, lineHeight: 1.1, marginBottom: 20 }}>
+                The Transformation Operating System™
+              </h2>
+              <p style={{ color: '#4B4C51', fontSize: 'clamp(1rem, 1.5vw, 1.1rem)', lineHeight: 1.8, maxWidth: 640, margin: '0 auto 32px' }}>
+                A diagnostic-led system designed to help founder-led organizations move from founder dependency to organizational capability.
+              </p>
+              <Link href="/the-tos" style={{
+                display: 'inline-flex', alignItems: 'center', gap: 8,
+                padding: '12px 26px', borderRadius: 10,
+                background: '#046C5C', color: 'white',
+                fontWeight: 700, fontSize: '0.875rem', textDecoration: 'none',
+              }}>
+                Explore the TOS →
+              </Link>
+            </div>
+          </FadeIn>
+
+          {/* Visual — centred, large, dominant */}
+          <FadeIn delay={0.15}>
+            <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 56 }}>
+              <AnimatedStratiixPath />
+            </div>
+          </FadeIn>
+
+          {/* Under visual — five phases plain text */}
+          <FadeIn delay={0.25}>
+            <div style={{ textAlign: 'center' }}>
+              <div style={{ fontSize: '0.72rem', fontWeight: 700, color: '#046C5C', letterSpacing: '0.18em', textTransform: 'uppercase', marginBottom: 28 }}>
+                The five phases of the Stratiix Path™
+              </div>
+              <div style={{ display: 'flex', justifyContent: 'center', gap: 0, flexWrap: 'wrap' }}>
+                {[
+                  { n: '01', label: 'Diagnose' },
+                  { n: '02', label: 'Architect' },
+                  { n: '03', label: 'Activate' },
+                  { n: '04', label: 'Accelerate' },
+                  { n: '05', label: 'Sustain' },
+                ].map((ph, i) => (
+                  <div key={ph.n} style={{ display: 'flex', alignItems: 'center' }}>
+                    <div style={{ textAlign: 'center', padding: '0 20px' }}>
+                      <div style={{ fontSize: '0.68rem', fontWeight: 800, color: '#046C5C', letterSpacing: '0.15em', marginBottom: 4 }}>{ph.n}</div>
+                      <div style={{ fontSize: '0.95rem', fontWeight: 600, color: '#1E1F22', fontFamily: 'var(--font-display)' }}>{ph.label}</div>
+                    </div>
+                    {i < 4 && <div style={{ width: 32, height: 1, background: '#E5E7EB', flexShrink: 0 }} />}
+                  </div>
+                ))}
               </div>
             </div>
           </FadeIn>
-          {/* The Stratiix Path™ within the TOS */}
-          <div style={{ marginTop: 8 }}>
-            <div style={{ fontSize: '0.72rem', fontWeight: 700, color: '#046C5C', letterSpacing: '0.15em', textTransform: 'uppercase', marginBottom: 16 }}>
-              The Stratiix Path™ within the Transformation Operating System™
-            </div>
-            <div>
-              <div style={{ fontSize: '0.72rem', fontWeight: 700, color: '#046C5C', letterSpacing: '0.15em', textTransform: 'uppercase', marginBottom: 20 }}>
-                The Stratiix Path™ within the Transformation Operating System™
-              </div>
-              <AnimatedStratiixPath />
-            </div>
-          </div>
+
         </div>
       </section>
+
 
       {/* ── CAPABILITY ENGINES — white, full-width ───────────────────────── */}
       <section style={{ background: 'white', padding: '120px 0' }}>
