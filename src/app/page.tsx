@@ -113,6 +113,112 @@ function FadeIn({ children, delay = 0 }: { children: React.ReactNode; delay?: nu
   )
 }
 
+
+// ── Animated Vertical TOS Diagram ────────────────────────────────────────────
+function TOSDiagram() {
+  const [hovered, setHovered] = useState<number | null>(null)
+  const phases = [
+    { n: '01', label: 'Diagnose', sub: 'Establish the baseline', color: '#2563EB', desc: 'Identify what is limiting performance, where capability gaps exist, and what the organization is actually ready to change.' },
+    { n: '02', label: 'Architect', sub: 'Design the future state', color: '#7C3AED', desc: 'Define the transformation roadmap, sequence the interventions, and align leadership around the path forward.' },
+    { n: '03', label: 'Activate', sub: 'Install the capabilities', color: '#046C5C', desc: 'Deploy the Capability Engines, build the systems, and begin the structured change process with full adoption support.' },
+    { n: '04', label: 'Accelerate', sub: 'Drive performance', color: '#10B981', desc: 'Measure outcomes, remove friction, optimize the installed systems, and build momentum toward the defined results.' },
+    { n: '05', label: 'Sustain', sub: 'Lock in the gains', color: '#C9A86A', desc: 'Establish the governance rhythms, accountability structures, and leadership practices that hold performance without constant intervention.' },
+  ]
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 0, position: 'relative' }}>
+      <style>{`
+        @keyframes phaseIn {
+          from { opacity: 0; transform: translateX(20px); }
+          to   { opacity: 1; transform: translateX(0); }
+        }
+        .tos-phase-item {
+          display: flex;
+          align-items: stretch;
+          gap: 0;
+          cursor: default;
+          animation: phaseIn 0.5s ease forwards;
+          opacity: 0;
+        }
+        .tos-phase-inner {
+          flex: 1;
+          padding: 24px 28px;
+          border-radius: 12px;
+          border: 1px solid #E5E7EB;
+          background: white;
+          transition: all 0.25s ease;
+          margin-left: 20px;
+        }
+        .tos-phase-item:hover .tos-phase-inner {
+          border-color: var(--phase-color);
+          box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+          transform: translateX(4px);
+        }
+        .tos-phase-desc {
+          max-height: 0;
+          overflow: hidden;
+          transition: max-height 0.3s ease, opacity 0.3s ease, margin-top 0.3s ease;
+          opacity: 0;
+          margin-top: 0;
+        }
+        .tos-phase-item:hover .tos-phase-desc {
+          max-height: 80px;
+          opacity: 1;
+          margin-top: 8px;
+        }
+      `}</style>
+      {phases.map((ph, i) => (
+        <div key={ph.n} style={{ display: 'flex', alignItems: 'stretch', position: 'relative' }}>
+          {/* Left: number + connector line */}
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: 48, flexShrink: 0 }}>
+            <div style={{
+              width: 44, height: 44, borderRadius: '50%', flexShrink: 0,
+              background: hovered === i ? ph.color : `${ph.color}15`,
+              border: `2px solid ${ph.color}`,
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              fontSize: '0.68rem', fontWeight: 800,
+              color: hovered === i ? 'white' : ph.color,
+              letterSpacing: '0.08em',
+              transition: 'all 0.25s ease',
+              boxShadow: hovered === i ? `0 0 20px ${ph.color}50` : 'none',
+              zIndex: 1,
+            }}>
+              {ph.n}
+            </div>
+            {i < phases.length - 1 && (
+              <div style={{
+                width: 2, flex: 1, minHeight: 20,
+                background: `linear-gradient(to bottom, ${ph.color}60, ${phases[i+1].color}40)`,
+                margin: '4px 0',
+              }} />
+            )}
+          </div>
+          {/* Right: content */}
+          <div
+            className="tos-phase-item"
+            onMouseEnter={() => setHovered(i)}
+            onMouseLeave={() => setHovered(null)}
+            style={{
+              flex: 1, marginBottom: i < phases.length - 1 ? 8 : 0,
+              animationDelay: `${i * 0.1}s`,
+              '--phase-color': ph.color,
+            } as React.CSSProperties}
+          >
+            <div className="tos-phase-inner">
+              <div style={{ display: 'flex', alignItems: 'baseline', gap: 10, marginBottom: 4 }}>
+                <span style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: '1rem', color: '#1E1F22' }}>{ph.label}</span>
+                <span style={{ fontSize: '0.78rem', color: '#6B7280', fontStyle: 'italic' }}>{ph.sub}</span>
+              </div>
+              <div className="tos-phase-desc">
+                <p style={{ fontSize: '0.82rem', color: '#6B7280', lineHeight: 1.65, margin: 0 }}>{ph.desc}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  )
+}
+
 export default function Home() {
   return (
     <>
@@ -415,52 +521,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── TOS VISUAL SECTION — white, full-width ───────────────────────── */}
-      <section style={{ background: 'white', padding: '120px 0', position: 'relative', overflow: 'hidden' }}>
-        <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-50%)', width: 800, height: 800, borderRadius: '50%', background: 'radial-gradient(circle, rgba(4,108,92,0.04) 0%, transparent 70%)', pointerEvents: 'none' }} />
-        <div style={{ maxWidth: 1280, margin: '0 auto', padding: '0 32px' }}>
-          <FadeIn>
-            <div style={{ textAlign: 'center', marginBottom: 80 }}>
-              <div style={{ fontSize: '0.72rem', fontWeight: 700, color: '#046C5C', letterSpacing: '0.15em', textTransform: 'uppercase', marginBottom: 16 }}>The System</div>
-              <h2 style={{ fontSize: 'clamp(1.8rem, 3vw, 2.75rem)', color: '#1E1F22' }}>The Transformation Operating System™</h2>
-              <div style={{ width: 48, height: 3, background: '#046C5C', borderRadius: 2, margin: '20px auto 0' }} />
-            </div>
-          </FadeIn>
-
-          {/* Full-width 5-step flow */}
-          <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'center', flexWrap: 'wrap', gap: 0, marginBottom: 80 }}>
-            {[
-              { label: 'Diagnostic', desc: 'Reveal what is limiting performance', color: '#2563EB' },
-              { label: 'TOS', desc: 'Architect the transformation system', color: '#7C3AED' },
-              { label: 'Capability Engines', desc: 'Install the required capabilities', color: '#046C5C' },
-              { label: 'Intelligence', desc: 'Measure, learn, and adapt', color: '#10B981' },
-              { label: 'Outcomes', desc: 'Deliver measurable results', color: '#C9A86A' },
-            ].map((s, i) => (
-              <div key={s.label} style={{ display: 'flex', alignItems: 'center' }}>
-                <FadeIn delay={i * 0.1}>
-                  <div style={{ textAlign: 'center', padding: '0 16px' }}>
-                    <div style={{
-                      width: 88, height: 88, borderRadius: '50%',
-                      background: `${s.color}12`, border: `2px solid ${s.color}`,
-                      display: 'flex', alignItems: 'center', justifyContent: 'center',
-                      margin: '0 auto 16px',
-                      fontSize: '0.68rem', fontWeight: 800, color: s.color, letterSpacing: '0.08em',
-                      transition: 'all 0.25s ease',
-                    }}>
-                      {String(i + 1).padStart(2, '0')}
-                    </div>
-                    <div style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: '0.9rem', color: '#1E1F22', marginBottom: 6 }}>{s.label}</div>
-                    <div style={{ fontSize: '0.75rem', color: '#6B7280', maxWidth: 110, lineHeight: 1.5 }}>{s.desc}</div>
-                  </div>
-                </FadeIn>
-                {i < 4 && (
-                  <div style={{ width: 48, height: 1, background: 'linear-gradient(90deg, #E5E7EB, #046C5C44, #E5E7EB)', flexShrink: 0, marginBottom: 48 }} />
-                )}
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* ── TOS PHASES — slate bg, two-col ───────────────────────────────── */}
       <section style={{ background: '#F3F4F6', padding: '120px 0' }}>
@@ -486,25 +546,7 @@ export default function Home() {
                 </Link>
               </div>
             </FadeIn>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-              {[
-                { n: '01', label: 'Diagnose', desc: 'Establish the baseline. Identify what is limiting performance, where capability gaps exist, and what the organization is actually ready to change.' },
-                { n: '02', label: 'Architect', desc: 'Design the future state. Define the transformation roadmap, sequence the interventions, and align leadership around the path forward.' },
-                { n: '03', label: 'Activate', desc: 'Install the capabilities. Deploy the Capability Engines, build the systems, and begin the structured change process with full adoption support.' },
-                { n: '04', label: 'Accelerate', desc: 'Drive performance. Measure outcomes, remove friction, optimize the installed systems, and build momentum toward the defined results.' },
-                { n: '05', label: 'Sustain', desc: 'Lock in the gains. Establish the governance rhythms, accountability structures, and leadership practices that hold performance without constant intervention.' },
-              ].map((ph, i) => (
-                <FadeIn key={ph.n} delay={i * 0.08}>
-                  <div className="phase-row">
-                    <div style={{ fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: '0.72rem', color: '#046C5C', letterSpacing: '0.12em', flexShrink: 0, paddingTop: 3, minWidth: 28 }}>{ph.n}</div>
-                    <div>
-                      <div style={{ fontFamily: 'var(--font-display)', fontWeight: 700, color: '#1E1F22', marginBottom: 6, fontSize: '1rem' }}>{ph.label}</div>
-                      <p style={{ fontSize: '0.875rem', color: '#6B7280', lineHeight: 1.7, margin: 0 }}>{ph.desc}</p>
-                    </div>
-                  </div>
-                </FadeIn>
-              ))}
-            </div>
+            <TOSDiagram />
           </div>
         </div>
       </section>
