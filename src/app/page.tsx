@@ -243,72 +243,113 @@ export default function Home() {
         ))}
 
         <div style={{ width: '100%', padding: '0 6vw', position: 'relative', zIndex: 1 }}>
-          {/* Badge */}
-          <div style={{
-            display: 'inline-flex', alignItems: 'center', gap: 8,
-            padding: '6px 16px', borderRadius: 100, marginBottom: 40,
-            background: 'rgba(4,108,92,0.12)', border: '1px solid rgba(4,108,92,0.35)',
-            animation: 'heroFadeUp 0.6s ease forwards',
-          }}>
-            <div style={{ width: 6, height: 6, borderRadius: '50%', background: '#046C5C', animation: 'pulse 2s infinite' }} />
-            <span style={{ fontSize: '0.72rem', fontWeight: 700, color: '#046C5C', letterSpacing: '0.12em', textTransform: 'uppercase', fontFamily: 'var(--font-display)' }}>
-              Built for Founder-Led Organizations
-            </span>
-          </div>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '5vw', alignItems: 'center' }} className="hero-grid">
 
-          {/* 3-line headline — left aligned, each on its own line */}
-          <h1 style={{
-            color: 'white',
-            lineHeight: 1.05,
-            marginBottom: 36,
-            fontSize: 'clamp(2.4rem, 5.5vw, 5rem)',
-            fontWeight: 900,
-            letterSpacing: '-0.03em',
-            animation: 'heroFadeUp 0.6s ease 0.1s forwards',
-            opacity: 0,
-            maxWidth: '80vw',
-          }}>
-            Transform Complexity.<br />
-            <span style={{ color: '#B2DDD7' }}>Build Capability.</span><br />
-            Accelerate Outcomes.
-          </h1>
+            {/* Left — headline + CTAs */}
+            <div>
+              <div style={{
+                display: 'inline-flex', alignItems: 'center', gap: 8,
+                padding: '6px 16px', borderRadius: 100, marginBottom: 40,
+                background: 'rgba(4,108,92,0.12)', border: '1px solid rgba(4,108,92,0.35)',
+                animation: 'heroFadeUp 0.6s ease forwards',
+              }}>
+                <div style={{ width: 6, height: 6, borderRadius: '50%', background: '#046C5C', animation: 'pulse 2s infinite' }} />
+                <span style={{ fontSize: '0.72rem', fontWeight: 700, color: '#046C5C', letterSpacing: '0.12em', textTransform: 'uppercase', fontFamily: 'var(--font-display)' }}>
+                  Built for Founder-Led Organizations
+                </span>
+              </div>
 
-          <p style={{
-            color: 'rgba(255,255,255,0.6)', fontSize: '1.1rem', lineHeight: 1.75,
-            maxWidth: 480, marginBottom: 48,
-            animation: 'heroFadeUp 0.6s ease 0.2s forwards', opacity: 0,
-          }}>
-            Stratiix helps founder-led organizations identify what is limiting performance and build the capability required to scale beyond the founder.
-          </p>
+              <h1 style={{
+                color: 'white', lineHeight: 1.05, marginBottom: 36,
+                fontSize: 'clamp(2rem, 4vw, 3.8rem)',
+                fontWeight: 900, letterSpacing: '-0.03em',
+                animation: 'heroFadeUp 0.6s ease 0.1s forwards', opacity: 0,
+              }}>
+                Transform Complexity.<br />
+                <span style={{ color: '#B2DDD7' }}>Build Capability.</span><br />
+                Accelerate Outcomes.
+              </h1>
 
-          <div style={{
-            display: 'flex', gap: 14, flexWrap: 'wrap',
-            animation: 'heroFadeUp 0.6s ease 0.3s forwards', opacity: 0,
-          }}>
-            <Link href="/diagnostic" style={{
-              display: 'inline-flex', alignItems: 'center', gap: 8,
-              padding: '15px 32px', borderRadius: 10,
-              background: '#046C5C', color: 'white',
-              fontWeight: 700, fontSize: '0.95rem', textDecoration: 'none',
-              transition: 'all 0.2s', boxShadow: '0 8px 32px rgba(4,108,92,0.4)',
-              fontFamily: 'var(--font-display)',
+              <p style={{
+                color: 'rgba(255,255,255,0.6)', fontSize: '1.05rem', lineHeight: 1.8,
+                maxWidth: 440, marginBottom: 44,
+                animation: 'heroFadeUp 0.6s ease 0.2s forwards', opacity: 0,
+              }}>
+                Stratiix helps founder-led organizations identify what is limiting performance and build the capability required to scale beyond the founder.
+              </p>
+
+              <div style={{
+                display: 'flex', gap: 14, flexWrap: 'wrap',
+                animation: 'heroFadeUp 0.6s ease 0.3s forwards', opacity: 0,
+              }}>
+                <Link href="/diagnostic" style={{
+                  display: 'inline-flex', alignItems: 'center', gap: 8,
+                  padding: '14px 28px', borderRadius: 10,
+                  background: '#046C5C', color: 'white',
+                  fontWeight: 700, fontSize: '0.9rem', textDecoration: 'none',
+                  boxShadow: '0 8px 32px rgba(4,108,92,0.4)',
+                  fontFamily: 'var(--font-display)',
+                }}>
+                  Begin with the Diagnostic™ →
+                </Link>
+                <Link href="/the-tos" style={{
+                  display: 'inline-flex', alignItems: 'center', gap: 8,
+                  padding: '14px 28px', borderRadius: 10,
+                  background: 'rgba(255,255,255,0.06)', color: 'rgba(255,255,255,0.85)',
+                  border: '1px solid rgba(255,255,255,0.15)',
+                  fontWeight: 600, fontSize: '0.9rem', textDecoration: 'none',
+                  fontFamily: 'var(--font-display)',
+                }}>
+                  Explore Solutions
+                </Link>
+              </div>
+            </div>
+
+            {/* Right — founder image */}
+            <div className="hero-visual" style={{
+              position: 'relative',
+              animation: 'heroFadeUp 0.8s ease 0.35s forwards',
+              opacity: 0,
             }}>
-              Begin with the Diagnostic™ →
-            </Link>
-            <Link href="/the-tos" style={{
-              display: 'inline-flex', alignItems: 'center', gap: 8,
-              padding: '15px 32px', borderRadius: 10,
-              background: 'rgba(255,255,255,0.06)', color: 'rgba(255,255,255,0.85)',
-              border: '1px solid rgba(255,255,255,0.15)',
-              fontWeight: 600, fontSize: '0.95rem', textDecoration: 'none',
-              transition: 'all 0.2s',
-              fontFamily: 'var(--font-display)',
-            }}>
-              Explore Solutions
-            </Link>
+              <div style={{
+                position: 'relative', borderRadius: 20, overflow: 'hidden',
+                aspectRatio: '4/5',
+                boxShadow: '0 40px 100px rgba(0,0,0,0.6)',
+              }}>
+                <img
+                  src="/hero-founder.png"
+                  alt="Founder surveying operations"
+                  style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center top', display: 'block' }}
+                />
+                {/* Gradient overlay — blends into dark hero bg */}
+                <div style={{
+                  position: 'absolute', inset: 0,
+                  background: 'linear-gradient(to bottom, transparent 40%, rgba(5,10,20,0.75) 100%)',
+                }} />
+                {/* Caption pill */}
+                <div style={{ position: 'absolute', bottom: 24, left: 24, right: 24 }}>
+                  <div style={{
+                    display: 'inline-flex', alignItems: 'center', gap: 8,
+                    padding: '7px 16px', borderRadius: 100,
+                    background: 'rgba(4,108,92,0.88)', backdropFilter: 'blur(8px)',
+                  }}>
+                    <div style={{ width: 5, height: 5, borderRadius: '50%', background: 'white', opacity: 0.8 }} />
+                    <span style={{ fontSize: '0.72rem', fontWeight: 600, color: 'white', letterSpacing: '0.06em', fontFamily: 'var(--font-display)' }}>
+                      The founder is the operating system
+                    </span>
+                  </div>
+                </div>
+              </div>
+              {/* Emerald glow behind image */}
+              <div style={{
+                position: 'absolute', top: '20%', right: '-8%',
+                width: 200, height: 300, borderRadius: '50%',
+                background: '#046C5C', opacity: 0.1, filter: 'blur(60px)', zIndex: -1,
+              }} />
+            </div>
+
           </div>
         </div>
-
 
       </section>
 
