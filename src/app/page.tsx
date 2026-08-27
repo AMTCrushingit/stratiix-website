@@ -229,7 +229,7 @@ export default function Home() {
           <div key={i} style={{
             position: 'absolute',
             width: o.s, height: o.s, borderRadius: '50%',
-            background: o.c, opacity: 0.1, filter: 'blur(100px)',
+            background: o.c, opacity: 0.15, filter: 'blur(80px)',
             top: (o as any).t, left: (o as any).l, right: (o as any).r, bottom: (o as any).b,
             animation: `orbFloat ${8 + i * 2}s ease-in-out infinite`,
             animationDelay: o.d,
@@ -248,102 +248,82 @@ export default function Home() {
             width: d.w, height: d.h,
             borderRadius: '60% 40% 70% 30% / 50% 60% 40% 50%',
             background: d.c,
-            opacity: 0.07,
-            filter: 'blur(40px)',
+            opacity: 0.13,
+            filter: 'blur(50px)',
             top:(d as any).t, left:(d as any).l, right:(d as any).r, bottom:(d as any).b,
             animation: `dropletFloat ${d.dur} ease-in-out infinite`,
             animationDelay: d.del,
           }} />
         ))}
 
-        <div style={{ maxWidth: 1280, margin: '0 auto', padding: '0 32px', width: '100%', position: 'relative', zIndex: 1 }}>
-          <div className="hero-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 80, alignItems: 'center' }}>
-            <div>
-              {/* Badge */}
-              <div style={{
-                display: 'inline-flex', alignItems: 'center', gap: 8,
-                padding: '6px 16px', borderRadius: 100, marginBottom: 36,
-                background: 'rgba(4,108,92,0.12)', border: '1px solid rgba(4,108,92,0.35)',
-                animation: 'heroFadeUp 0.6s ease forwards',
-              }}>
-                <div style={{ width: 6, height: 6, borderRadius: '50%', background: '#046C5C', animation: 'pulse 2s infinite' }} />
-                <span style={{ fontSize: '0.72rem', fontWeight: 700, color: '#046C5C', letterSpacing: '0.12em', textTransform: 'uppercase' }}>
-                  Built for Founder-Led Organizations
-                </span>
-              </div>
+        <div style={{ width: '100%', padding: '0 6vw', position: 'relative', zIndex: 1 }}>
+          {/* Badge */}
+          <div style={{
+            display: 'inline-flex', alignItems: 'center', gap: 8,
+            padding: '6px 16px', borderRadius: 100, marginBottom: 40,
+            background: 'rgba(4,108,92,0.12)', border: '1px solid rgba(4,108,92,0.35)',
+            animation: 'heroFadeUp 0.6s ease forwards',
+          }}>
+            <div style={{ width: 6, height: 6, borderRadius: '50%', background: '#046C5C', animation: 'pulse 2s infinite' }} />
+            <span style={{ fontSize: '0.72rem', fontWeight: 700, color: '#046C5C', letterSpacing: '0.12em', textTransform: 'uppercase', fontFamily: 'var(--font-display)' }}>
+              Built for Founder-Led Organizations
+            </span>
+          </div>
 
-              <h1 style={{
-                color: 'white', lineHeight: 1.08, marginBottom: 28,
-                fontSize: 'clamp(2.6rem, 5vw, 4.2rem)',
-                animation: 'heroFadeUp 0.6s ease 0.1s forwards', opacity: 0,
-              }}>
-                Transform<br />
-                <span style={{ color: '#B2DDD7' }}>Complexity.</span><br />
-                Build Capability.
-              </h1>
+          {/* 3-line headline — left aligned, each on its own line */}
+          <h1 style={{
+            color: 'white',
+            lineHeight: 1.05,
+            marginBottom: 36,
+            fontSize: 'clamp(3.2rem, 7vw, 6.5rem)',
+            fontWeight: 900,
+            letterSpacing: '-0.03em',
+            animation: 'heroFadeUp 0.6s ease 0.1s forwards',
+            opacity: 0,
+            maxWidth: '80vw',
+          }}>
+            Transform Complexity.<br />
+            <span style={{ color: '#B2DDD7' }}>Build Capability.</span><br />
+            Accelerate Outcomes.
+          </h1>
 
-              <p style={{
-                color: 'rgba(255,255,255,0.6)', fontSize: '1.1rem', lineHeight: 1.85,
-                maxWidth: 460, marginBottom: 44,
-                animation: 'heroFadeUp 0.6s ease 0.2s forwards', opacity: 0,
-              }}>
-                Stratiix helps founder-led organizations identify what is limiting performance and build the capability required to scale beyond the founder.
-              </p>
+          <p style={{
+            color: 'rgba(255,255,255,0.55)', fontSize: '1.15rem', lineHeight: 1.85,
+            maxWidth: 560, marginBottom: 48,
+            animation: 'heroFadeUp 0.6s ease 0.2s forwards', opacity: 0,
+          }}>
+            Stratiix helps founder-led organizations identify what is limiting performance and build the capability required to scale beyond the founder.
+          </p>
 
-              <div style={{
-                display: 'flex', gap: 14, flexWrap: 'wrap',
-                animation: 'heroFadeUp 0.6s ease 0.3s forwards', opacity: 0,
-              }}>
-                <Link href="/diagnostic" style={{
-                  display: 'inline-flex', alignItems: 'center', gap: 8,
-                  padding: '14px 28px', borderRadius: 10,
-                  background: '#046C5C', color: 'white',
-                  fontWeight: 700, fontSize: '0.9rem', textDecoration: 'none',
-                  transition: 'all 0.2s', boxShadow: '0 8px 32px rgba(4,108,92,0.35)',
-                }}>
-                  Begin with the Diagnostic →
-                </Link>
-                <Link href="/the-tos" style={{
-                  display: 'inline-flex', alignItems: 'center', gap: 8,
-                  padding: '14px 28px', borderRadius: 10,
-                  background: 'rgba(255,255,255,0.06)', color: 'rgba(255,255,255,0.85)',
-                  border: '1px solid rgba(255,255,255,0.15)',
-                  fontWeight: 600, fontSize: '0.9rem', textDecoration: 'none',
-                  transition: 'all 0.2s',
-                }}>
-                  Explore the TOS
-                </Link>
-              </div>
-
-              <div style={{
-                marginTop: 56, display: 'flex', gap: 40,
-                animation: 'heroFadeUp 0.6s ease 0.4s forwards', opacity: 0,
-              }}>
-                {['Diagnose', 'Activate', 'Accelerate'].map((label, i) => (
-                  <div key={label}>
-                    <div style={{ fontSize: '0.68rem', fontWeight: 800, color: '#046C5C', letterSpacing: '0.15em', textTransform: 'uppercase', marginBottom: 4 }}>
-                      {String(i + 1).padStart(2, '0')}
-                    </div>
-                    <div style={{ fontSize: '0.85rem', color: 'rgba(255,255,255,0.45)', fontWeight: 500 }}>{label}</div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className="hero-visual" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-              <TOSVisual />
-            </div>
+          <div style={{
+            display: 'flex', gap: 14, flexWrap: 'wrap',
+            animation: 'heroFadeUp 0.6s ease 0.3s forwards', opacity: 0,
+          }}>
+            <Link href="/diagnostic" style={{
+              display: 'inline-flex', alignItems: 'center', gap: 8,
+              padding: '15px 32px', borderRadius: 10,
+              background: '#046C5C', color: 'white',
+              fontWeight: 700, fontSize: '0.95rem', textDecoration: 'none',
+              transition: 'all 0.2s', boxShadow: '0 8px 32px rgba(4,108,92,0.4)',
+              fontFamily: 'var(--font-display)',
+            }}>
+              Begin with the Diagnostic →
+            </Link>
+            <Link href="/the-tos" style={{
+              display: 'inline-flex', alignItems: 'center', gap: 8,
+              padding: '15px 32px', borderRadius: 10,
+              background: 'rgba(255,255,255,0.06)', color: 'rgba(255,255,255,0.85)',
+              border: '1px solid rgba(255,255,255,0.15)',
+              fontWeight: 600, fontSize: '0.95rem', textDecoration: 'none',
+              transition: 'all 0.2s',
+              fontFamily: 'var(--font-display)',
+            }}>
+              Explore the TOS
+            </Link>
           </div>
         </div>
 
-        {/* Scroll indicator */}
-        <div style={{
-          position: 'absolute', bottom: 32, left: '50%', transform: 'translateX(-50%)',
-          display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8,
-          animation: 'pulse 2s infinite',
-        }}>
-          <div style={{ width: 1, height: 48, background: 'linear-gradient(to bottom, transparent, rgba(255,255,255,0.3))' }} />
-        </div>
+
       </section>
 
       {/* ── FOUNDER SECTION — full-width, ivory bg ───────────────────────── */}
@@ -352,7 +332,7 @@ export default function Home() {
           position: 'absolute', top: 0, left: 0, right: 0, height: 1,
           background: 'linear-gradient(90deg, transparent, #046C5C44, transparent)',
         }} />
-        <div style={{ maxWidth: 1280, margin: '0 auto', padding: '0 32px' }}>
+        <div style={{ maxWidth: '100%', padding: '0 6vw' }}>
           <div className="two-col" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 100, alignItems: 'center' }}>
             <FadeIn>
               <div style={{ fontSize: '0.72rem', fontWeight: 700, color: '#046C5C', letterSpacing: '0.15em', textTransform: 'uppercase', marginBottom: 24 }}>
@@ -410,7 +390,7 @@ export default function Home() {
       {/* ── PROBLEM SECTION — full-width dark, no container cap ──────────── */}
       <section style={{ background: '#1E1F22', padding: '120px 0', position: 'relative', overflow: 'hidden' }}>
         <div style={{ position: 'absolute', top: '30%', right: '-5%', width: 600, height: 600, borderRadius: '50%', background: '#2563EB', opacity: 0.04, filter: 'blur(120px)' }} />
-        <div style={{ maxWidth: 1280, margin: '0 auto', padding: '0 32px' }}>
+        <div style={{ maxWidth: '100%', padding: '0 6vw' }}>
           <FadeIn>
             <div style={{ marginBottom: 72, position: 'relative' }}>
               <div style={{
@@ -451,7 +431,7 @@ export default function Home() {
 
       {/* ── TOS SECTION — full-width, diagram below intro ────────────────── */}
       <section style={{ background: '#F3F4F6', padding: '120px 0' }}>
-        <div style={{ maxWidth: 1280, margin: '0 auto', padding: '0 32px' }}>
+        <div style={{ maxWidth: '100%', padding: '0 6vw' }}>
           {/* Top: intro text + CTA */}
           <FadeIn>
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 80, alignItems: 'end', marginBottom: 80 }} className="two-col">
@@ -502,7 +482,7 @@ export default function Home() {
 
       {/* ── CAPABILITY ENGINES — white, full-width ───────────────────────── */}
       <section style={{ background: 'white', padding: '120px 0' }}>
-        <div style={{ maxWidth: 1280, margin: '0 auto', padding: '0 32px' }}>
+        <div style={{ maxWidth: '100%', padding: '0 6vw' }}>
           <FadeIn>
             <div style={{ textAlign: 'center', marginBottom: 72, position: 'relative' }}>
               <div style={{
@@ -546,7 +526,7 @@ export default function Home() {
       {/* ── SOLUTIONS — full-width emerald-light ─────────────────────────── */}
       <section style={{ background: '#E6F4F1', padding: '120px 0', position: 'relative', overflow: 'hidden' }}>
         <div style={{ position: 'absolute', bottom: '-10%', right: '-5%', width: 500, height: 500, borderRadius: '50%', background: '#046C5C', opacity: 0.06, filter: 'blur(80px)' }} />
-        <div style={{ maxWidth: 1280, margin: '0 auto', padding: '0 32px' }}>
+        <div style={{ maxWidth: '100%', padding: '0 6vw' }}>
           <div className="two-col" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 100, alignItems: 'center' }}>
             <FadeIn>
               <div style={{ fontSize: '0.72rem', fontWeight: 700, color: '#046C5C', letterSpacing: '0.15em', textTransform: 'uppercase', marginBottom: 20 }}>Who We Serve</div>
@@ -597,7 +577,7 @@ export default function Home() {
       {/* ── RESULTS — full-width dark, dramatic ──────────────────────────── */}
       <section style={{ background: '#111214', padding: '120px 0', position: 'relative', overflow: 'hidden' }}>
         <div style={{ position: 'absolute', top: '20%', left: '50%', transform: 'translateX(-50%)', width: 800, height: 400, borderRadius: '50%', background: 'radial-gradient(ellipse, rgba(4,108,92,0.08) 0%, transparent 70%)', pointerEvents: 'none' }} />
-        <div style={{ maxWidth: 1280, margin: '0 auto', padding: '0 32px' }}>
+        <div style={{ maxWidth: '100%', padding: '0 6vw' }}>
           <FadeIn>
             <div style={{ textAlign: 'center', marginBottom: 80, position: 'relative' }}>
               <div style={{
