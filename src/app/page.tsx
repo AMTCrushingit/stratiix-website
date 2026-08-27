@@ -361,15 +361,8 @@ export default function Home() {
             </div>
           </FadeIn>
 
-          {/* Opener — muted */}
-          <FadeIn delay={0.08}>
-            <p style={{ fontSize: 'clamp(1rem, 1.6vw, 1.2rem)', color: '#9CA3AF', fontWeight: 400, lineHeight: 1.7, marginBottom: 28, fontFamily: 'var(--font-body)' }}>
-              Most founder-led organizations don't have a growth problem.
-            </p>
-          </FadeIn>
-
-          {/* THE REVEAL */}
-          <FadeIn delay={0.16}>
+          {/* THE REVEAL — two-line heading */}
+          <FadeIn delay={0.1}>
             <div style={{ margin: '0 0 48px', position: 'relative' }}>
               {/* Ghost watermark */}
               <div style={{
@@ -390,8 +383,8 @@ export default function Home() {
                 margin: 0,
                 position: 'relative',
               }}>
-                They have a<br/>
-                <span style={{ color: '#046C5C', opacity: 0.82 }}>capability problem.</span>
+                Founder-led organizations<br/>
+                <span style={{ color: '#046C5C', opacity: 0.82 }}>face capability problems.</span>
               </h2>
             </div>
           </FadeIn>
