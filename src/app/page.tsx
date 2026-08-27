@@ -775,34 +775,85 @@ export default function Home() {
               </p>
             </div>
           </FadeIn>
-          <div className="three-col" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 24, marginBottom: 64 }}>
+          {/* Animated checkmark items */}
+          <style>{`
+            @keyframes checkDraw {
+              from { stroke-dashoffset: 60; opacity: 0; }
+              to   { stroke-dashoffset: 0; opacity: 1; }
+            }
+            @keyframes checkCircle {
+              from { stroke-dashoffset: 200; opacity: 0; }
+              to   { stroke-dashoffset: 0; opacity: 1; }
+            }
+            @keyframes checkFadeUp {
+              from { opacity: 0; transform: translateY(16px); }
+              to   { opacity: 1; transform: translateY(0); }
+            }
+            .check-item { animation: checkFadeUp 0.6s ease forwards; opacity: 0; }
+            .check-circle { stroke-dasharray: 200; stroke-dashoffset: 200; }
+            .check-tick   { stroke-dasharray: 60;  stroke-dashoffset: 60; }
+            .check-item.in-view .check-circle {
+              animation: checkCircle 0.6s ease forwards;
+            }
+            .check-item.in-view .check-tick {
+              animation: checkDraw 0.4s ease 0.5s forwards;
+            }
+          `}</style>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '4vw', marginBottom: 64 }} className="three-col">
             {[
-              { label: 'Installed', desc: 'Capability systems, governance structures, and operational frameworks that are live and functioning inside the organization.', color: '#2563EB' },
-              { label: 'Adopted', desc: 'Workforce aligned, trained, and operating the new systems — not reverting to old patterns within 90 days.', color: '#046C5C' },
-              { label: 'Improved', desc: 'Measurable movement in the performance indicators that matter: efficiency, revenue, capacity, and organizational health.', color: '#C9A86A' },
+              { label: 'Installed', desc: 'Capability systems, governance structures, and operational frameworks that are live and functioning inside the organization.', color: '#2563EB', delay: '0s' },
+              { label: 'Adopted',   desc: 'Workforce aligned, trained, and operating the new systems — not reverting to old patterns within 90 days.', color: '#046C5C', delay: '0.2s' },
+              { label: 'Improved',  desc: 'Measurable movement in the performance indicators that matter: efficiency, revenue, capacity, and organizational health.', color: '#C9A86A', delay: '0.4s' },
             ].map((o, i) => (
-              <FadeIn key={o.label} delay={i * 0.1}>
-                <div style={{
-                  padding: '48px 36px', borderRadius: 16, textAlign: 'center',
-                  background: 'rgba(255,255,255,0.03)',
-                  border: `1px solid ${o.color}22`,
-                  transition: 'all 0.3s ease',
-                }}>
-                  <div style={{
-                    width: 64, height: 64, borderRadius: '50%',
-                    background: `${o.color}15`, border: `2px solid ${o.color}`,
-                    display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    margin: '0 auto 28px',
-                    fontSize: '0.68rem', fontWeight: 800, color: o.color, letterSpacing: '0.1em',
-                  }}>
-                    {String(i + 1).padStart(2, '0')}
+              <FadeIn key={o.label} delay={i * 0.2}>
+                <div style={{ textAlign: 'center', padding: '40px 24px' }}>
+                  {/* Animated SVG checkmark */}
+                  <div style={{ marginBottom: 28, display: 'flex', justifyContent: 'center' }}>
+                    <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg"
+                      style={{ overflow: 'visible' }}>
+                      {/* Circle */}
+                      <circle
+                        cx="40" cy="40" r="30"
+                        stroke={o.color}
+                        strokeWidth="2"
+                        strokeDasharray="200"
+                        strokeDashoffset="0"
+                        fill={`${o.color}12`}
+                        style={{
+                          animation: `checkCircle 0.7s ease ${o.delay} both`,
+                          strokeDasharray: 200,
+                          strokeDashoffset: 200,
+                        }}
+                      />
+                      {/* Checkmark tick */}
+                      <polyline
+                        points="26,40 36,52 56,28"
+                        stroke={o.color}
+                        strokeWidth="3"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        fill="none"
+                        style={{
+                          strokeDasharray: 60,
+                          strokeDashoffset: 60,
+                          animation: `checkDraw 0.4s ease calc(${o.delay} + 0.55s) both`,
+                        }}
+                      />
+                      {/* Step number */}
+                      <text x="40" y="44" textAnchor="middle" fill={o.color}
+                        fontSize="11" fontWeight="800" fontFamily="Satoshi, sans-serif"
+                        letterSpacing="1" opacity="0.6">
+                        {String(i + 1).padStart(2, '0')}
+                      </text>
+                    </svg>
                   </div>
-                  <h3 style={{ color: 'white', fontSize: '1.75rem', marginBottom: 16, fontFamily: 'var(--font-display)' }}>{o.label}</h3>
+                  <h3 style={{ color: 'white', fontSize: '1.75rem', marginBottom: 16, fontFamily: 'var(--font-display)', fontWeight: 800 }}>{o.label}</h3>
                   <p style={{ color: 'rgba(255,255,255,0.45)', fontSize: '0.9rem', lineHeight: 1.8, margin: 0 }}>{o.desc}</p>
                 </div>
               </FadeIn>
             ))}
           </div>
+
           <div style={{ textAlign: 'center' }}>
             <Link href="/results" style={{
               display: 'inline-flex', alignItems: 'center', gap: 8,
