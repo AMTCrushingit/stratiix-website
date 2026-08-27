@@ -123,6 +123,13 @@ export default function Home() {
           0%, 100% { transform: translateY(0) scale(1); }
           50%       { transform: translateY(-20px) scale(1.05); }
         }
+        @keyframes dropletFloat {
+          0%   { transform: translateY(0) rotate(0deg) scale(1); border-radius: 60% 40% 70% 30% / 50% 60% 40% 50%; }
+          25%  { transform: translateY(-18px) rotate(5deg) scale(1.04); border-radius: 40% 60% 30% 70% / 60% 40% 60% 40%; }
+          50%  { transform: translateY(-8px) rotate(-3deg) scale(0.97); border-radius: 70% 30% 50% 50% / 40% 70% 30% 60%; }
+          75%  { transform: translateY(-22px) rotate(8deg) scale(1.02); border-radius: 30% 70% 60% 40% / 50% 30% 70% 50%; }
+          100% { transform: translateY(0) rotate(0deg) scale(1); border-radius: 60% 40% 70% 30% / 50% 60% 40% 50%; }
+        }
         @keyframes heroFadeUp {
           from { opacity: 0; transform: translateY(32px); }
           to   { opacity: 1; transform: translateY(0); }
@@ -228,12 +235,26 @@ export default function Home() {
             animationDelay: o.d,
           }} />
         ))}
-        {/* Grid lines */}
-        <div style={{
-          position: 'absolute', inset: 0, opacity: 0.03,
-          backgroundImage: 'linear-gradient(rgba(255,255,255,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.5) 1px, transparent 1px)',
-          backgroundSize: '80px 80px',
-        }} />
+        {/* Floating droplet orbs — subtle ambient movement */}
+        {[
+          { c:'#2563EB', w:180, h:240, t:'12%', l:'8%', dur:'9s', del:'0s' },
+          { c:'#7C3AED', w:140, h:200, t:'8%', r:'12%', dur:'11s', del:'1.5s' },
+          { c:'#046C5C', w:200, h:160, b:'18%', l:'15%', dur:'13s', del:'0.8s' },
+          { c:'#C9A86A', w:120, h:180, b:'12%', r:'8%', dur:'10s', del:'2s' },
+          { c:'#10B981', w:100, h:140, t:'45%', l:'45%', dur:'14s', del:'1s' },
+        ].map((d,i) => (
+          <div key={i} style={{
+            position:'absolute',
+            width: d.w, height: d.h,
+            borderRadius: '60% 40% 70% 30% / 50% 60% 40% 50%',
+            background: d.c,
+            opacity: 0.07,
+            filter: 'blur(40px)',
+            top:(d as any).t, left:(d as any).l, right:(d as any).r, bottom:(d as any).b,
+            animation: `dropletFloat ${d.dur} ease-in-out infinite`,
+            animationDelay: d.del,
+          }} />
+        ))}
 
         <div style={{ maxWidth: 1280, margin: '0 auto', padding: '0 32px', width: '100%', position: 'relative', zIndex: 1 }}>
           <div className="hero-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 80, alignItems: 'center' }}>
@@ -337,8 +358,10 @@ export default function Home() {
               <div style={{ fontSize: '0.72rem', fontWeight: 700, color: '#046C5C', letterSpacing: '0.15em', textTransform: 'uppercase', marginBottom: 24 }}>
                 The Founder Problem
               </div>
-              <h2 style={{ fontSize: 'clamp(2rem, 3.5vw, 3rem)', lineHeight: 1.15, color: '#1E1F22', marginBottom: 32 }}>
-                Your Business Shouldn't Run Because You're Holding It Together
+              <h2 style={{ fontSize: 'clamp(2rem, 3.5vw, 3rem)', lineHeight: 1.1, color: '#1E1F22', marginBottom: 32, fontWeight: 800 }}>
+                Your Business Shouldn't Run<br/>
+                <span style={{ color: '#046C5C' }}>Because You're Holding</span><br/>
+                It Together
               </h2>
               <Link href="/diagnostic" style={{
                 display: 'inline-flex', alignItems: 'center', gap: 8,
@@ -389,12 +412,20 @@ export default function Home() {
         <div style={{ position: 'absolute', top: '30%', right: '-5%', width: 600, height: 600, borderRadius: '50%', background: '#2563EB', opacity: 0.04, filter: 'blur(120px)' }} />
         <div style={{ maxWidth: 1280, margin: '0 auto', padding: '0 32px' }}>
           <FadeIn>
-            <div style={{ marginBottom: 72 }}>
-              <div style={{ fontSize: '0.72rem', fontWeight: 700, color: '#046C5C', letterSpacing: '0.15em', textTransform: 'uppercase', marginBottom: 16 }}>
+            <div style={{ marginBottom: 72, position: 'relative' }}>
+              <div style={{
+                position: 'absolute', top: -40, left: -20,
+                fontSize: 'clamp(8rem, 15vw, 14rem)', fontWeight: 800,
+                color: 'rgba(255,255,255,0.03)', lineHeight: 1,
+                fontFamily: 'var(--font-display)', userSelect: 'none', pointerEvents: 'none',
+                letterSpacing: '-0.05em',
+              }}>04</div>
+              <div style={{ fontSize: '0.72rem', fontWeight: 700, color: '#046C5C', letterSpacing: '0.15em', textTransform: 'uppercase', marginBottom: 16, position: 'relative' }}>
                 When Growth Outpaces Systems
               </div>
-              <h2 style={{ color: 'white', maxWidth: 560, fontSize: 'clamp(1.8rem, 3vw, 2.5rem)' }}>
-                Four patterns that limit every founder-led organization
+              <h2 style={{ color: 'white', maxWidth: 560, fontSize: 'clamp(1.8rem, 3vw, 2.5rem)', position: 'relative', fontWeight: 800 }}>
+                Four patterns that limit<br/>
+                <span style={{ color: '#046C5C' }}>every founder-led</span> organization
               </h2>
             </div>
           </FadeIn>
@@ -424,10 +455,18 @@ export default function Home() {
           {/* Top: intro text + CTA */}
           <FadeIn>
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 80, alignItems: 'end', marginBottom: 80 }} className="two-col">
-              <div>
-                <div style={{ fontSize: '0.72rem', fontWeight: 700, color: '#046C5C', letterSpacing: '0.15em', textTransform: 'uppercase', marginBottom: 20 }}>The Operating System</div>
-                <h2 style={{ fontSize: 'clamp(1.8rem, 3vw, 2.5rem)', color: '#1E1F22', marginBottom: 24 }}>
-                  Transformation Operating System™
+              <div style={{ position: 'relative' }}>
+                <div style={{
+                  position: 'absolute', top: -24, left: -16,
+                  fontSize: 'clamp(6rem, 10vw, 10rem)', fontWeight: 800,
+                  color: 'rgba(4,108,92,0.06)', lineHeight: 1,
+                  fontFamily: 'var(--font-display)', userSelect: 'none', pointerEvents: 'none',
+                  letterSpacing: '-0.05em',
+                }}>TOS</div>
+                <div style={{ fontSize: '0.72rem', fontWeight: 700, color: '#046C5C', letterSpacing: '0.15em', textTransform: 'uppercase', marginBottom: 20, position: 'relative' }}>The Operating System</div>
+                <h2 style={{ fontSize: 'clamp(1.8rem, 3vw, 2.5rem)', color: '#1E1F22', marginBottom: 24, position: 'relative', fontWeight: 800 }}>
+                  Transformation<br/>
+                  <span style={{ color: '#046C5C' }}>Operating System</span>™
                 </h2>
                 <div style={{ width: 48, height: 3, background: '#046C5C', borderRadius: 2, marginBottom: 28 }} />
                 <p style={{ color: '#4B4C51', fontSize: '1.05rem', lineHeight: 1.85, margin: 0 }}>
@@ -465,9 +504,18 @@ export default function Home() {
       <section style={{ background: 'white', padding: '120px 0' }}>
         <div style={{ maxWidth: 1280, margin: '0 auto', padding: '0 32px' }}>
           <FadeIn>
-            <div style={{ textAlign: 'center', marginBottom: 72 }}>
-              <div style={{ fontSize: '0.72rem', fontWeight: 700, color: '#046C5C', letterSpacing: '0.15em', textTransform: 'uppercase', marginBottom: 16 }}>The Engines</div>
-              <h2 style={{ fontSize: 'clamp(1.8rem, 3vw, 2.75rem)', color: '#1E1F22' }}>Capability Engines™</h2>
+            <div style={{ textAlign: 'center', marginBottom: 72, position: 'relative' }}>
+              <div style={{
+                position: 'absolute', top: -32, left: '50%', transform: 'translateX(-50%)',
+                fontSize: 'clamp(5rem, 10vw, 9rem)', fontWeight: 800,
+                color: 'rgba(4,108,92,0.05)', lineHeight: 1, whiteSpace: 'nowrap',
+                fontFamily: 'var(--font-display)', userSelect: 'none', pointerEvents: 'none',
+                letterSpacing: '-0.04em',
+              }}>ENGINES</div>
+              <div style={{ fontSize: '0.72rem', fontWeight: 700, color: '#046C5C', letterSpacing: '0.15em', textTransform: 'uppercase', marginBottom: 16, position: 'relative' }}>The Engines</div>
+              <h2 style={{ fontSize: 'clamp(1.8rem, 3vw, 2.75rem)', color: '#1E1F22', position: 'relative', fontWeight: 800 }}>
+                Capability Engines™
+              </h2>
               <div style={{ width: 48, height: 3, background: '#046C5C', borderRadius: 2, margin: '20px auto 0' }} />
               <p style={{ color: '#6B7280', maxWidth: 520, margin: '24px auto 0', fontSize: '1.05rem', lineHeight: 1.75 }}>
                 Six specialized engines that install the capabilities founder-led organizations need to perform beyond the founder.
@@ -502,8 +550,10 @@ export default function Home() {
           <div className="two-col" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 100, alignItems: 'center' }}>
             <FadeIn>
               <div style={{ fontSize: '0.72rem', fontWeight: 700, color: '#046C5C', letterSpacing: '0.15em', textTransform: 'uppercase', marginBottom: 20 }}>Who We Serve</div>
-              <h2 style={{ fontSize: 'clamp(1.8rem, 3vw, 2.5rem)', color: '#1E1F22', marginBottom: 24 }}>
-                Built for Founder-Led Organizations Ready to Scale
+              <h2 style={{ fontSize: 'clamp(1.8rem, 3vw, 2.5rem)', color: '#1E1F22', marginBottom: 24, fontWeight: 800, lineHeight: 1.1 }}>
+                Built for<br/>
+                <span style={{ color: '#046C5C' }}>Founder-Led</span><br/>
+                Organizations Ready to Scale
               </h2>
               <div style={{ width: 48, height: 3, background: '#046C5C', borderRadius: 2, marginBottom: 28 }} />
               <p style={{ color: '#4B4C51', fontSize: '1.05rem', lineHeight: 1.85, marginBottom: 36 }}>
@@ -549,9 +599,16 @@ export default function Home() {
         <div style={{ position: 'absolute', top: '20%', left: '50%', transform: 'translateX(-50%)', width: 800, height: 400, borderRadius: '50%', background: 'radial-gradient(ellipse, rgba(4,108,92,0.08) 0%, transparent 70%)', pointerEvents: 'none' }} />
         <div style={{ maxWidth: 1280, margin: '0 auto', padding: '0 32px' }}>
           <FadeIn>
-            <div style={{ textAlign: 'center', marginBottom: 80 }}>
-              <div style={{ fontSize: '0.72rem', fontWeight: 700, color: '#B2DDD7', letterSpacing: '0.15em', textTransform: 'uppercase', marginBottom: 16 }}>What We Deliver</div>
-              <h2 style={{ color: 'white', fontSize: 'clamp(1.8rem, 3vw, 2.75rem)' }}>Results That Are Measurable</h2>
+            <div style={{ textAlign: 'center', marginBottom: 80, position: 'relative' }}>
+              <div style={{
+                position: 'absolute', top: -40, left: '50%', transform: 'translateX(-50%)',
+                fontSize: 'clamp(6rem, 12vw, 11rem)', fontWeight: 800,
+                color: 'rgba(255,255,255,0.03)', lineHeight: 1, whiteSpace: 'nowrap',
+                fontFamily: 'var(--font-display)', userSelect: 'none', pointerEvents: 'none',
+                letterSpacing: '-0.04em',
+              }}>RESULTS</div>
+              <div style={{ fontSize: '0.72rem', fontWeight: 700, color: '#B2DDD7', letterSpacing: '0.15em', textTransform: 'uppercase', marginBottom: 16, position: 'relative' }}>What We Deliver</div>
+              <h2 style={{ color: 'white', fontSize: 'clamp(1.8rem, 3vw, 2.75rem)', position: 'relative', fontWeight: 800 }}>Results That Are <span style={{ color: '#046C5C' }}>Measurable</span></h2>
               <div style={{ width: 48, height: 3, background: '#046C5C', borderRadius: 2, margin: '20px auto 0' }} />
               <p style={{ color: 'rgba(255,255,255,0.45)', maxWidth: 480, margin: '24px auto 0', fontSize: '1.05rem', lineHeight: 1.75 }}>
                 Stratiix does not measure success by deliverables produced. We measure it by what changes inside the organization.
