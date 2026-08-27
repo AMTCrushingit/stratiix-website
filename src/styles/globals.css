@@ -3,7 +3,7 @@
    Brand Colour Style Guide v1.0
    ================================================================ */
 
-@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,600,700,900&display=swap');
 
 :root {
   /* Foundation */
@@ -49,8 +49,8 @@
   --footer-black:    #111214;
 
   /* Typography */
-  --font-display:    'Syne', sans-serif;
-  --font-body:       'Inter', sans-serif;
+  --font-display:    'Satoshi', sans-serif;
+  --font-body:       'Satoshi', sans-serif;
 
   /* Spacing */
   --max-width:       1200px;
