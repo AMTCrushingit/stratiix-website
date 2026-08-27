@@ -330,22 +330,7 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Caption pill — bottom right over the founder */}
-        <div style={{
-          position: 'absolute', bottom: 32, right: '6vw', zIndex: 3,
-          animation: 'heroFadeUp 0.8s ease 0.5s forwards', opacity: 0,
-        }}>
-          <div style={{
-            display: 'inline-flex', alignItems: 'center', gap: 8,
-            padding: '7px 16px', borderRadius: 100,
-            background: 'rgba(4,108,92,0.85)', backdropFilter: 'blur(8px)',
-          }}>
-            <div style={{ width: 5, height: 5, borderRadius: '50%', background: 'white', opacity: 0.8 }} />
-            <span style={{ fontSize: '0.72rem', fontWeight: 600, color: 'white', letterSpacing: '0.06em', fontFamily: 'var(--font-display)' }}>
-              The founder is the operating system
-            </span>
-          </div>
-        </div>
+
 
       </section>
 
