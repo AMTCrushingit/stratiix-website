@@ -124,35 +124,105 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* How Stratiix Works */}
-      <section style={{ background: '#F3F4F6', padding: '96px 0' }}>
-        <div style={{ padding: '0 6vw' }}>
-          <div style={{ textAlign: 'center', marginBottom: 64 }}>
-            <div style={{ fontSize: '0.72rem', fontWeight: 700, color: '#046C5C', letterSpacing: '0.18em', textTransform: 'uppercase', marginBottom: 16 }}>How Stratiix Works</div>
-            <h2 style={{ fontSize: 'clamp(1.8rem, 3vw, 2.5rem)', fontWeight: 900, color: '#1E1F22', lineHeight: 1.1, letterSpacing: '-0.02em' }}>
-              The Platform
-            </h2>
-            <div style={{ width: 48, height: 3, background: '#046C5C', borderRadius: 2, margin: '20px auto 0' }} />
-          </div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 20 }} className="four-col">
-            {[
-              { name: 'Stratiix Path Diagnostic™', desc: 'Identify what is limiting performance and establish a baseline.', color: '#2563EB', n: '01' },
-              { name: 'Transformation Operating System™', desc: 'A structured system for moving from diagnosis to sustainable performance improvement.', color: '#7C3AED', n: '02' },
-              { name: 'Capability Engines™', desc: 'Install the capabilities required for growth, execution, and performance.', color: '#046C5C', n: '03' },
-              { name: 'Transformation Intelligence™', desc: 'Measure progress, track outcomes, and support continuous improvement.', color: '#C9A86A', n: '04' },
-            ].map(p => (
-              <div key={p.name} style={{
-                padding: '28px 24px', background: 'white', borderRadius: 14,
-                border: '1px solid #E5E7EB', borderTop: `3px solid ${p.color}`,
-              }}>
-                <div style={{ fontSize: '0.68rem', fontWeight: 800, color: p.color, letterSpacing: '0.15em', marginBottom: 14 }}>{p.n}</div>
-                <h4 style={{ fontFamily: 'var(--font-display)', fontWeight: 700, color: '#1E1F22', marginBottom: 10, fontSize: '0.95rem', lineHeight: 1.4 }}>{p.name}</h4>
-                <p style={{ fontSize: '0.875rem', color: '#6B7280', margin: 0, lineHeight: 1.7 }}>{p.desc}</p>
-              </div>
-            ))}
+      {/* How Stratiix Works — dark, stacked visual layout */}
+      <section style={{ background: '#111214', padding: '96px 0', position: 'relative', overflow: 'hidden' }}>
+        {/* Ambient glows */}
+        <div style={{ position: 'absolute', top: '10%', left: '20%', width: 400, height: 400, borderRadius: '50%', background: '#2563EB', opacity: 0.04, filter: 'blur(100px)' }} />
+        <div style={{ position: 'absolute', bottom: '10%', right: '15%', width: 400, height: 400, borderRadius: '50%', background: '#C9A86A', opacity: 0.04, filter: 'blur(100px)' }} />
+
+        <div style={{ padding: '0 6vw', position: 'relative', zIndex: 1 }}>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 2fr', gap: '6vw', alignItems: 'start' }} className="two-col">
+
+            {/* Left — sticky label */}
+            <div style={{ position: 'sticky', top: 100 }}>
+              <div style={{ fontSize: '0.72rem', fontWeight: 700, color: '#B2DDD7', letterSpacing: '0.18em', textTransform: 'uppercase', marginBottom: 20 }}>How Stratiix Works</div>
+              <h2 style={{ fontSize: 'clamp(2rem, 3.5vw, 3rem)', fontWeight: 900, color: 'white', lineHeight: 1.05, letterSpacing: '-0.03em', marginBottom: 24 }}>
+                The<br/>Platform
+              </h2>
+              <div style={{ width: 48, height: 3, background: '#046C5C', borderRadius: 2, marginBottom: 28 }} />
+              <p style={{ color: 'rgba(255,255,255,0.45)', fontSize: '0.95rem', lineHeight: 1.8 }}>
+                Four integrated components. One connected system. Designed to move founder-led organizations from diagnosis to sustained performance.
+              </p>
+            </div>
+
+            {/* Right — stacked items */}
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 0 }}>
+              {[
+                {
+                  n: '01', name: 'Stratiix Path Diagnostic™',
+                  desc: 'Identify what is limiting performance and establish a clear baseline.',
+                  detail: 'Every engagement begins here. The Diagnostic reveals capability gaps, founder dependency risks, and the specific constraints limiting performance.',
+                  color: '#2563EB',
+                  link: '/diagnostic',
+                },
+                {
+                  n: '02', name: 'Transformation Operating System™',
+                  desc: 'A structured system for moving from diagnosis to sustainable performance improvement.',
+                  detail: 'Five phases. One integrated system. Diagnose, Architect, Activate, Accelerate, Sustain.',
+                  color: '#7C3AED',
+                  link: '/the-tos',
+                },
+                {
+                  n: '03', name: 'Capability Engines™',
+                  desc: 'Install the capabilities required for growth, execution, and performance.',
+                  detail: 'Six specialized engines: Intelligence, Operational Excellence, Governance, Growth, Workforce & Adoption, Performance.',
+                  color: '#046C5C',
+                  link: '/solutions',
+                },
+                {
+                  n: '04', name: 'Transformation Intelligence™',
+                  desc: 'Measure progress, track outcomes, and support continuous improvement.',
+                  detail: 'Results are measured against the baseline established in the Diagnostic. Not benchmarks. Not assumptions.',
+                  color: '#C9A86A',
+                  link: '/results',
+                },
+              ].map((p, i) => (
+                <div key={p.n} style={{
+                  padding: '40px 0',
+                  borderTop: '1px solid rgba(255,255,255,0.07)',
+                  borderBottom: i === 3 ? '1px solid rgba(255,255,255,0.07)' : 'none',
+                  display: 'grid',
+                  gridTemplateColumns: '56px 1fr',
+                  gap: 28,
+                  alignItems: 'start',
+                }}>
+                  {/* Number */}
+                  <div style={{
+                    fontSize: 'clamp(1.5rem, 2.5vw, 2rem)', fontWeight: 900,
+                    color: p.color, opacity: 0.6, lineHeight: 1,
+                    fontFamily: 'var(--font-display)', letterSpacing: '-0.04em',
+                    paddingTop: 4,
+                  }}>{p.n}</div>
+
+                  {/* Content */}
+                  <div>
+                    <div style={{
+                      fontFamily: 'var(--font-display)', fontWeight: 800,
+                      fontSize: 'clamp(1rem, 1.8vw, 1.25rem)',
+                      color: 'white', marginBottom: 8, lineHeight: 1.3,
+                    }}>{p.name}</div>
+                    <p style={{ color: 'rgba(255,255,255,0.6)', fontSize: '0.95rem', lineHeight: 1.75, marginBottom: 12 }}>{p.desc}</p>
+                    <p style={{ color: 'rgba(255,255,255,0.35)', fontSize: '0.85rem', lineHeight: 1.7, margin: 0, fontStyle: 'italic' }}>{p.detail}</p>
+                    <div style={{ marginTop: 16 }}>
+                      <a href={p.link} style={{
+                        fontSize: '0.78rem', fontWeight: 700, color: p.color,
+                        textDecoration: 'none', letterSpacing: '0.06em',
+                        fontFamily: 'var(--font-display)',
+                        display: 'inline-flex', alignItems: 'center', gap: 6,
+                      }}>
+                        Learn more →
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
           </div>
         </div>
       </section>
+
+
 
       {/* Founder Story */}
       <section style={{ background: '#1E1F22', padding: '96px 0', position: 'relative', overflow: 'hidden' }}>
