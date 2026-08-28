@@ -157,8 +157,8 @@ export default function ResultsPage() {
         <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-50%)', width: 600, height: 600, borderRadius: '50%', background: 'rgba(255,255,255,0.04)', filter: 'blur(60px)', pointerEvents: 'none' }} />
         <div style={{ padding: '0 6vw', textAlign: 'center', position: 'relative', zIndex: 1, maxWidth: 760, margin: '0 auto' }}>
           <div style={{ fontSize: '0.72rem', fontWeight: 700, color: 'rgba(255,255,255,0.6)', letterSpacing: '0.18em', textTransform: 'uppercase', marginBottom: 20 }}>Get Started</div>
-          <h2 style={{ color: 'white', fontSize: 'clamp(2rem, 3.5vw, 3rem)', fontWeight: 900, marginBottom: 20, lineHeight: 1.1, letterSpacing: '-0.02em' }}>
-            Ready to Build Results That<br/>Hold Beyond the Founder?
+          <h2 style={{ color: 'white', fontSize: 'clamp(1.8rem, 3vw, 2.75rem)', fontWeight: 900, marginBottom: 20, lineHeight: 1.1, letterSpacing: '-0.02em', maxWidth: 560, margin: '0 auto 20px' }}>
+            Ready to Build Results<br/>That Hold Beyond the Founder?
           </h2>
           <p style={{ color: 'rgba(255,255,255,0.7)', maxWidth: 560, margin: '0 auto 12px', fontSize: '1.05rem', lineHeight: 1.8 }}>
             The first step isn't another strategy session. It's understanding what is limiting performance.
