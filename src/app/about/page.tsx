@@ -2,8 +2,8 @@ import Link from 'next/link'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'About Stratiix',
-  description: 'Stratiix is a Transformation Platform. We help organizations turn strategy into capability and capability into results.',
+  title: 'About Stratiix — Built for Founder-Led Organizations',
+  description: 'Stratiix exists because growth creates complexity. We help organizations identify what is limiting performance and build the capability required to scale beyond the founder.',
 }
 
 export default function AboutPage() {
@@ -11,50 +11,76 @@ export default function AboutPage() {
     <>
       {/* Hero */}
       <section style={{
-        background: 'linear-gradient(135deg, #050A14 0%, #062E35 100%)',
+        background: 'linear-gradient(135deg, #111214 0%, #1E1F22 100%)',
         paddingTop: 140, paddingBottom: 96,
         position: 'relative', overflow: 'hidden',
       }}>
-        <div style={{ position: 'absolute', bottom: '10%', right: '5%', width: 400, height: 400, borderRadius: '50%', background: 'var(--path-design)', opacity: 0.08, filter: 'blur(80px)' }} />
-        <div className="container" style={{ position: 'relative', zIndex: 1 }}>
-          <span className="eyebrow">About</span>
-          <h1 style={{ color: 'white', maxWidth: 640, marginBottom: 24 }}>
-            A Transformation Platform. Not a Consulting Firm.
+        <div style={{ position: 'absolute', top: '20%', right: '10%', width: 400, height: 400, borderRadius: '50%', background: '#7C3AED', opacity: 0.07, filter: 'blur(80px)' }} />
+        <div style={{ position: 'absolute', bottom: '10%', left: '5%', width: 300, height: 300, borderRadius: '50%', background: '#046C5C', opacity: 0.07, filter: 'blur(60px)' }} />
+        <div style={{ padding: '0 6vw', position: 'relative', zIndex: 1 }}>
+          <div style={{ fontSize: '0.72rem', fontWeight: 700, color: '#046C5C', letterSpacing: '0.18em', textTransform: 'uppercase', marginBottom: 20 }}>
+            About Stratiix
+          </div>
+          <h1 style={{ color: 'white', maxWidth: 720, marginBottom: 28, fontSize: 'clamp(2.2rem, 4vw, 3.8rem)', fontWeight: 900, lineHeight: 1.08, letterSpacing: '-0.02em' }}>
+            Built for<br/>
+            <span style={{ color: '#B2DDD7' }}>Founder-Led Organizations</span>
           </h1>
-          <p style={{ color: 'rgba(255,255,255,0.65)', fontSize: '1.15rem', maxWidth: 580, lineHeight: 1.8 }}>
-            Stratiix helps organizations turn strategy into capability and capability into results.
-          </p>
+          <div style={{ maxWidth: 600 }}>
+            <p style={{ color: 'rgba(255,255,255,0.75)', fontSize: '1.15rem', lineHeight: 1.85, marginBottom: 20, fontWeight: 600 }}>
+              Stratiix exists because growth creates complexity.
+            </p>
+            <p style={{ color: 'rgba(255,255,255,0.55)', fontSize: '1.05rem', lineHeight: 1.85, marginBottom: 20 }}>
+              As organizations grow, performance increasingly depends on the founder, key leaders, and systems that were never designed for the next stage of growth.
+            </p>
+            <p style={{ color: 'rgba(255,255,255,0.55)', fontSize: '1.05rem', lineHeight: 1.85, marginBottom: 0 }}>
+              We help organizations identify what is limiting performance and build the capability required to scale beyond the founder.
+            </p>
+          </div>
         </div>
       </section>
 
-      {/* What We Are */}
-      <section className="section bg-white">
-        <div className="container">
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 80, alignItems: 'start' }}>
+      {/* Why Stratiix Exists */}
+      <section style={{ background: '#FAFAFA', padding: '96px 0', position: 'relative', overflow: 'hidden' }}>
+        <div style={{ position: 'absolute', top: '30%', left: '50%', transform: 'translateX(-50%)', width: 800, height: 400, borderRadius: '50%', background: 'radial-gradient(ellipse, rgba(4,108,92,0.04) 0%, transparent 70%)', pointerEvents: 'none' }} />
+        <div style={{ padding: '0 6vw', position: 'relative', zIndex: 1 }}>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 80, alignItems: 'start' }} className="two-col">
             <div>
-              <span className="eyebrow">What We Are</span>
-              <h2>The distinction matters.</h2>
-              <div className="divider" />
-              <p style={{ fontSize: '1.05rem', lineHeight: 1.8, marginBottom: 20 }}>
-                Consulting firms produce recommendations. Transformation platforms install capability. The distinction is not semantic: it determines whether anything actually changes.
-              </p>
-              <p style={{ color: 'var(--muted)', lineHeight: 1.8, marginBottom: 20 }}>
-                Stratiix does not deliver reports, frameworks, or strategic plans. We deliver installed capability: the systems, processes, structures, and behaviours that allow organizations to perform at the next level.
-              </p>
-              <p style={{ color: 'var(--muted)', lineHeight: 1.8 }}>
-                The Transformation Operating System™ is the methodology through which we do this. It is not a consulting framework. It is an operating system: designed to be installed, operated, and sustained.
-              </p>
+              <div style={{ fontSize: '0.72rem', fontWeight: 700, color: '#046C5C', letterSpacing: '0.18em', textTransform: 'uppercase', marginBottom: 20 }}>Why Stratiix Exists</div>
+              <h2 style={{ fontSize: 'clamp(1.8rem, 3vw, 2.75rem)', fontWeight: 900, color: '#1E1F22', lineHeight: 1.1, marginBottom: 24, letterSpacing: '-0.02em' }}>
+                Growth Creates<br/>Complexity
+              </h2>
+              <div style={{ width: 48, height: 3, background: '#046C5C', borderRadius: 2, marginBottom: 32 }} />
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
+                <p style={{ color: '#4B4C51', fontSize: '1.05rem', lineHeight: 1.85, margin: 0 }}>
+                  Most founder-led organizations don't fail because they lack strategy.
+                </p>
+                <p style={{ color: '#4B4C51', fontSize: '1.05rem', lineHeight: 1.85, margin: 0 }}>
+                  They struggle because growth outpaces the systems, leadership capacity, governance structures, and operating rhythms supporting the business.
+                </p>
+                <p style={{ color: '#1E1F22', fontSize: '1.05rem', lineHeight: 1.85, margin: 0, fontWeight: 700, fontFamily: 'var(--font-display)' }}>
+                  Over time, the founder becomes the operating system.
+                </p>
+                <p style={{ color: '#4B4C51', fontSize: '1.05rem', lineHeight: 1.85, margin: 0 }}>
+                  Stratiix exists to change that.
+                </p>
+                <p style={{ color: '#046C5C', fontSize: '1.05rem', lineHeight: 1.85, margin: 0, fontWeight: 700, fontFamily: 'var(--font-display)', fontStyle: 'italic' }}>
+                  We help founder-led organizations transform founder dependency into organizational capability.
+                </p>
+              </div>
             </div>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
               {[
-                { label: 'We install, not advise', desc: 'Stratiix does not produce recommendations for organizations to implement on their own. We install the capability alongside the organization.' },
-                { label: 'We measure outcomes, not outputs', desc: 'Success is not defined by deliverables produced. It is defined by what changes inside the organization.' },
-                { label: 'We build for sustainability', desc: 'Every engagement is designed to produce capability that holds without ongoing external support.' },
-                { label: 'We protect what we build', desc: 'The TOS, the Capability Engines, and the Transformation Architecture™ are proprietary intellectual property. We share the framework. We protect the methodology.' },
-              ].map(p => (
-                <div key={p.label} style={{ padding: '24px', background: 'var(--slate)', borderRadius: 10, border: '1px solid var(--slate-mid)' }}>
-                  <div style={{ fontFamily: 'var(--font-display)', fontWeight: 700, color: 'var(--teal)', marginBottom: 8 }}>{p.label}</div>
-                  <p style={{ fontSize: '0.875rem', color: 'var(--muted)', margin: 0, lineHeight: 1.65 }}>{p.desc}</p>
+                { label: 'Diagnose Before Prescribing', desc: 'We begin by understanding what is limiting performance before recommending solutions.', color: '#2563EB' },
+                { label: 'Build Capability', desc: 'We install the systems, structures, and operating disciplines organizations need to perform at the next level.', color: '#7C3AED' },
+                { label: 'Measure What Changes', desc: 'We measure success by what changes inside the organization, not by deliverables produced.', color: '#046C5C' },
+                { label: 'Scale Beyond the Founder', desc: 'Every engagement is designed to increase organizational capability and reduce dependency on individual leaders.', color: '#C9A86A' },
+              ].map(f => (
+                <div key={f.label} style={{
+                  padding: '24px', background: 'white', borderRadius: 12,
+                  border: '1px solid #E5E7EB', borderTop: `3px solid ${f.color}`,
+                }}>
+                  <div style={{ fontFamily: 'var(--font-display)', fontWeight: 800, color: f.color, marginBottom: 10, fontSize: '0.9rem', lineHeight: 1.3 }}>{f.label}</div>
+                  <p style={{ fontSize: '0.85rem', color: '#6B7280', margin: 0, lineHeight: 1.65 }}>{f.desc}</p>
                 </div>
               ))}
             </div>
@@ -62,64 +88,106 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* The Platform */}
-      <section className="section bg-dark">
-        <div className="container">
+      {/* How Stratiix Works */}
+      <section style={{ background: '#F3F4F6', padding: '96px 0' }}>
+        <div style={{ padding: '0 6vw' }}>
           <div style={{ textAlign: 'center', marginBottom: 64 }}>
-            <span className="eyebrow" style={{ color: 'var(--mint-deep)' }}>The Platform</span>
-            <h2 style={{ color: 'white' }}>What Stratiix Delivers</h2>
-            <div className="divider" style={{ margin: '20px auto 0', background: 'var(--teal)' }} />
+            <div style={{ fontSize: '0.72rem', fontWeight: 700, color: '#046C5C', letterSpacing: '0.18em', textTransform: 'uppercase', marginBottom: 16 }}>How Stratiix Works</div>
+            <h2 style={{ fontSize: 'clamp(1.8rem, 3vw, 2.5rem)', fontWeight: 900, color: '#1E1F22', lineHeight: 1.1, letterSpacing: '-0.02em' }}>
+              The Platform
+            </h2>
+            <div style={{ width: 48, height: 3, background: '#046C5C', borderRadius: 2, margin: '20px auto 0' }} />
           </div>
-          <div className="grid-3">
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 20 }} className="four-col">
             {[
-              { icon: '◈', title: 'Transformation Operating System™', desc: 'The five-phase methodology that moves organizations from diagnosis to sustained performance improvement.' },
-              { icon: '⬡', title: 'Capability Engines™', desc: 'Six specialized engines that install the capabilities organizations need to perform at the next level.' },
-              { icon: '◉', title: 'Transformation Architecture™', desc: 'The integrated framework that connects Diagnostic, TOS, Capability Engines, Intelligence, and Outcomes.' },
-              { icon: '◈', title: 'The Diagnostic™', desc: 'A structured assessment of organizational capability, performance gaps, and transformation readiness.' },
-              { icon: '⬡', title: 'Transformation Intelligence', desc: 'The measurement and learning infrastructure that tracks outcomes and enables continuous improvement.' },
-              { icon: '◉', title: 'Outcomes Framework', desc: 'The three-dimensional results framework: Installed, Adopted, Improved.' },
+              { name: 'Stratiix Path Diagnostic™', desc: 'Identify what is limiting performance and establish a baseline.', color: '#2563EB', n: '01' },
+              { name: 'Transformation Operating System™', desc: 'A structured system for moving from diagnosis to sustainable performance improvement.', color: '#7C3AED', n: '02' },
+              { name: 'Capability Engines™', desc: 'Install the capabilities required for growth, execution, and performance.', color: '#046C5C', n: '03' },
+              { name: 'Transformation Intelligence™', desc: 'Measure progress, track outcomes, and support continuous improvement.', color: '#C9A86A', n: '04' },
             ].map(p => (
-              <div key={p.title} style={{ padding: '28px', background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: 12 }}>
-                <div style={{ fontSize: '1.5rem', color: 'var(--teal)', marginBottom: 16 }}>{p.icon}</div>
-                <h4 style={{ color: 'white', marginBottom: 10, fontSize: '1rem', lineHeight: 1.4 }}>{p.title}</h4>
-                <p style={{ color: 'rgba(255,255,255,0.5)', fontSize: '0.875rem', lineHeight: 1.7, margin: 0 }}>{p.desc}</p>
+              <div key={p.name} style={{
+                padding: '28px 24px', background: 'white', borderRadius: 14,
+                border: '1px solid #E5E7EB', borderTop: `3px solid ${p.color}`,
+              }}>
+                <div style={{ fontSize: '0.68rem', fontWeight: 800, color: p.color, letterSpacing: '0.15em', marginBottom: 14 }}>{p.n}</div>
+                <h4 style={{ fontFamily: 'var(--font-display)', fontWeight: 700, color: '#1E1F22', marginBottom: 10, fontSize: '0.95rem', lineHeight: 1.4 }}>{p.name}</h4>
+                <p style={{ fontSize: '0.875rem', color: '#6B7280', margin: 0, lineHeight: 1.7 }}>{p.desc}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* IP Protection */}
-      <section className="section bg-slate">
-        <div className="container">
-          <div style={{ maxWidth: 720, margin: '0 auto', textAlign: 'center' }}>
-            <span className="eyebrow">Intellectual Property</span>
-            <h2>What We Share. What We Protect.</h2>
-            <div className="divider" style={{ margin: '20px auto 32px' }} />
-            <p style={{ fontSize: '1.05rem', lineHeight: 1.8, marginBottom: 20 }}>
-              Stratiix shares the framework: the TOS, the Capability Engines, the Transformation Architecture™, and the Outcomes Framework. These are visible because they need to be understood to be valued.
-            </p>
-            <p style={{ color: 'var(--muted)', lineHeight: 1.8 }}>
-              What Stratiix does not share: the Diagnostic scoring logic, the transformation sequencing algorithms, the internal playbooks, the intelligence models, and the Qualia algorithms. These are the proprietary methodology that makes the framework work. They are protected accordingly.
-            </p>
+      {/* Founder Story */}
+      <section style={{ background: '#1E1F22', padding: '96px 0', position: 'relative', overflow: 'hidden' }}>
+        <div style={{ position: 'absolute', top: '20%', right: '5%', width: 400, height: 400, borderRadius: '50%', background: '#046C5C', opacity: 0.06, filter: 'blur(80px)' }} />
+        <div style={{ padding: '0 6vw', position: 'relative', zIndex: 1 }}>
+          <div style={{ maxWidth: 720, margin: '0 auto' }}>
+            <div style={{ fontSize: '0.72rem', fontWeight: 700, color: '#B2DDD7', letterSpacing: '0.18em', textTransform: 'uppercase', marginBottom: 24 }}>Why I Built Stratiix</div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
+              <p style={{ color: 'rgba(255,255,255,0.75)', fontSize: '1.1rem', lineHeight: 1.85, margin: 0 }}>
+                For years, I worked across strategy, operations, growth, technology, transformation, and leadership.
+              </p>
+              <p style={{ color: 'rgba(255,255,255,0.65)', fontSize: '1.05rem', lineHeight: 1.85, margin: 0 }}>
+                What I eventually realized was that the organizations I was helping all faced a common challenge:
+              </p>
+              <div style={{
+                padding: '24px 28px',
+                background: 'rgba(4,108,92,0.12)', border: '1px solid rgba(4,108,92,0.3)',
+                borderLeft: '4px solid #046C5C',
+                borderRadius: '0 12px 12px 0',
+              }}>
+                <p style={{ color: 'white', fontSize: '1.1rem', fontWeight: 700, fontFamily: 'var(--font-display)', lineHeight: 1.7, margin: 0, fontStyle: 'italic' }}>
+                  Growth had outpaced the systems supporting the business.
+                </p>
+              </div>
+              <p style={{ color: 'rgba(255,255,255,0.65)', fontSize: '1.05rem', lineHeight: 1.85, margin: 0 }}>
+                The challenge wasn't ambition.
+              </p>
+              <p style={{ color: 'rgba(255,255,255,0.65)', fontSize: '1.05rem', lineHeight: 1.85, margin: 0 }}>
+                It wasn't leadership.
+              </p>
+              <p style={{ color: 'rgba(255,255,255,0.75)', fontSize: '1.1rem', lineHeight: 1.85, margin: 0, fontWeight: 600, fontFamily: 'var(--font-display)' }}>
+                It was capability.
+              </p>
+              <p style={{ color: 'rgba(255,255,255,0.55)', fontSize: '1.05rem', lineHeight: 1.85, margin: 0 }}>
+                Stratiix was created to help organizations build the capability required to sustain growth, improve performance, and scale beyond the founder.
+              </p>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="section bg-white">
-        <div className="container" style={{ textAlign: 'center' }}>
-          <span className="eyebrow">Begin</span>
-          <h2 style={{ maxWidth: 520, margin: '0 auto 20px' }}>
-            Ready to begin a transformation conversation?
+      {/* Final CTA */}
+      <section style={{
+        background: 'linear-gradient(135deg, #035549 0%, #046C5C 50%, #057a68 100%)',
+        padding: '100px 0', position: 'relative', overflow: 'hidden',
+      }}>
+        <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-50%)', width: 600, height: 600, borderRadius: '50%', background: 'rgba(255,255,255,0.04)', filter: 'blur(60px)', pointerEvents: 'none' }} />
+        <div style={{ padding: '0 6vw', textAlign: 'center', position: 'relative', zIndex: 1, maxWidth: 720, margin: '0 auto' }}>
+          <div style={{ fontSize: '0.72rem', fontWeight: 700, color: 'rgba(255,255,255,0.6)', letterSpacing: '0.18em', textTransform: 'uppercase', marginBottom: 20 }}>Get Started</div>
+          <h2 style={{ color: 'white', fontSize: 'clamp(2rem, 3.5vw, 3rem)', fontWeight: 900, marginBottom: 20, lineHeight: 1.1, letterSpacing: '-0.02em' }}>
+            Ready to Scale<br/>Beyond the Founder?
           </h2>
-          <p style={{ color: 'var(--muted)', maxWidth: 440, margin: '0 auto 40px', fontSize: '1.05rem' }}>
-            Contact Stratiix to discuss your organization and determine the right starting point.
+          <p style={{ color: 'rgba(255,255,255,0.7)', maxWidth: 480, margin: '0 auto 12px', fontSize: '1.05rem', lineHeight: 1.8 }}>
+            The first step isn't another strategy session.
           </p>
-          <div style={{ display: 'flex', gap: 16, justifyContent: 'center', flexWrap: 'wrap' }}>
-            <Link href="/diagnostic" className="btn btn-primary">Begin with the Diagnostic →</Link>
-            <Link href="/contact" className="btn btn-ghost-dark">Contact Stratiix</Link>
-          </div>
+          <p style={{ color: 'rgba(255,255,255,0.7)', maxWidth: 480, margin: '0 auto 40px', fontSize: '1.05rem', lineHeight: 1.8, fontWeight: 700 }}>
+            It's understanding what is limiting performance.
+          </p>
+          <p style={{ color: 'rgba(255,255,255,0.55)', maxWidth: 480, margin: '0 auto 44px', fontSize: '0.95rem', lineHeight: 1.8 }}>
+            Begin with the Stratiix Path Diagnostic™.
+          </p>
+          <Link href="/diagnostic" style={{
+            display: 'inline-flex', alignItems: 'center', gap: 8,
+            padding: '15px 36px', borderRadius: 10,
+            background: 'white', color: '#046C5C',
+            fontWeight: 800, fontSize: '0.95rem', textDecoration: 'none',
+            boxShadow: '0 8px 32px rgba(0,0,0,0.2)',
+            fontFamily: 'var(--font-display)',
+          }}>
+            Begin with the Diagnostic™ →
+          </Link>
         </div>
       </section>
     </>
