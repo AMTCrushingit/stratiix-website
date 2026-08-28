@@ -40,27 +40,21 @@ export default function TOSPage() {
         </div>
       </section>
 
-      {/* What It Is */}
+      {/* SECTION 1 — Why Strategy Alone Doesn't Produce Results */}
       <section style={{ background: 'white', padding: '96px 0' }}>
         <div style={{ padding: '0 6vw' }}>
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 80, alignItems: 'start' }} className="two-col">
             <div>
-              <div style={{ fontSize: '0.72rem', fontWeight: 700, color: '#046C5C', letterSpacing: '0.18em', textTransform: 'uppercase', marginBottom: 16 }}>What It Is</div>
-              <h2 style={{ fontSize: 'clamp(1.8rem, 3vw, 2.5rem)', fontWeight: 800, color: '#1E1F22', marginBottom: 20, lineHeight: 1.1 }}>
-                The system behind every<br/>successful transformation.
+              <div style={{ fontSize: '0.72rem', fontWeight: 700, color: '#046C5C', letterSpacing: '0.18em', textTransform: 'uppercase', marginBottom: 16 }}>The Problem</div>
+              <h2 style={{ fontSize: 'clamp(1.8rem, 3vw, 2.5rem)', fontWeight: 800, color: '#1E1F22', marginBottom: 24, lineHeight: 1.1 }}>
+                Why Strategy Alone<br/>Doesn't Produce Results
               </h2>
               <div style={{ width: 48, height: 3, background: '#046C5C', borderRadius: 2, marginBottom: 28 }} />
               <p style={{ marginBottom: 20, fontSize: '1.05rem', lineHeight: 1.85, color: '#4B4C51' }}>
-                Most organizations don't struggle because they lack strategy.
-              </p>
-              <p style={{ marginBottom: 20, fontSize: '1.05rem', lineHeight: 1.85, color: '#4B4C51' }}>
-                They struggle because strategy, execution, leadership, governance, and performance improvement are often treated as separate challenges.
-              </p>
-              <p style={{ marginBottom: 20, fontSize: '1.05rem', lineHeight: 1.85, color: '#4B4C51' }}>
-                The Transformation Operating System™ integrates them into one connected system.
+                Organizations often struggle because strategy, execution, leadership, governance, and performance improvement are treated as separate challenges.
               </p>
               <p style={{ color: '#6B7280', lineHeight: 1.8 }}>
-                Through five structured phases, organizations move from diagnosis to capability, from capability to performance, and from performance to sustainable growth.
+                The Transformation Operating System™ integrates them into one connected system.
               </p>
             </div>
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
@@ -83,16 +77,19 @@ export default function TOSPage() {
         </div>
       </section>
 
-      {/* Animated TOS Visual */}
+      {/* SECTION 2 — THE SYSTEM: Visual only, no explanation */}
       <section style={{ background: '#F3F4F6', padding: '96px 0' }}>
         <div style={{ padding: '0 6vw' }}>
-          <div style={{ textAlign: 'center', marginBottom: 56 }}>
-            <div style={{ fontSize: '0.72rem', fontWeight: 700, color: '#046C5C', letterSpacing: '0.18em', textTransform: 'uppercase', marginBottom: 16 }}>
-              Visual Representation
+          <div style={{ textAlign: 'center', marginBottom: 64 }}>
+            <div style={{ fontSize: '0.72rem', fontWeight: 700, color: '#046C5C', letterSpacing: '0.18em', textTransform: 'uppercase', marginBottom: 20 }}>
+              The System
             </div>
-            <h2 style={{ fontSize: 'clamp(1.8rem, 3vw, 2.5rem)', fontWeight: 800, color: '#1E1F22', lineHeight: 1.1 }}>
+            <h2 style={{ fontSize: 'clamp(2rem, 3.5vw, 3rem)', fontWeight: 900, color: '#1E1F22', lineHeight: 1.1, marginBottom: 20, letterSpacing: '-0.02em' }}>
               The Transformation Operating System™
             </h2>
+            <p style={{ color: '#6B7280', maxWidth: 600, margin: '0 auto', fontSize: '1.05rem', lineHeight: 1.8 }}>
+              A diagnostic-led system that helps organizations move from uncertainty and founder dependency to organizational capability and sustainable performance.
+            </p>
           </div>
           <div style={{ display: 'flex', justifyContent: 'center' }}>
             <AnimatedStratiixPath />
@@ -100,50 +97,43 @@ export default function TOSPage() {
         </div>
       </section>
 
-      {/* Five Phases — compressed */}
+      {/* SECTION 3 — THE JOURNEY: The Stratiix Path™ */}
       <section style={{ background: '#1E1F22', padding: '96px 0' }}>
         <div style={{ padding: '0 6vw' }}>
           <div style={{ textAlign: 'center', marginBottom: 72 }}>
-            <div style={{ fontSize: '0.72rem', fontWeight: 700, color: '#B2DDD7', letterSpacing: '0.18em', textTransform: 'uppercase', marginBottom: 16 }}>The Five Phases</div>
-            <h2 style={{ color: 'white', fontSize: 'clamp(1.8rem, 3vw, 2.5rem)', fontWeight: 800, lineHeight: 1.1 }}>
-              How the TOS Works
+            <div style={{ fontSize: '0.72rem', fontWeight: 700, color: '#B2DDD7', letterSpacing: '0.18em', textTransform: 'uppercase', marginBottom: 16 }}>The Journey</div>
+            <h2 style={{ color: 'white', fontSize: 'clamp(1.8rem, 3vw, 2.5rem)', fontWeight: 900, lineHeight: 1.1, letterSpacing: '-0.02em' }}>
+              The Stratiix Path™
             </h2>
           </div>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 0 }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 0, maxWidth: 900, margin: '0 auto' }}>
             {[
-              { n: '01', label: 'Diagnose', color: '#2563EB', desc: 'Identify what is limiting performance and establish a clear baseline.', outputs: ['Capability Assessment', 'Performance Gap Analysis', 'Readiness Score'] },
-              { n: '02', label: 'Architect', color: '#7C3AED', desc: 'Design the systems, capabilities, and roadmap required for the next stage of growth.', outputs: ['Transformation Blueprint', 'Capability Engine Selection', 'Leadership Alignment'] },
-              { n: '03', label: 'Activate', color: '#046C5C', desc: 'Install the required capabilities, operating systems, and infrastructure.', outputs: ['Capability Engine Deployment', 'System Installation', 'Adoption Infrastructure'] },
-              { n: '04', label: 'Accelerate', color: '#10B981', desc: 'Improve adoption, execution, and performance.', outputs: ['Performance Measurement', 'Optimization Interventions', 'Outcome Tracking'] },
-              { n: '05', label: 'Sustain', color: '#C9A86A', desc: 'Embed governance, accountability, and continuous improvement.', outputs: ['Governance Rhythms', 'Accountability Architecture', 'Performance Maintenance'] },
+              { n: '01', label: 'Diagnose',   color: '#2563EB', desc: 'Identify what is limiting performance and establish a clear baseline.' },
+              { n: '02', label: 'Architect',  color: '#7C3AED', desc: 'Design the systems, capabilities, and roadmap required for growth.' },
+              { n: '03', label: 'Activate',   color: '#046C5C', desc: 'Install the required capabilities, operating systems, and infrastructure.' },
+              { n: '04', label: 'Accelerate', color: '#10B981', desc: 'Improve adoption, execution, and performance.' },
+              { n: '05', label: 'Sustain',    color: '#C9A86A', desc: 'Embed governance, accountability, and continuous improvement.' },
             ].map((p, i) => (
               <div key={p.n} style={{
-                display: 'grid', gridTemplateColumns: '80px 1fr 260px', gap: 40,
-                padding: '36px 0',
+                display: 'grid', gridTemplateColumns: '72px 160px 1fr', gap: 32,
+                padding: '32px 0',
                 borderTop: '1px solid rgba(255,255,255,0.07)',
                 borderBottom: i === 4 ? '1px solid rgba(255,255,255,0.07)' : 'none',
-                alignItems: 'start',
-              }} className="tos-phase-row">
-                <div style={{ textAlign: 'center' }}>
-                  <div style={{
-                    fontSize: 'clamp(1.8rem, 2.5vw, 2.2rem)', fontWeight: 900,
-                    color: p.color, opacity: 0.7, lineHeight: 1,
-                    fontFamily: 'var(--font-display)', letterSpacing: '-0.04em',
-                  }}>{p.n}</div>
-                  <div style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: '0.85rem', color: 'white', marginTop: 6 }}>{p.label}</div>
-                </div>
-                <div>
-                  <p style={{ color: 'rgba(255,255,255,0.75)', lineHeight: 1.75, margin: 0, fontSize: '1rem' }}>{p.desc}</p>
-                </div>
-                <div>
-                  <div style={{ fontSize: '0.68rem', fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.3)', marginBottom: 10 }}>Outputs</div>
-                  {p.outputs.map(o => (
-                    <div key={o} style={{ display: 'flex', gap: 8, alignItems: 'flex-start', marginBottom: 6 }}>
-                      <div style={{ width: 4, height: 4, borderRadius: '50%', background: p.color, flexShrink: 0, marginTop: 7, opacity: 0.8 }} />
-                      <span style={{ fontSize: '0.8rem', color: 'rgba(255,255,255,0.45)', lineHeight: 1.5 }}>{o}</span>
-                    </div>
-                  ))}
-                </div>
+                alignItems: 'center',
+              }}>
+                <div style={{
+                  fontSize: 'clamp(1.8rem, 2.5vw, 2.2rem)', fontWeight: 900,
+                  color: p.color, opacity: 0.65, lineHeight: 1,
+                  fontFamily: 'var(--font-display)', letterSpacing: '-0.04em',
+                }}>{p.n}</div>
+                <div style={{
+                  fontFamily: 'var(--font-display)', fontWeight: 700,
+                  fontSize: '1.1rem', color: 'white',
+                }}>{p.label}</div>
+                <div style={{
+                  color: 'rgba(255,255,255,0.55)',
+                  fontSize: '0.95rem', lineHeight: 1.75,
+                }}>{p.desc}</div>
               </div>
             ))}
           </div>
@@ -165,7 +155,7 @@ export default function TOSPage() {
                 The TOS is not for everyone. It is for organizations where the gap between ambition and performance has become impossible to ignore.
               </p>
             </div>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
               {[
                 { text: 'Growth has outpaced systems', color: '#2563EB' },
                 { text: 'Founder dependency is increasing', color: '#7C3AED' },
