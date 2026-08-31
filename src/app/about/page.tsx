@@ -101,25 +101,76 @@ export default function AboutPage() {
             </p>
           </div>
 
-          {/* 4 principle cards — horizontal row */}
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 20 }} className="four-col">
-            {[
-              { label: 'Diagnose Before Prescribing', desc: 'We begin by understanding what is limiting performance before recommending solutions.', color: '#2563EB', n: '01' },
-              { label: 'Build Capability', desc: 'We install the systems, structures, and operating disciplines organizations need to perform at the next level.', color: '#7C3AED', n: '02' },
-              { label: 'Measure What Changes', desc: 'We measure success by what changes inside the organization, not by deliverables produced.', color: '#046C5C', n: '03' },
-              { label: 'Scale Beyond the Founder', desc: 'Every engagement is designed to increase organizational capability and reduce dependency on individual leaders.', color: '#C9A86A', n: '04' },
-            ].map(f => (
-              <div key={f.label} style={{
-                padding: '28px 24px', background: 'white', borderRadius: 14,
-                border: '1px solid #E5E7EB', borderTop: `3px solid ${f.color}`,
-                position: 'relative',
-              }}>
-                <div style={{ fontSize: '0.68rem', fontWeight: 800, color: f.color, letterSpacing: '0.15em', marginBottom: 12 }}>{f.n}</div>
-                <div style={{ fontFamily: 'var(--font-display)', fontWeight: 800, color: '#1E1F22', marginBottom: 10, fontSize: '0.9rem', lineHeight: 1.3 }}>{f.label}</div>
-                <p style={{ fontSize: '0.85rem', color: '#6B7280', margin: 0, lineHeight: 1.65 }}>{f.desc}</p>
+          {/* 4 principles — vertical timeline, image left / timeline right */}
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '6vw', alignItems: 'start', marginTop: 16 }} className="two-col">
+
+            {/* Left — visual: large emerald circle with number stack */}
+            <div style={{ position: 'relative', display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: 420 }}>
+              {/* Background glow */}
+              <div style={{ position: 'absolute', width: 360, height: 360, borderRadius: '50%', background: 'radial-gradient(circle, rgba(4,108,92,0.08) 0%, transparent 70%)' }} />
+              {/* Stacked number display */}
+              <div style={{ position: 'relative', textAlign: 'center' }}>
+                <div style={{ fontSize: 'clamp(8rem, 14vw, 12rem)', fontWeight: 900, color: 'rgba(4,108,92,0.08)', lineHeight: 1, fontFamily: 'var(--font-display)', letterSpacing: '-0.06em', userSelect: 'none' }}>
+                  04
+                </div>
+                <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', textAlign: 'center' }}>
+                  <div style={{ fontSize: '0.72rem', fontWeight: 700, color: '#046C5C', letterSpacing: '0.18em', textTransform: 'uppercase', marginBottom: 8 }}>Principles</div>
+                  <div style={{ fontSize: 'clamp(1.2rem, 2vw, 1.6rem)', fontWeight: 900, color: '#1E1F22', fontFamily: 'var(--font-display)', lineHeight: 1.2, letterSpacing: '-0.02em' }}>
+                    How We<br/>Work
+                  </div>
+                </div>
               </div>
-            ))}
+            </div>
+
+            {/* Right — vertical timeline */}
+            <div style={{ position: 'relative' }}>
+              {/* Vertical connecting line */}
+              <div style={{
+                position: 'absolute', left: 17, top: 24, bottom: 24,
+                width: 2,
+                background: 'linear-gradient(to bottom, #2563EB, #7C3AED, #046C5C, #C9A86A)',
+                opacity: 0.25,
+              }} />
+
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 0 }}>
+                {[
+                  { label: 'Diagnose Before Prescribing', desc: 'We begin by understanding what is limiting performance before recommending solutions.', color: '#2563EB', n: '01' },
+                  { label: 'Build Capability', desc: 'We install the systems, structures, and operating disciplines organizations need to perform at the next level.', color: '#7C3AED', n: '02' },
+                  { label: 'Measure What Changes', desc: 'We measure success by what changes inside the organization, not by deliverables produced.', color: '#046C5C', n: '03' },
+                  { label: 'Scale Beyond the Founder', desc: 'Every engagement is designed to increase organizational capability and reduce dependency on individual leaders.', color: '#C9A86A', n: '04' },
+                ].map((f, i) => (
+                  <div key={f.label} style={{
+                    display: 'flex', gap: 24, alignItems: 'flex-start',
+                    paddingBottom: i < 3 ? 36 : 0,
+                    position: 'relative',
+                  }}>
+                    {/* Timeline dot */}
+                    <div style={{
+                      width: 36, height: 36, borderRadius: '50%', flexShrink: 0,
+                      background: `${f.color}15`,
+                      border: `2px solid ${f.color}`,
+                      display: 'flex', alignItems: 'center', justifyContent: 'center',
+                      fontFamily: 'var(--font-display)', fontWeight: 800,
+                      fontSize: '0.65rem', color: f.color, letterSpacing: '0.08em',
+                      position: 'relative', zIndex: 1,
+                    }}>{f.n}</div>
+
+                    {/* Content */}
+                    <div style={{ paddingTop: 4 }}>
+                      <div style={{
+                        fontFamily: 'var(--font-display)', fontWeight: 800,
+                        color: '#1E1F22', marginBottom: 8,
+                        fontSize: 'clamp(1rem, 1.5vw, 1.15rem)', lineHeight: 1.3,
+                      }}>{f.label}</div>
+                      <p style={{ fontSize: '0.9rem', color: '#6B7280', margin: 0, lineHeight: 1.75 }}>{f.desc}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
           </div>
+
 
         </div>
       </section>
