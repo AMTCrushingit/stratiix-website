@@ -74,27 +74,37 @@ export default function DiagnosticPage() {
         </div>
       </section>
 
-      {/* What it produces */}
-      <section style={{ background: '#E6F4F1', padding: '96px 0' }}>
+      {/* What You'll Receive - card grid */}
+      <section style={{ background: 'white', padding: '96px 0' }}>
         <div style={{ padding: '0 6vw' }}>
-          <div style={{ textAlign: 'center', marginBottom: 64 }}>
-            <div style={{ fontSize: '0.72rem', fontWeight: 700, color: '#046C5C', letterSpacing: '0.18em', textTransform: 'uppercase', marginBottom: 16 }}>What You'll Receive</div>
-            <h2 style={{ fontSize: 'clamp(1.8rem, 3vw, 2.5rem)', fontWeight: 800, color: '#1E1F22' }}>What the Diagnostic Produces</h2>
-            <div style={{ width: 48, height: 3, background: '#046C5C', borderRadius: 2, margin: '20px auto 0' }} />
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 60, alignItems: 'end', marginBottom: 56 }} className="two-col">
+            <div>
+              <div style={{ fontSize: '0.72rem', fontWeight: 700, color: '#046C5C', letterSpacing: '0.18em', textTransform: 'uppercase', marginBottom: 16 }}>{"What You'll Receive"}</div>
+              <h2 style={{ fontSize: 'clamp(1.8rem, 3vw, 2.5rem)', fontWeight: 900, color: '#1E1F22', lineHeight: 1.1, letterSpacing: '-0.02em' }}>
+                Six deliverables.<br/>One clear picture.
+              </h2>
+            </div>
+            <div>
+              <p style={{ color: '#6B7280', fontSize: '1rem', lineHeight: 1.8, margin: 0 }}>
+                The Stratiix Path Diagnostic produces a complete, evidence-based assessment of your organization giving leadership the clarity required to act with confidence.
+              </p>
+            </div>
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 20 }} className="three-col">
             {[
-              { n: '01', title: 'Organizational Capability Report', desc: 'A detailed assessment of capability across all six Capability Engine domains, with specific findings and priority gaps identified.' },
-              { n: '02', title: 'Founder Dependency Analysis', desc: 'A structured assessment of founder dependency risk and the specific capability gaps that must be addressed to scale beyond the founder.' },
-              { n: '03', title: 'Performance Gap Analysis', desc: 'A clear mapping of the distance between current performance and the organization\'s stated objectives: with root cause analysis.' },
-              { n: '04', title: 'Transformation Readiness Score', desc: 'A composite score that reflects the organization\'s readiness to undertake transformation across capacity, commitment, and capability dimensions.' },
-              { n: '05', title: 'Priority Intervention Map', desc: 'A sequenced view of the interventions required to close the identified gaps: ordered by impact and feasibility.' },
-              { n: '06', title: 'Executive Briefing & Recommendations', desc: 'A leadership-ready summary of findings, priorities, and recommended next steps: designed to align the executive team around the transformation path.' },
-            ].map(o => (
-              <div key={o.n} style={{ padding: '28px', background: 'white', borderRadius: 12, border: '1px solid #B2DDD7' }}>
-                <div style={{ fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: '0.72rem', color: '#046C5C', letterSpacing: '0.12em', marginBottom: 12 }}>{o.n}</div>
-                <h4 style={{ marginBottom: 10, fontSize: '1rem', color: '#1E1F22', fontFamily: 'var(--font-display)' }}>{o.title}</h4>
-                <p style={{ fontSize: '0.875rem', color: '#6B7280', margin: 0, lineHeight: 1.7 }}>{o.desc}</p>
+              { icon: '◈', iconBg: '#EEF2FF', iconColor: '#4F46E5', title: 'Organizational Capability Report', desc: 'A detailed assessment of capability across all six Capability Engine domains, with specific findings and priority gaps identified.' },
+              { icon: '⬡', iconBg: '#F0FDF4', iconColor: '#16A34A', title: 'Founder Dependency Analysis', desc: 'A structured assessment of founder dependency risk and the specific capability gaps that must be addressed to scale beyond the founder.' },
+              { icon: '◉', iconBg: '#FFF7ED', iconColor: '#EA580C', title: 'Performance Gap Analysis', desc: 'A clear mapping of the distance between current performance and stated objectives, with root cause analysis.' },
+              { icon: '◈', iconBg: '#F0FDFA', iconColor: '#0D9488', title: 'Transformation Readiness Score', desc: 'A composite score reflecting readiness to undertake transformation across capacity, commitment, and capability dimensions.' },
+              { icon: '⬡', iconBg: '#FDF4FF', iconColor: '#9333EA', title: 'Priority Intervention Map', desc: 'A sequenced view of the interventions required to close the identified gaps, ordered by impact and feasibility.' },
+              { icon: '◉', iconBg: '#FFFBEB', iconColor: '#D97706', title: 'Executive Briefing & Recommendations', desc: 'A leadership-ready summary of findings, priorities, and recommended next steps to align the executive team.' },
+            ].map((o, i) => (
+              <div key={o.title} style={{ padding: '28px', background: 'white', borderRadius: 14, border: '1px solid #E5E7EB', display: 'flex', flexDirection: 'column', gap: 0 }}>
+                <div style={{ width: 44, height: 44, borderRadius: '50%', background: o.iconBg, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.1rem', color: o.iconColor, marginBottom: 20 }}>
+                  {o.icon}
+                </div>
+                <h4 style={{ fontFamily: 'var(--font-display)', fontWeight: 700, color: '#1E1F22', fontSize: '0.95rem', lineHeight: 1.4, marginBottom: 10 }}>{o.title}</h4>
+                <p style={{ fontSize: '0.85rem', color: '#6B7280', lineHeight: 1.75, margin: 0 }}>{o.desc}</p>
               </div>
             ))}
           </div>
