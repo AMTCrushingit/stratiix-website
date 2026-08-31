@@ -39,97 +39,66 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Why Stratiix Exists — full-width typographic reveal */}
+      {/* Why Stratiix Exists — two-col: text left, timeline right */}
       <section style={{ background: '#FAFAFA', padding: '96px 0', position: 'relative', overflow: 'hidden' }}>
-        <div style={{ position: 'absolute', top: '20%', right: '-5%', width: 500, height: 500, borderRadius: '50%', background: 'radial-gradient(ellipse, rgba(4,108,92,0.05) 0%, transparent 70%)', pointerEvents: 'none' }} />
+        <div style={{ position: 'absolute', top: '20%', right: '-5%', width: 500, height: 500, borderRadius: '50%', background: 'radial-gradient(ellipse, rgba(4,108,92,0.04) 0%, transparent 70%)', pointerEvents: 'none' }} />
 
         <div style={{ padding: '0 6vw', position: 'relative', zIndex: 1 }}>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '6vw', alignItems: 'start' }} className="two-col">
 
-          {/* Eyebrow + large ghost text */}
-          <div style={{ marginBottom: 72, position: 'relative' }}>
-            <div style={{
-              position: 'absolute', top: -20, left: -10,
-              fontSize: 'clamp(6rem, 12vw, 11rem)', fontWeight: 900,
-              color: 'rgba(4,108,92,0.04)', lineHeight: 1, whiteSpace: 'nowrap',
-              fontFamily: 'var(--font-display)', userSelect: 'none', pointerEvents: 'none',
-              letterSpacing: '-0.05em',
-            }}>COMPLEXITY</div>
-            <div style={{ fontSize: '0.72rem', fontWeight: 700, color: '#046C5C', letterSpacing: '0.18em', textTransform: 'uppercase', marginBottom: 20, position: 'relative' }}>Why Stratiix Exists</div>
-            <h2 style={{ fontSize: 'clamp(2rem, 4vw, 3.5rem)', fontWeight: 900, color: '#1E1F22', lineHeight: 1.05, letterSpacing: '-0.03em', position: 'relative', maxWidth: 640 }}>
-              Growth Creates<br/>
-              <span style={{ color: '#046C5C' }}>Complexity.</span>
-            </h2>
-          </div>
-
-          {/* Statement rows — full width, typographic */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 0, marginBottom: 80, maxWidth: 900 }}>
-            {[
-              { text: "Most founder-led organizations don't fail because they lack strategy.", size: '1.15rem', color: '#6B7280', weight: 400 },
-              { text: 'They struggle because growth outpaces the systems, leadership capacity, governance structures, and operating rhythms supporting the business.', size: '1.15rem', color: '#4B4C51', weight: 400 },
-              { text: 'Over time, the founder becomes the operating system.', size: 'clamp(1.3rem, 2.5vw, 1.75rem)', color: '#1E1F22', weight: 800 },
-              { text: 'Stratiix exists to change that.', size: '1.05rem', color: '#6B7280', weight: 400 },
-            ].map((s, i) => (
-              <div key={i} style={{
-                padding: '28px 0',
-                borderBottom: i < 3 ? '1px solid #E5E7EB' : 'none',
-                display: 'flex', alignItems: 'flex-start', gap: 24,
-              }}>
-                <div style={{ width: 4, height: 4, borderRadius: '50%', background: i === 2 ? '#046C5C' : '#E5E7EB', flexShrink: 0, marginTop: 12 }} />
-                <p style={{
-                  margin: 0, lineHeight: 1.75,
-                  fontSize: s.size,
-                  fontWeight: s.weight,
-                  color: s.color,
-                  fontFamily: s.weight >= 700 ? 'var(--font-display)' : 'var(--font-body)',
-                }}>{s.text}</p>
+            {/* Left — text */}
+            <div>
+              {/* Eyebrow + heading with ghost watermark */}
+              <div style={{ position: 'relative', marginBottom: 48 }}>
+                <div style={{
+                  position: 'absolute', top: -20, left: -10,
+                  fontSize: 'clamp(5rem, 10vw, 9rem)', fontWeight: 900,
+                  color: 'rgba(4,108,92,0.04)', lineHeight: 1, whiteSpace: 'nowrap',
+                  fontFamily: 'var(--font-display)', userSelect: 'none', pointerEvents: 'none',
+                  letterSpacing: '-0.05em',
+                }}>COMPLEXITY</div>
+                <div style={{ fontSize: '0.72rem', fontWeight: 700, color: '#046C5C', letterSpacing: '0.18em', textTransform: 'uppercase', marginBottom: 20, position: 'relative' }}>Why Stratiix Exists</div>
+                <h2 style={{ fontSize: 'clamp(2rem, 3.5vw, 3rem)', fontWeight: 900, color: '#1E1F22', lineHeight: 1.05, letterSpacing: '-0.03em', position: 'relative' }}>
+                  Growth Creates<br/>
+                  <span style={{ color: '#046C5C' }}>Complexity.</span>
+                </h2>
               </div>
-            ))}
-          </div>
 
-          {/* Signature statement — full width */}
-          <div style={{
-            padding: '32px 40px',
-            background: 'linear-gradient(135deg, rgba(4,108,92,0.08) 0%, rgba(4,108,92,0.04) 100%)',
-            border: '1px solid rgba(4,108,92,0.2)',
-            borderLeft: '4px solid #046C5C',
-            borderRadius: '0 16px 16px 0',
-            marginBottom: 72,
-            maxWidth: 760,
-          }}>
-            <p style={{ margin: 0, fontSize: 'clamp(1.1rem, 2vw, 1.35rem)', fontWeight: 700, color: '#046C5C', fontFamily: 'var(--font-display)', fontStyle: 'italic', lineHeight: 1.6 }}>
-              We help founder-led organizations transform founder dependency into organizational capability.
-            </p>
-          </div>
+              {/* Body — no dividers */}
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 20, marginBottom: 40 }}>
+                <p style={{ margin: 0, fontSize: '1.05rem', color: '#6B7280', lineHeight: 1.85 }}>
+                  While strategies may be sound, some founder-led organizations often struggle because growth outpaces the systems, leadership capacity, governance structures, and operating rhythms supporting the business.
+                </p>
+                <p style={{ margin: 0, fontSize: 'clamp(1.1rem, 2vw, 1.3rem)', color: '#1E1F22', lineHeight: 1.75, fontWeight: 800, fontFamily: 'var(--font-display)' }}>
+                  Over time, the founder becomes the operating system.
+                </p>
+                <p style={{ margin: 0, fontSize: '1rem', color: '#6B7280', lineHeight: 1.8 }}>
+                  Stratiix exists to change that.
+                </p>
+              </div>
 
-          {/* 4 principles — vertical timeline, image left / timeline right */}
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '6vw', alignItems: 'start', marginTop: 16 }} className="two-col">
-
-            {/* Left — visual: large emerald circle with number stack */}
-            <div style={{ position: 'relative', display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: 420 }}>
-              {/* Background glow */}
-              <div style={{ position: 'absolute', width: 360, height: 360, borderRadius: '50%', background: 'radial-gradient(circle, rgba(4,108,92,0.08) 0%, transparent 70%)' }} />
-              {/* Stacked number display */}
-              <div style={{ position: 'relative', textAlign: 'center' }}>
-                <div style={{ fontSize: 'clamp(8rem, 14vw, 12rem)', fontWeight: 900, color: 'rgba(4,108,92,0.08)', lineHeight: 1, fontFamily: 'var(--font-display)', letterSpacing: '-0.06em', userSelect: 'none' }}>
-                  04
-                </div>
-                <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', textAlign: 'center' }}>
-                  <div style={{ fontSize: '0.72rem', fontWeight: 700, color: '#046C5C', letterSpacing: '0.18em', textTransform: 'uppercase', marginBottom: 8 }}>Principles</div>
-                  <div style={{ fontSize: 'clamp(1.2rem, 2vw, 1.6rem)', fontWeight: 900, color: '#1E1F22', fontFamily: 'var(--font-display)', lineHeight: 1.2, letterSpacing: '-0.02em' }}>
-                    How We<br/>Work
-                  </div>
-                </div>
+              {/* Signature quote */}
+              <div style={{
+                padding: '24px 28px',
+                background: 'linear-gradient(135deg, rgba(4,108,92,0.08) 0%, rgba(4,108,92,0.04) 100%)',
+                border: '1px solid rgba(4,108,92,0.2)',
+                borderLeft: '4px solid #046C5C',
+                borderRadius: '0 12px 12px 0',
+              }}>
+                <p style={{ margin: 0, fontSize: 'clamp(0.95rem, 1.5vw, 1.1rem)', fontWeight: 700, color: '#046C5C', fontFamily: 'var(--font-display)', fontStyle: 'italic', lineHeight: 1.65 }}>
+                  We help founder-led organizations transform founder dependency into organizational capability.
+                </p>
               </div>
             </div>
 
             {/* Right — vertical timeline */}
-            <div style={{ position: 'relative' }}>
-              {/* Vertical connecting line */}
+            <div style={{ position: 'relative', paddingLeft: 8 }}>
+              {/* Gradient connecting line */}
               <div style={{
-                position: 'absolute', left: 17, top: 24, bottom: 24,
+                position: 'absolute', left: 25, top: 18, bottom: 18,
                 width: 2,
-                background: 'linear-gradient(to bottom, #2563EB, #7C3AED, #046C5C, #C9A86A)',
-                opacity: 0.25,
+                background: 'linear-gradient(to bottom, #2563EB 0%, #7C3AED 33%, #046C5C 66%, #C9A86A 100%)',
+                opacity: 0.2,
               }} />
 
               <div style={{ display: 'flex', flexDirection: 'column', gap: 0 }}>
@@ -140,11 +109,11 @@ export default function AboutPage() {
                   { label: 'Scale Beyond the Founder', desc: 'Every engagement is designed to increase organizational capability and reduce dependency on individual leaders.', color: '#C9A86A', n: '04' },
                 ].map((f, i) => (
                   <div key={f.label} style={{
-                    display: 'flex', gap: 24, alignItems: 'flex-start',
-                    paddingBottom: i < 3 ? 36 : 0,
+                    display: 'flex', gap: 20, alignItems: 'flex-start',
+                    paddingBottom: i < 3 ? 40 : 0,
                     position: 'relative',
                   }}>
-                    {/* Timeline dot */}
+                    {/* Dot */}
                     <div style={{
                       width: 36, height: 36, borderRadius: '50%', flexShrink: 0,
                       background: `${f.color}15`,
@@ -154,15 +123,10 @@ export default function AboutPage() {
                       fontSize: '0.65rem', color: f.color, letterSpacing: '0.08em',
                       position: 'relative', zIndex: 1,
                     }}>{f.n}</div>
-
-                    {/* Content */}
+                    {/* Text */}
                     <div style={{ paddingTop: 4 }}>
-                      <div style={{
-                        fontFamily: 'var(--font-display)', fontWeight: 800,
-                        color: '#1E1F22', marginBottom: 8,
-                        fontSize: 'clamp(1rem, 1.5vw, 1.15rem)', lineHeight: 1.3,
-                      }}>{f.label}</div>
-                      <p style={{ fontSize: '0.9rem', color: '#6B7280', margin: 0, lineHeight: 1.75 }}>{f.desc}</p>
+                      <div style={{ fontFamily: 'var(--font-display)', fontWeight: 800, color: '#1E1F22', marginBottom: 6, fontSize: '1rem', lineHeight: 1.3 }}>{f.label}</div>
+                      <p style={{ fontSize: '0.875rem', color: '#6B7280', margin: 0, lineHeight: 1.75 }}>{f.desc}</p>
                     </div>
                   </div>
                 ))}
@@ -170,10 +134,9 @@ export default function AboutPage() {
             </div>
 
           </div>
-
-
         </div>
       </section>
+
 
       {/* How Stratiix Works — dark, stacked visual layout */}
       <section style={{ background: '#111214', padding: '96px 0', position: 'relative', overflow: 'hidden' }}>
