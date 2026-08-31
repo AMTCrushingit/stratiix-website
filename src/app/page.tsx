@@ -366,7 +366,7 @@ export default function Home() {
 
 
       {/* ── FOUNDER SECTION: full typographic narrative, centred ────────── */}
-      <section style={{ background: '#FAFAFA', padding: '140px 0 120px', position: 'relative', overflow: 'hidden' }}>
+      <section style={{ background: '#FAFAFA', padding: '96px 0', position: 'relative', overflow: 'hidden', borderLeft: '4px solid #046C5C' }}>
         <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 1, background: 'linear-gradient(90deg, transparent, #046C5C44, transparent)' }} />
 
         <div style={{ padding: '0 6vw', textAlign: 'center', position: 'relative', zIndex: 1 }}>
@@ -555,7 +555,7 @@ export default function Home() {
 
 
       {/* ── TOS SECTION: centred, visual as hero ────────────────────────────── */}
-      <section style={{ background: '#F3F4F6', padding: '120px 0' }}>
+      <section style={{ background: 'white', padding: '80px 0', borderTop: '1px solid #E5E7EB', borderBottom: '1px solid #E5E7EB' }}>
         <div style={{ padding: '0 6vw' }}>
 
           {/* Centred heading block */}
@@ -619,7 +619,7 @@ export default function Home() {
 
 
       {/* ── CAPABILITY ENGINES: 2-col list, no cards ──────────────────────────── */}
-      <section style={{ background: 'white', padding: '120px 0' }}>
+      <section style={{ background: '#F3F4F6', padding: '96px 0' }}>
         <div style={{ padding: '0 6vw' }}>
           <FadeIn>
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '6vw', alignItems: 'start', marginBottom: 72 }} className="two-col">
@@ -674,7 +674,7 @@ export default function Home() {
 
 
       {/* ── SOLUTIONS: full-width, icons, new copy ──────────────────────────── */}
-      <section style={{ background: '#E6F4F1', padding: '120px 0', position: 'relative', overflow: 'hidden' }}>
+      <section style={{ background: 'white', padding: '80px 0', position: 'relative', overflow: 'hidden' }}>
         <div style={{ position: 'absolute', bottom: '-10%', right: '-5%', width: 500, height: 500, borderRadius: '50%', background: '#046C5C', opacity: 0.06, filter: 'blur(80px)' }} />
         <div style={{ padding: '0 6vw', position: 'relative', zIndex: 1 }}>
 
@@ -716,75 +716,37 @@ export default function Home() {
             </div>
           </FadeIn>
 
-          {/* Industry cards: 4 col with icons */}
-          <div className="four-col" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 20 }}>
+          {/* Industry — horizontal list, no cards */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 0 }}>
             {[
-              {
-                icon: '🏠',
-                name: 'Home Services',
-                desc: 'Operational systems, workforce capability, leadership infrastructure, and growth readiness for home service businesses scaling beyond the founder.',
-                color: '#2563EB',
-              },
-              {
-                icon: '🚛',
-                name: 'Transportation & Logistics',
-                desc: 'Operations, compliance, workforce development, and performance systems for transportation and logistics organizations.',
-                color: '#7C3AED',
-              },
-              {
-                icon: '💼',
-                name: 'Professional Services',
-                desc: 'Delivery systems, client management, leadership development, and organizational capability for growing professional practices.',
-                color: '#046C5C',
-              },
-              {
-                icon: '🏛️',
-                name: 'Nonprofits & Institutions',
-                desc: 'Governance, program effectiveness, organizational performance, and capacity building for mission-driven organizations.',
-                color: '#C9A86A',
-              },
+              { name: 'Home Services', desc: 'Operational systems, workforce capability, leadership infrastructure, and growth readiness for home service businesses scaling beyond the founder.', color: '#2563EB', n: '01' },
+              { name: 'Transportation & Logistics', desc: 'Operations, compliance, workforce development, and performance systems for transportation and logistics organizations.', color: '#7C3AED', n: '02' },
+              { name: 'Professional Services', desc: 'Delivery systems, client management, leadership development, and organizational capability for growing professional practices.', color: '#046C5C', n: '03' },
+              { name: 'Nonprofits & Institutions', desc: 'Governance, program effectiveness, organizational performance, and capacity building for mission-driven organizations.', color: '#C9A86A', n: '04' },
             ].map((s, i) => (
-              <FadeIn key={s.name} delay={i * 0.1}>
+              <FadeIn key={s.name} delay={i * 0.08}>
                 <div style={{
-                  padding: '32px 28px',
-                  background: 'white',
-                  borderRadius: 16,
-                  border: '1px solid #B2DDD7',
-                  height: '100%',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  gap: 16,
-                  transition: 'all 0.25s ease',
-                  position: 'relative',
-                  overflow: 'hidden',
+                  display: 'grid', gridTemplateColumns: '56px 220px 1fr',
+                  gap: 32, alignItems: 'center',
+                  padding: '28px 0',
+                  borderTop: '1px solid #E5E7EB',
+                  borderBottom: i === 3 ? '1px solid #E5E7EB' : 'none',
                 }}>
-                  {/* Colour accent top bar */}
-                  <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 3, background: s.color, borderRadius: '16px 16px 0 0' }} />
-                  {/* Icon */}
-                  <div style={{
-                    width: 52, height: 52, borderRadius: 12,
-                    background: `${s.color}12`,
-                    border: `1px solid ${s.color}30`,
-                    display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    fontSize: '1.5rem',
-                  }}>
-                    {s.icon}
-                  </div>
-                  <div>
-                    <div style={{ fontFamily: 'var(--font-display)', fontWeight: 700, color: '#1E1F22', marginBottom: 8, fontSize: '1rem' }}>{s.name}</div>
-                    <p style={{ fontSize: '0.875rem', color: '#6B7280', margin: 0, lineHeight: 1.7 }}>{s.desc}</p>
-                  </div>
+                  <div style={{ fontSize: '0.68rem', fontWeight: 800, color: s.color, letterSpacing: '0.15em', fontFamily: 'var(--font-display)' }}>{s.n}</div>
+                  <div style={{ fontFamily: 'var(--font-display)', fontWeight: 800, color: '#1E1F22', fontSize: '1rem', lineHeight: 1.3 }}>{s.name}</div>
+                  <p style={{ fontSize: '0.875rem', color: '#6B7280', margin: 0, lineHeight: 1.75 }}>{s.desc}</p>
                 </div>
               </FadeIn>
             ))}
           </div>
+
 
         </div>
       </section>
 
 
       {/* ── RESULTS: full-width dark, dramatic ──────────────────────────── */}
-      <section style={{ background: '#111214', padding: '120px 0', position: 'relative', overflow: 'hidden' }}>
+      <section style={{ background: '#111214', padding: '80px 0', position: 'relative', overflow: 'hidden' }}>
         <div style={{ position: 'absolute', top: '20%', left: '50%', transform: 'translateX(-50%)', width: 800, height: 400, borderRadius: '50%', background: 'radial-gradient(ellipse, rgba(4,108,92,0.08) 0%, transparent 70%)', pointerEvents: 'none' }} />
         <div style={{ maxWidth: '100%', padding: '0 6vw' }}>
           <FadeIn>
